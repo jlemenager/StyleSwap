@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const commentSchema = require('./comment')
 const postSchema = require('./post')
 const productSchema = require('./product')
-const userInfoSchema = require('./userInfo')
+const userInfoSchema = require('./userinfo')
 
 const Comment = mongoose.model('Comment', commentSchema)
 const Post = mongoose.model('Post', postSchema)

@@ -12,8 +12,12 @@ Check out our ERD of our site functionality here:
 
 https://lucid.app/lucidchart/382de539-0cf3-4903-942f-16eb34611cff/edit?utm_source=sendgrid&utm_email=doc-invite&shared=true&existing=1&token=3d979d8a9d56d2d9c588ce39d270794aeb26f7884081c01a8c0de4371a21167a-eml%3Djlemenager321%2540gmail.com%26ts%3D1688085351%26uid%3D183968212&docId=382de539-0cf3-4903-942f-16eb34611cff%3Futm_medium%3Demail&utm_campaign=transactional&utm_prod=chart&utm_lang=en&invitationId=inv_220dcb80-50c2-4c02-b68b-7086592e8eda&page=0_0#
 
+Check out our UHD of our code functionality here:
+
+https://lucid.app/lucidchart/7a6e9c38-c716-4e8a-be86-65919daed206/edit?invitationId=inv_8c9b6036-c0c4-4670-ad51-a276af455e61&page=0_0#
+
 Check out our wireframe ideas here:
 
-https://www.figma.com/file/BFlz2ugLzY597jPxRuW3yy/Untitled?type=design&node-id=0-1&mode=design&t=9tleVoLFAeshi2rw-0
+https://www.figma.com/file/BFlz2ugLzY597jPxRuW3yy/StyleSwap-Wireframe-Ideas?type=design&node-id=0-1&mode=design&t=idhLPAEhWa1TRfes-0
 
 https://www.figma.com/file/ARqI13VWNiAyq25402B7oX/StyleSwap-layout?type=whiteboard&node-id=0-1&t=u1vbJBBvqi8DWtU7-0

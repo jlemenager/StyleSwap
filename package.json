@@ -1,0 +1,15 @@
+{
+  "name": "styleswap",
+  "version": "1.0.0",
+  "description": "![logo](https://github.com/jlemenager/StyleSwap/assets/131897602/5908ce0f-8651-4204-ac64-c9bb68e865bb)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^7.3.1"
+  }
+}

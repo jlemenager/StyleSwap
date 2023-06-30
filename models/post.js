@@ -3,7 +3,7 @@ const { Schema } = require('mongoose')
 const postSchema = new Schema (
     {
       username: {type: String, required: true},
-      image: {type: String, required: true},
+      image: {type: String, required: false},
       description: {type: String, required: true},
       products: {type: String, required: true},
       likes: {type: Number, required: true},

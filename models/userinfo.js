@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 
-const userinfoSchema = new Schema (
+const userInfoSchema = new Schema (
     {
       username: {type: String, required: true},
       password: {type: String, required: true},
@@ -14,4 +14,4 @@ const userinfoSchema = new Schema (
     }
 )
 
-module.exports = userinfoSchema
+module.exports = userInfoSchema

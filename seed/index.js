@@ -1,8 +1,8 @@
 const db = require('../db')
-const { commentSchema } = require('../models')
-const { postSchema } = require('../models')
-const { productSchema } = require('../models')
-const { userinfoSchema } = require('../models')
+const { Comment } = require('../models')
+const { Post } = require('../models')
+const { Product } = require('../models')
+const { UserInfo } = require('../models')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
@@ -97,8 +97,16 @@ const main = async () => {
             isLoggedIn: true
             
           }
-
+ 
     ]
 
-    await userinfoSchema.de
+    await UserInfo.deleteMany()
+    await UserInfo.insertMany(userinfo)
 }
+
+const run = async () => {
+    await main()
+    db.close()
+
+}
+ run()

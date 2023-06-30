@@ -3,8 +3,11 @@
 ![logo](https://github.com/jlemenager/StyleSwap/assets/131897602/5908ce0f-8651-4204-ac64-c9bb68e865bb)
 
 Project Members:
+
 Jenny Nguyen: https://www.linkedin.com/in/nguyencuc1120/
+
 Tsion Molla: https://www.linkedin.com/in/tsionmolla/
+
 Jeremy LeMenager: https://www.linkedin.com/in/jeremy-lemenager-dev/
 
 ## Overview

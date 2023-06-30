@@ -1,5 +1,7 @@
 # StyleSwap
 
+![logo](https://github.com/jlemenager/StyleSwap/assets/131897602/029c5317-cd50-4342-b981-6691694b2f06)
+
 Your one-stop-shop social media site that allows users to view other users' new outfit ideas and buy/sell new outfits secondhand. As you view our front page you will see a newsfeed populate on your right, displaying all of the users most recent image posts of their new outfit. You can then buy any item from that image (if that user happens to be selling any item in the picture).
 
 There will be a navigation bar that displays the homepage(newsfeed), the marketplace(secondhand items for sale from various users), and a settings link allowing you to login, create, logout, and delete your account.

@@ -22,6 +22,7 @@ Our homepage and marketplace will both have search bar functionality, allowing y
 ## Getting Started
 
 Technologies Required: HTML, CSS, Javascript, Node.js, React.js, Express.js, Mongoose, MongoDB, Github Version Control, and Figma
+
 Here is how we will begin to execute this project:
 
 Trello Board:
@@ -30,9 +31,11 @@ https://trello.com/b/PXoQIxfn/styleswap
 We plan to incorporate these two designs to create a seamless transition between the newsfeed and the marketplace:
 
 <img width="304" alt="Screenshot 2023-06-30 at 4 04 55 AM" src="https://github.com/jlemenager/StyleSwap/assets/131897602/8a7459e1-b238-4a62-862c-a5e947d544c3">
+
 <img width="491" alt="Screenshot 2023-06-30 at 4 05 23 AM" src="https://github.com/jlemenager/StyleSwap/assets/131897602/ceb0780e-57b4-471c-8dae-2c9a24569e28">
 
 Links to our wireframe:
+
 https://www.figma.com/file/BFlz2ugLzY597jPxRuW3yy/StyleSwap-Wireframe-Ideas?type=design&node-id=0-1&mode=design&t=idhLPAEhWa1TRfes-0
 https://www.figma.com/file/ARqI13VWNiAyq25402B7oX/StyleSwap-layout?type=whiteboard&node-id=0-1&t=u1vbJBBvqi8DWtU7-0
 

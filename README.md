@@ -31,7 +31,7 @@ https://trello.com/b/PXoQIxfn/styleswap
 We plan to incorporate these two designs to create a seamless transition between the newsfeed and the marketplace:
 
 <img width="304" alt="Screenshot 2023-06-30 at 4 04 55 AM" src="https://github.com/jlemenager/StyleSwap/assets/131897602/8a7459e1-b238-4a62-862c-a5e947d544c3">
-
+<br>
 <img width="491" alt="Screenshot 2023-06-30 at 4 05 23 AM" src="https://github.com/jlemenager/StyleSwap/assets/131897602/ceb0780e-57b4-471c-8dae-2c9a24569e28">
 
 Links to our wireframe:

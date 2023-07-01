@@ -10,8 +10,3 @@ Router.delete('/:id', controller.deleteComment);
 
 module.exports = Router;
 
-
-
-
-
-

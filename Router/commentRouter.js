@@ -6,3 +6,4 @@ Router.post('/',controller.createcomment)
 Router.delete('/:id', controller.deletecomment)
 
 module.exports = Router
+

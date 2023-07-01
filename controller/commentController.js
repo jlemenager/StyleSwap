@@ -1,11 +1,13 @@
+const db = require('../db')
 const { Comment } = require('../models')
 
-const getAllComments = async(req,res) => {
+
+const getAllComments = async(req, res) => {
     try{
         const comments = await Comment.find()
-        return res.status(200).json({ comments })
-    } catch (e){
-        return res.status(500).send(e.message)
+         res.status(200).json({ comments })
+    } catch (error){
+         res.status(500).send(error.message)
     }
 
 }
@@ -14,13 +16,10 @@ const getComment = async(req,res) => {
     try{
         const { id } = req.params
         const comment = await Comment.findById(id)
-        if (comment){
-            return res.status.json({ comment })
-        } else {
-            return res.status.send('Comment not found')
-        }
-    } catch(e){
-        return res.status(500).send(e.message)
+        if(!comment) throw Error('Coffee not found')
+        res.json({ comment })
+    }catch (error) {
+        return res.status(500).send(error.message)
     }
 }
 
@@ -28,41 +27,39 @@ const createComment = async(req,res) => {
     try{
         const comment = new Comment(req.body)
         await comment.save()
-        return req.status(200).json({ comment })
-    } catch(e){
-        return req.status(500).send(e.message)
+        return res.status(200).json({ comment })
+    } catch(error){
+        return res.status(500).send(error.message)
     }
 }
 
 const updateComment = async(req,res) => {
     try{
-        const { id } = req.params
-        const comment = await Comment.findByIdAndUpdate(id,req.body,{new:true})
-        if (comment){
-            return res.status(200).json({ comment })
-        } else {
-            return res.status(400).send('This comment doesnt exist')
+        let { id } = req.params
+        let comment = await Comment.findByIdAndUpdate(id, req.body, { new: true })
+        if (comment) {
+            return res.status(200).json(comment)
         }
-    } catch(e){
-        return res.status(500).send(e.message)
+         throw new Error('Flight not found')
+    } catch (error){
+       return res.status(500).send(error.message)
     }
 } 
 
-const deleteComment = async(req,res) => {
+const deleteComment = async(req, res) => {
     try{
         const { id } = req.params
-        const comment = await Comment.findByIdAndDelete(id)
-        if(comment){
-            return res.status(200).json({ comment })
-        } else {
-            return res.status(400).send('This comment doesnt exist')
+        const deleted = await Comment.findByIdAndDelete(id)
+        if (deleted) {
+            return res.status(200).send('Comment deleted')
         }
-    } catch(e){
-        return res.status(500).send(e.message)
+        throw new Error('comment not found')
+    } catch (error) {
+        return res.status(500).send(error.message)
     }
 }
 
-export default {
+module.exports = {
     getAllComments,
     getComment,
     createComment,

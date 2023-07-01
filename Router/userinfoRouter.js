@@ -1,11 +1,10 @@
 const Router = require('express').Router()
 const controller = require('../controller/userinfoController')
 
-Router.get('/', controller.finduserinfo) 
-Router.get('/:id', controller.findUserinfoById) 
-Router.get('/brand/:id', controller.findUserinfoId) 
-Router.post('/', controller.createUserinfo) 
-Router.put('/', controller.updateUserinfo) 
-Router.delete('/:id', controller.deleteUserinfo)
+Router.get('/', controller.getAllUsers) 
+Router.post('/', controller.createUser)  
+Router.get('/:id', controller.getUser) 
+Router.put('/', controller.updateUser) 
+Router.delete('/:id', controller.deleteUser)
 
 module.exports = Router

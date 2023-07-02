@@ -22,14 +22,8 @@ export default function Home() {
     }
 
     return(
-        <div> 
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input type="text" id='username' value={formState.username} onChange={handleChange}/>
-                <label htmlFor="description">Description</label>
-                <textarea name="description" id="description" cols="30" rows="10" value={formState.description} onChange={handleChange}></textarea>
-                <input type="submit" />
-            </form>
+        <div>    
+            <h1>home</h1>
             {posts.map(post=>(
                 <div key={post.description} className='post'>
                 <h2>{post.username}</h2>

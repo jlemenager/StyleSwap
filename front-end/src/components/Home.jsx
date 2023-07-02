@@ -1,12 +1,38 @@
 import UserContext from "../UserContext"
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
+import axios from 'axios'
 
 export default function Home() {
     const { posts, setPosts } = useContext(UserContext)
+    let initialState = {
+        username: '',
+        description: ''
+    }
+    const [formState, setFormState] = useState(initialState)
+    const handleChange = event => {
+        setFormState({...formState, [event.target.id]: event.target.value})
+    }
+    const handleSubmit = event => {
+        event.preventDefault()
+        console.log(formState)
+        // setFormState(initialState)
+        const postNewPost = async() => {
+            const response = await axios.post(`http://localhost:3001/api/post`, {...formState, username:formState.username, description:formState.description})
+        }
+        postNewPost()  
+    }
+
     return(
-        <div>    
+        <div> 
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username</label>
+                <input type="text" id='username' value={formState.username} onChange={handleChange}/>
+                <label htmlFor="description">Description</label>
+                <textarea name="description" id="description" cols="30" rows="10" value={formState.description} onChange={handleChange}></textarea>
+                <input type="submit" />
+            </form>
             {posts.map(post=>(
-                <div className='post'>
+                <div key={post.username} className='post'>
                 <h2>{post.username}</h2>
                 <p>{post.description}</p>
                 <p>{post.products}</p>

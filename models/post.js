@@ -5,10 +5,10 @@ const postSchema = new Schema (
       username: {type: String, required: true},
       image: {type: String, required: false},
       description: {type: String, required: true},
-      products: {type: String, required: true},
-      likes: {type: Number, required: true},
-      comments: {type: Number, required: true},
-      isLive: {type: Boolean, required: true}
+      products: {type: String, required: false},
+      likes: {type: Number, required: false},
+      comments: {type: Number, required: false},
+      isLive: {type: Boolean, required: false}
     },
     {
        timestamps: true

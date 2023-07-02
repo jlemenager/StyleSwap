@@ -10,6 +10,7 @@ import './App.css'
 function App() {
 
   const [posts,setPosts] = useState([])
+  console.log(posts)
 
   useEffect(()=>{
     const getPostsAPI = async() =>{

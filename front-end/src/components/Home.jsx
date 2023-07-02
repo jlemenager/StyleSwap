@@ -14,12 +14,11 @@ export default function Home() {
     }
     const handleSubmit = event => {
         event.preventDefault()
-        console.log(formState)
-        // setFormState(initialState)
         const postNewPost = async() => {
             const response = await axios.post(`http://localhost:3001/api/post`, {...formState, username:formState.username, description:formState.description})
         }
         postNewPost()  
+
     }
 
     return(
@@ -32,7 +31,7 @@ export default function Home() {
                 <input type="submit" />
             </form>
             {posts.map(post=>(
-                <div key={post.username} className='post'>
+                <div key={post.description} className='post'>
                 <h2>{post.username}</h2>
                 <p>{post.description}</p>
                 <p>{post.products}</p>

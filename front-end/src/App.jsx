@@ -14,16 +14,15 @@ function App() {
 
   useEffect(()=>{
     const getPostsAPI = async() =>{
-      let response = await axios.get('http://localhost:3001/api/post')
-      console.log(response.data.posts)
+      const response = await axios.get('http://localhost:3001/api/post')
+      setPosts(response.data.posts)
     }
-    setPosts(response.data.posts)
     getPostsAPI()
   },[])
   
   return (
    <div>
-    <UserContext.Provider values={{ posts,setPosts }}>
+    <UserContext.Provider value={{ posts,setPosts }}>
       <Home />
       <Nav />
     </UserContext.Provider>

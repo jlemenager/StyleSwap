@@ -24,6 +24,7 @@ export default function Home() {
 
     return(
         <div>
+            <div className='post-form'>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username: </label>
                 <input type="text" value={formState.username} onChange={handleChange} id='username'/>
@@ -31,6 +32,7 @@ export default function Home() {
                 <textarea type="text" value={formState.description} onChange={handleChange} id='description'/>
                 <input type="submit" />
             </form> 
+            </div>
             <h1>home</h1>
             {posts.reverse().map(post=>(
                 <div key={post.username} className='post'>

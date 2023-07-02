@@ -15,17 +15,25 @@ export default function Home() {
     const handleSubmit = event => {
         event.preventDefault()
         const postNewPost = async() => {
-            const response = await axios.post(`http://localhost:3001/api/post`, {...formState, username:formState.username, description:formState.description})
+            const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description})
         }
         postNewPost()  
-
+        location.reload()
+        console.log(posts)
     }
 
     return(
-        <div>    
+        <div>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username: </label>
+                <input type="text" value={formState.username} onChange={handleChange} id='username'/>
+                <label htmlFor="description">Description: </label>
+                <textarea type="text" value={formState.description} onChange={handleChange} id='description'/>
+                <input type="submit" />
+            </form> 
             <h1>home</h1>
-            {posts.map(post=>(
-                <div key={post.description} className='post'>
+            {posts.reverse().map(post=>(
+                <div key={post.username} className='post'>
                 <h2>{post.username}</h2>
                 <p>{post.description}</p>
                 <p>{post.products}</p>

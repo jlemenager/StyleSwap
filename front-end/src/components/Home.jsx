@@ -1,7 +1,7 @@
 import UserContext from "../UserContext"
 import React, { useState, useContext, useRef } from 'react'
 import axios from 'axios'
-
+import VerticalNav from './VerticalNav'
 export default function Home() {
 
 
@@ -10,10 +10,8 @@ export default function Home() {
     let initialState = {
         username: '',
         description: '',
-        likes: 0,
-        images: ''
+        likes: 0
     }
-
     const [formState, setFormState] = useState(initialState)
     const handleChange = event => {
         setFormState({...formState, [event.target.id]: event.target.value})
@@ -24,16 +22,13 @@ export default function Home() {
     
         const postNewPost = async() => {
             const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description, likes: 0 })
-           
            const newPost = response.data
-
            setPosts([newPost, ...posts])
             setPosts(response.data.posts)
             setFormState(initialState)
         }
         location.reload()
-        postNewPost()  
-       
+        postNewPost()
         // location.reload()
         console.log(posts)
     }
@@ -105,7 +100,9 @@ export default function Home() {
     
 
     return(
-        <div>
+        <div className='main-page'>
+        <VerticalNav />
+        <div className='feed'>
             <div className='post-form'>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username: </label>
@@ -138,13 +135,14 @@ export default function Home() {
                 <br/>
                 <span>Comment: {posts[posts.length-(idx+1)].comments}</span>
                 <br/>
-                <button onClick={()  => handleLike(posts[posts.length-(idx+1)]._id,)}>Like</button>
+                <button onClick={() => handleLike(posts[posts.length-(idx+1)]._id,)}>Like</button>
                 <label>comment:</label>
                 <input></input>
                 <button>submit comment</button>
                 <button onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>Delete post</button>
                 </div>
             ))}
+        </div>
         </div>
     )
 }

@@ -90,6 +90,20 @@ const unLikeToPost = async (req, res) => {
     }
 }
 
+const uploadImage = async (req, res) => {
+    try{
+        if(!req.files || Object.keys(req.files.length === 0)) {
+        return res.status(400).json({ message: 'No image file provided' })
+        }
+        const image = req.files.image
+        return res.status(200).json({ message: 'Image uploaded successfully' })
+
+    }catch(error) {
+        console.error('Error uploading image:', error)
+        return res.status(500).json({ message: 'Image upload failed'})
+    }
+}
+
 
 
 
@@ -100,5 +114,6 @@ module.exports = {
     updatePost,
     deletePost,
     addLikeToPost,
-    unLikeToPost
+    unLikeToPost,
+    uploadImage
 }

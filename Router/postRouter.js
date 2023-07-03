@@ -10,6 +10,7 @@ Router.put('/:id',controller.updatePost)
 Router.delete('/:id', controller.deletePost)
 Router.put('/:id/like', controller.addLikeToPost)
 Router.put('/:id/unlike', controller.unLikeToPost)
+Router.post('/upload', controller.uploadImage)
 
 
 module.exports = Router

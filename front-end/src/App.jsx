@@ -42,7 +42,8 @@ function App() {
     <UserContext.Provider value={{ posts,
                                    setPosts,
                                    products,
-                                   setProducts }}>
+                                   setProducts 
+                                }}>
        <Nav />
       
 

@@ -32,6 +32,7 @@ export default function Home() {
         console.log(posts)
     }
 
+
     const [likes, setLikes] = useState()
 
 
@@ -47,7 +48,17 @@ export default function Home() {
   
  
 
+ main
 
+    const [likes, setLikes] = useState(0)
+    
+    const handleLike = () => {
+        const addLike = async(clickLike, post) =>{
+            const response = await axios.put(`http://localhost:3001/api/post/${clickLike}`, {...post, likes: likes + 1})
+            location.reload()
+        }
+        addLike()
+    }
 
     return(
         <div>
@@ -61,16 +72,16 @@ export default function Home() {
             </form> 
             </div>
             <h1>home</h1>
-            {posts.reverse().map(post =>(
-                <div key={post._id} className='post'>
-                <h2>{post.username}</h2>
-                <p>{post.description}</p>
-                <p>{post.products}</p>
-                <span>Likes: {post.likes}</span>
+            {posts.map((post, idx) =>(
+                <div key={posts[posts.length-(idx+1)]._id} className='post'>
+                <h2>{posts[posts.length-(idx+1)].username}</h2>
+                <p>{posts[posts.length-(idx+1)].description}</p>
+                <p>{posts[posts.length-(idx+1)].products}</p>
+                <span>Likes: {posts[posts.length-(idx+1)].likes}</span>
                 <br/>
-                <span>Comment: {post.comments}</span>
+                <span>Comment: {posts[posts.length-(idx+1)].comments}</span>
                 <br/>
-                <button onClick={() => handleLike(post._id)}>Like</button>
+                <button onClick={() => handleLike(posts[posts.length-(idx+1)]._id, posts[posts.length-(idx+1)])}>Like</button>
                 <label>comment:</label>
                 <input></input>
                 <button>submit comment</button>

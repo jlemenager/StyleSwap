@@ -6,9 +6,11 @@ const PORT = process.env.PORT || 3001
 const AppRouter = require('./Router/appRouter')
 
 
+
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
 
 
 

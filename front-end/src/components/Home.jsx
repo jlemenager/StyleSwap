@@ -1,5 +1,5 @@
 import UserContext from "../UserContext"
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import axios from 'axios'
 
 export default function Home() {
@@ -20,6 +20,8 @@ export default function Home() {
     }
     const handleSubmit = event => {
         event.preventDefault()
+
+    
         const postNewPost = async() => {
             const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description, likes: 0 })
            
@@ -50,7 +52,7 @@ export default function Home() {
         let response = await axios.put(`http://localhost:3001/api/post/${postId}/like`, {...posts, likes: updatedLikes });
         console.log(response.data.post.likes);
        
-           setLikes(updatedLikes)
+           setLikes(response.data.post.likes)
            setClicked(true)
        
           console.log(postId)
@@ -62,7 +64,7 @@ export default function Home() {
          let response = await axios.put(`http://localhost:3001/api/post/${postId}/unlike`, {...posts, likes: updatedLikes})
          console.log(response.data.post.likes)
 
-         setLikes(updatedLikes)
+         setLikes(response.data.post.likes)
          setClicked(false)
 
          console.log(postId)
@@ -87,12 +89,18 @@ export default function Home() {
       
 
     //  uploading Images function section
-    
+
+      const inputRef = useRef(null)
       const [image, setImage] = useState('')
 
+      const handleImageClick = (event) => {
+        inputRef.current.click()
+      }
+
      function handleImage(e) {
-        console.log(e.target.value)
-        setImage(e.target.files[0])
+        const file = e.target.files[0]
+        console.log(file)
+        setImage('')
      }
     
 
@@ -104,7 +112,16 @@ export default function Home() {
                 <input type="text" value={formState.username} onChange={handleChange} id='username'/>
                 <label htmlFor="description">Description: </label>
                 <textarea type="text" value={formState.description} onChange={handleChange} id='description'/>
-                <input type='file' name='file' onChange={handleImage}></input>
+                <div onClick={handleImageClick}
+                     className="upload">
+                     <img src='./src/images/upload.png'
+                          style={{ cursor: 'pointer' }} />
+                     <input type='file' 
+                            ref={inputRef}
+                            onChange={handleImage}
+                            style={{ display: 'none' }}></input>
+                </div>
+                
                 <input type="submit" />
                 
                 
@@ -114,10 +131,10 @@ export default function Home() {
             {posts.map((post, idx) =>(
                 <div key={idx} className='post'>
                 <h2>{posts[posts.length-(idx+1)].username}</h2>
-                <img src={posts[posts.length-(idx+1)].image}/>
                 <p>{posts[posts.length-(idx+1)].description}</p>
+                <img src={ posts[posts.length-(idx+1)].image}/>
                 <p>{posts[posts.length-(idx+1)].products}</p>
-                <span>Likes: {posts[posts.length-(idx+1)].likes}</span>
+                <span>Likes: { posts[posts.length-(idx+1)].likes}</span>
                 <br/>
                 <span>Comment: {posts[posts.length-(idx+1)].comments}</span>
                 <br/>

@@ -16,10 +16,10 @@ export default function Home() {
         event.preventDefault()
         const postNewPost = async() => {
             const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description})
+            setPosts(response.data.posts)
         }
         postNewPost()  
         location.reload()
-        console.log(posts)
     }
 
     return(
@@ -34,7 +34,7 @@ export default function Home() {
             </form> 
             </div>
             <h1>home</h1>
-            {posts.reverse().map(post=>(
+            {posts.map(post=>(
                 <div key={post.username} className='post'>
                 <h2>{post.username}</h2>
                 <p>{post.description}</p>

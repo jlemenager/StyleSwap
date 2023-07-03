@@ -105,8 +105,6 @@ const uploadImage = async (req, res) => {
 }
 
 
-
-
 module.exports = {
     getAllPosts,
     getPost,

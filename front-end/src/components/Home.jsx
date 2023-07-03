@@ -4,7 +4,6 @@ import axios from 'axios'
 import VerticalNav from './VerticalNav'
 export default function Home() {
 
-
     //post function section
     const { posts, setPosts } = useContext(UserContext)
     let initialState = {

@@ -7,7 +7,7 @@ const postSchema = new Schema (
       description: {type: String, required: true},
       products: {type: String, required: false},
       likes: {type: Number, required: false},
-      comments: {type: Number, required: false},
+      comments: {type: Array, required: false},
       isLive: {type: Boolean, required: false}
     },
     {

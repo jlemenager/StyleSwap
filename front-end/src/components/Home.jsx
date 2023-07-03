@@ -6,7 +6,8 @@ export default function Home() {
     const { posts, setPosts } = useContext(UserContext)
     let initialState = {
         username: '',
-        description: ''
+        description: '',
+        
     }
     const [formState, setFormState] = useState(initialState)
     const handleChange = event => {
@@ -15,12 +16,42 @@ export default function Home() {
     const handleSubmit = event => {
         event.preventDefault()
         const postNewPost = async() => {
-            const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description})
+            const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description,  })
+           
+           const newPost = response.data
+
+           setPosts([newPost, ...posts])
+           setFormState(initialState)
+         
         }
-        postNewPost()  
         location.reload()
+        postNewPost()  
+       
+        // location.reload()
         console.log(posts)
     }
+
+     const handleLike = async postId => {
+        const response = await axios.post(`http://localhost:3001/api/posts/${postId}/like`)
+
+        console.log(response)
+     
+        
+        const updatedPosts = posts.map(post => {
+            if(post._id === postId) {
+                return { ...post, likes: post.likes + 1}
+            }
+            return post
+        })
+        setPosts(updatedPosts)
+     }
+    
+
+
+  
+ 
+
+
 
     return(
         <div>
@@ -34,13 +65,19 @@ export default function Home() {
             </form> 
             </div>
             <h1>home</h1>
-            {posts.reverse().map(post=>(
-                <div key={post.username} className='post'>
+            {posts.reverse().map(post =>(
+                <div key={post._id} className='post'>
                 <h2>{post.username}</h2>
                 <p>{post.description}</p>
                 <p>{post.products}</p>
-                <span>{post.likes}</span>
-                <span>{post.comments}</span>
+                <span>Likes: {post.likes}</span>
+                <br/>
+                <span>Comment: {post.comments}</span>
+                <br/>
+                <button onClick={() => handleLike(post._id)}>Like</button>
+                <label>comment:</label>
+                <input></input>
+                <button>submit comment</button>
                 </div>
             ))}
         </div>

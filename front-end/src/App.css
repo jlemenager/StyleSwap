@@ -1,5 +1,4 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -24,4 +23,97 @@ input{
 textarea{
   height:200px;
   width:400px;
+}
+.nav-links{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+}
+
+/* login section */
+
+.loginContainer h1  a{
+  text-decoration: none;
+  color: black;
+}
+
+.loginContainer{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 150px;
+  border-radius: 20px;
+  
+}
+.loginContainer .headingsignup{
+  font-size: 50px;
+}
+.loginContainer .or{
+  display: block;
+  align-items: center;
+  font-size: 20px;
+  color: gray;
+  margin: 20px;
+}
+.loginContainer a{
+  text-decoration: none;
+  color: black;
+}
+.loginContainer h1{
+  font-size: 50px;
+}
+
+.loginContainer span{
+  display: inline-block;
+    width: 100px;
+    border-top: 1px solid rgb(183, 183, 183);
+    margin: 0 5px;
+}
+.loginContainer .google{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 60px;
+  margin-bottom: 20px;
+  background: none;
+  border: 1px solid lightgray;
+  font-size: 20px;
+  cursor: pointer;
+}
+.loginContainer .google img{
+  position: relative;
+  right: 70px
+}
+.loginContainer .upfb{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 60px;
+  background-color: #1877f2;
+  color: white;
+  font-size: 20px; 
+  border: none;
+}
+.loginContainer .upfb img{
+  position: relative;
+  right: 70px
+}
+.loginContainer .semail{
+  width: 400px;
+  height: 60px;
+  background: none;
+  border: 1px solid lightgray;
+  font-size: 20px;
+}
+.loginContainer h3{
+  margin-bottom: 70px;
+  font-size: 25px;
 }

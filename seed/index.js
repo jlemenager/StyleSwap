@@ -111,7 +111,7 @@ const main = async () => {
             description: "Avid traveller and nature lover. Sharing my adventures around the world!",
             products: "Backpack, hiking shoes, camera",
             likes: 500,
-            comments: 20,
+            comments: [ 50],
             isLive: true
           },
           
@@ -121,7 +121,7 @@ const main = async () => {
             description: "Food enthusiast. Exploring new recipes and culinary delights!",
             products: "Cookware set, recipe book, apron",
             likes: 1200,
-            comments: 50,
+            comments: [ 30],
             isLive: false
           },
           
@@ -131,7 +131,7 @@ const main = async () => {
             description: "Health and fitness enthusiast. Inspiring others to lead an active lifestyle.",
             products: "Gym equipment, protein supplements, workout clothes",
             likes: 800,
-            comments: 30,
+            comments: [30 ],
             isLive: true
           },
           
@@ -141,7 +141,7 @@ const main = async () => {
             description: "Passionate about fashion and style. Sharing the latest trends and outfits!",
             products: "Dresses, handbags, sunglasses",
             likes: 1500,
-            comments: 70,
+            comments: [ 70],
             isLive: true
           },
           
@@ -151,7 +151,7 @@ const main = async () => {
             description: "Adorable pets and animal lover. Spreading love and care for furry friends!",
             products: "Pet toys, pet food, grooming supplies",
             likes: 900,
-            comments: 40,
+            comments: [ 40],
             isLive: false
           },
           
@@ -161,7 +161,7 @@ const main = async () => {
             description: "Technology enthusiast. Unboxing and reviewing the latest gadgets!",
             products: "Smartphones, laptops, headphones",
             likes: 2000,
-            comments: 100,
+            comments: [100 ],
             isLive: true
           },
           
@@ -171,7 +171,7 @@ const main = async () => {
             description: "Lover of art and creativity. Showcasing various art forms and talented artists!",
             products: "Paintbrushes, canvases, art prints",
             likes: 700,
-            comments: 25,
+            comments: [25 ],
             isLive: false
           },
           
@@ -181,7 +181,7 @@ const main = async () => {
             description: "Creating beautiful living spaces and providing inspiration for home decoration!",
             products: "Wall art, decorative pillows, furniture",
             likes: 1000,
-            comments: 60,
+            comments: [ 60],
             isLive: true
           },
           
@@ -191,7 +191,7 @@ const main = async () => {
             description: "Avid reader and book lover. Recommending must-read novels and literary gems!",
             products: "Bestselling books, book accessories, bookmarks",
             likes: 600,
-            comments: 35,
+            comments: [ 35],
             isLive: true
           },
           
@@ -201,7 +201,7 @@ const main = async () => {
             description: "Melodies that touch the soul. I am sharing my passion for music and favourite tunes!",
             products: "Headphones, vinyl records, musical instruments",
             likes: 1800,
-            comments: 80,
+            comments: [80 ],
             isLive: false
           }
           

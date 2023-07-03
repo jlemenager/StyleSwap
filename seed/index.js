@@ -284,8 +284,6 @@ const main = async () => {
     await Product.deleteMany()
     await Product.insertMany(product)
 
-
-
 }
 
 const run = async () => {

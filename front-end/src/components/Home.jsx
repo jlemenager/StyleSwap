@@ -8,7 +8,7 @@ export default function Home() {
         username: '',
         description: ''
     }
-    
+
     const [formState, setFormState] = useState(initialState)
     const handleChange = event => {
         setFormState({...formState, [event.target.id]: event.target.value})
@@ -18,9 +18,9 @@ export default function Home() {
         const postNewPost = async() => {
             const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description,  })
            
-        //    const newPost = response.data
+           const newPost = response.data
 
-        //    setPosts([newPost, ...posts])
+           setPosts([newPost, ...posts])
             setPosts(response.data.posts)
             setFormState(initialState)
         }

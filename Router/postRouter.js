@@ -9,6 +9,7 @@ Router.get('/:id', controller.getPost)
 Router.put('/:id',controller.updatePost) 
 Router.delete('/:id', controller.deletePost)
 Router.put('/:id/like', controller.addLikeToPost)
+Router.put('/:id/unlike', controller.unLikeToPost)
 
 
 module.exports = Router

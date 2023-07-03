@@ -149,3 +149,7 @@ textarea{
   margin-bottom: 70px;
   font-size: 25px;
 }
+.post img{
+  width: 400px;
+  height: 400px;
+}

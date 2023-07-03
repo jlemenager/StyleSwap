@@ -6,62 +6,80 @@ export default function Home() {
     const { posts, setPosts } = useContext(UserContext)
     let initialState = {
         username: '',
-        description: ''
+        description: '',
+        
     }
     const [formState, setFormState] = useState(initialState)
-
-
     const handleChange = event => {
         setFormState({...formState, [event.target.id]: event.target.value})
     }
     const handleSubmit = event => {
         event.preventDefault()
-        console.log(formState)
-        addPost()
-        setFormState(initialState)
+        const postNewPost = async() => {
+            const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description,  })
+           
+           const newPost = response.data
+
+           setPosts([newPost, ...posts])
+           setFormState(initialState)
+         
+        }
+        location.reload()
+        postNewPost()  
+       
+        // location.reload()
+        console.log(posts)
     }
 
-    const addPost = async () => {
-       const res = await axios.post(`http://localhost:3001/api/post`, formState)
+     const handleLike = async postId => {
+        const response = await axios.post(`http://localhost:3001/api/posts/${postId}/like`)
 
-       setPosts([...posts, res.data])
-    }
+        console.log(response)
+     
+        
+        const updatedPosts = posts.map(post => {
+            if(post._id === postId) {
+                return { ...post, likes: post.likes + 1}
+            }
+            return post
+        })
+        setPosts(updatedPosts)
+     }
+    
+
+
+  
+ 
+
+
 
     return(
-        <div>  
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <lable htmlFor='username'>Username</lable>
-                    <input
-                          id='username'
-                          type='text'
-                          onChange={handleChange}
-                          value={formState.username}></input>
-                    <label>Description</label>
-                    <input id='description'
-                           type='text'
-                           onChange={handleChange}
-                           value={formState.description}></input>
-                    <button type='submit'></button>
-                </form>
+        <div>
+            <div className='post-form'>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username: </label>
+                <input type="text" value={formState.username} onChange={handleChange} id='username'/>
+                <label htmlFor="description">Description: </label>
+                <textarea type="text" value={formState.description} onChange={handleChange} id='description'/>
+                <input type="submit" />
+            </form> 
             </div>
-
-           <div>
-             {posts.map(post=>(
-                <div key={post.username} className='post'>
+            <h1>home</h1>
+            {posts.reverse().map(post =>(
+                <div key={post._id} className='post'>
                 <h2>{post.username}</h2>
                 <p>{post.description}</p>
                 <p>{post.products}</p>
-                <span>{post.likes}</span>
-                <span>{post.comments}</span>
-                <label>comment</label>
+                <span>Likes: {post.likes}</span>
+                <br/>
+                <span>Comment: {post.comments}</span>
+                <br/>
+                <button onClick={() => handleLike(post._id)}>Like</button>
+                <label>comment:</label>
                 <input></input>
-               
+                <button>submit comment</button>
                 </div>
-              ))}
-            </div>  
-            <h1>home</h1>
-           
+            ))}
         </div>
     )
 }

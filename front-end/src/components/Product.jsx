@@ -16,7 +16,7 @@ export default function Product () {
       setFormState({...formState, [event.target.id]: event.target.value})
    }
 
-   const handleSubmit = e
+
 
     return(
         <div>

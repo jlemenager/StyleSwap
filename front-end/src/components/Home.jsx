@@ -6,7 +6,8 @@ export default function Home() {
     const { posts, setPosts } = useContext(UserContext)
     let initialState = {
         username: '',
-        description: ''
+        description: '',
+        likes: ''
     }
 
     const [formState, setFormState] = useState(initialState)
@@ -16,7 +17,7 @@ export default function Home() {
     const handleSubmit = event => {
         event.preventDefault()
         const postNewPost = async() => {
-            const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description,  })
+            const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description, likes: 0 })
            
            const newPost = response.data
 
@@ -31,20 +32,23 @@ export default function Home() {
         console.log(posts)
     }
 
-    //  const handleLike = async postId => {
-    //     const response = await axios.post(`http://localhost:3001/api/posts/${postId}/like`)
 
-    //     console.log(response)
-     
-        
-    //     const updatedPosts = posts.map(post => {
-    //         if(posts[posts.length-(idx+1)]._id === postId) {
-    //             return { ...post, likes: post.likes + 1}
-    //         }
-    //         return post
-    //     })
-    //     setPosts(updatedPosts)
-    //  }
+    const [likes, setLikes] = useState()
+
+
+    const handleLike = async (postId) => {
+        const response = await axios.put(`http://localhost:3001/api/post/${postId}/like`, {...posts, likes: likes + 1});
+        console.log(response.data);
+
+          location.reload()
+      };
+      
+
+
+  
+ 
+
+ main
 
     const [likes, setLikes] = useState(0)
     

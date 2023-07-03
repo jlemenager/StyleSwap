@@ -8,6 +8,7 @@ Router.post('/', controller.createPost)
 Router.get('/:id', controller.getPost) 
 Router.put('/:id',controller.updatePost) 
 Router.delete('/:id', controller.deletePost)
+Router.put('/:id/like', controller.addLikeToPost)
 
 
 module.exports = Router

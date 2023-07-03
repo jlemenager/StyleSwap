@@ -59,10 +59,32 @@ const deletePost = async(req, res) => {
     }
 }
 
+const addLikeToPost = async (req, res) => {
+    try {
+        const { id } = req.params
+        const post = await Post.findById(id)
+        if(!post) throw Error('Post not found')
+
+        post.likes++
+        await post.save()
+
+        res.json({ post })
+
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
+}
+
+
+
+
+
+
 module.exports = {
     getAllPosts,
     getPost,
     createPost,
     updatePost,
-    deletePost
+    deletePost,
+    addLikeToPost
 }

@@ -1,7 +1,17 @@
+body{
+  background-color: lightgrey;
+  padding: 0;
+  margin: 0;
+}
+
 #root {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  margin: 0;
+  padding: 0;
+
+
 }
 
 form{
@@ -24,11 +34,33 @@ textarea{
   height:200px;
   width:400px;
 }
+
+
 .nav-links{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 80px;
+  background-color: white;
+  
+}
+
+.nav-icon{
+  width:35px;
+}
+
+.logo{
+  width:55px;
+  margin:0 0 0 20px;
+  padding: 0;
+}
+
+.search{
+  margin:0 100px;
+}
+
+.left{
+  margin-right: 20px;
 }
 
 /* login section */

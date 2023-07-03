@@ -4,7 +4,10 @@ import Home from './Home'
 export default function Nav () {
     return(
         <div className='nav-links'>
+            <div className='right-title'>
             <Link to='/'><img className='logo' src="src/images/logo.png" alt="logo" /></Link>
+            <h1 className='nav-title'>StyleSwap</h1>
+            </div>
             <div className='center-links'>
             <Link to='/home'><img className='nav-icon center home' src="src/images/newsfeed.png" alt="newsfeed" /></Link>
             <Link to='/search'><img className='nav-icon center search' src="src/images/search.png" alt="search" /></Link>

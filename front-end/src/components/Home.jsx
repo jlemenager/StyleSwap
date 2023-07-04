@@ -1,5 +1,5 @@
 import UserContext from "../UserContext"
-import React, { useState, useContext, useRef } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
 import VerticalNav from './VerticalNav'
 export default function Home() {
@@ -18,11 +18,10 @@ export default function Home() {
     const handleSubmit = event => {
         event.preventDefault()
 
-    
         const postNewPost = async() => {
             const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description, likes: 0 })
-           const newPost = response.data
-           setPosts([newPost, ...posts])
+            const newPost = response.data
+            setPosts([newPost, ...posts])
             setPosts(response.data.posts)
             setFormState(initialState)
         }
@@ -37,38 +36,29 @@ export default function Home() {
     const [likes, setLikes] = useState(0)
 
     const [clicked, setClicked] = useState(false)
-
-     const handleLike = async (postId) => {
-
+    
+    const handleLike = async (postId) => {
         const updatedLikes = likes + 1
-
-       if (!clicked) {
-        let response = await axios.put(`http://localhost:3001/api/post/${postId}/like`, {...posts, likes: updatedLikes });
-        console.log(response.data.post.likes);
-       
-           setLikes(response.data.post.likes)
-           setClicked(true)
-       
-          console.log(postId)
-         
-
-       } else {
-         const updatedLikes = likes - 1
-
-         let response = await axios.put(`http://localhost:3001/api/post/${postId}/unlike`, {...posts, likes: updatedLikes})
-         console.log(response.data.post.likes)
-
-         setLikes(response.data.post.likes)
-         setClicked(false)
-
-         console.log(postId)
-
-        //  location.reload()
-       
-       }
-       
-      }
-
+        
+            if (!clicked) {
+                let response = await axios.put(`http://localhost:3001/api/post/${postId}/like`, {...posts, likes: updatedLikes });
+                setLikes(response.data.post.likes)
+                setClicked(true)
+                   if (likes!==0){
+                        document.querySelector('.likes').innerHTML = `Likes: ${likes}`
+                   }
+            } else {
+                const updatedLikes = likes - 1
+                let response = await axios.put(`http://localhost:3001/api/post/${postId}/unlike`, {...posts, likes: updatedLikes})
+                setLikes(response.data.post.likes)
+                setClicked(false)
+                    if (likes!==0){
+                        document.querySelector('.likes').innerHTML = `Likes: ${likes}`
+                    }
+                console.log(postId)
+            }
+        }
+    
 
     //   post delete function section
 
@@ -77,26 +67,24 @@ export default function Home() {
      const handlePostDelete = async (postId) => {
 
         const response = await axios.delete(`http://localhost:3001/api/post/${postId}`)
-
         setPosts(posts.filter((post) => post._id != postId))
     }
       
 
     //  uploading Images function section
 
-      const inputRef = useRef(null)
-      const [image, setImage] = useState('')
+    const inputRef = useRef(null)
+    const [image, setImage] = useState('')
 
-      const handleImageClick = (event) => {
+    const handleImageClick = (event) => {
         inputRef.current.click()
-      }
+    }
 
-     function handleImage(e) {
+    function handleImage(e) {
         const file = e.target.files[0]
         console.log(file)
         setImage('')
-     }
-    
+    }
 
     return(
         <div className='main-page'>
@@ -111,11 +99,11 @@ export default function Home() {
                 <div onClick={handleImageClick}
                      className="upload">
                      <img src='./src/images/upload.png'
-                          style={{ cursor: 'pointer' }} />
+                        style={{ cursor: 'pointer' }} />
                      <input type='file' 
-                            ref={inputRef}
-                            onChange={handleImage}
-                            style={{ display: 'none' }}></input>
+                        ref={inputRef}
+                        onChange={handleImage}
+                        style={{ display: 'none' }}></input>
                 </div>
                 
                 <input type="submit" />
@@ -130,11 +118,13 @@ export default function Home() {
                 <p>{posts[posts.length-(idx+1)].description}</p>
                 <img src={ posts[posts.length-(idx+1)].image}/>
                 <p>{posts[posts.length-(idx+1)].products}</p>
-                <span>Likes: { posts[posts.length-(idx+1)].likes}</span>
+                <span className='likes'>Likes: { posts[posts.length-(idx+1)].likes}</span>
                 <br/>
                 <span>Comment: {posts[posts.length-(idx+1)].comments}</span>
                 <br/>
-                <button onClick={() => handleLike(posts[posts.length-(idx+1)]._id,)}>Like</button>
+                <button onClick={() => {
+                    handleLike(posts[posts.length-(idx+1)]._id)
+                    }}>Like</button>
                 <label>comment:</label>
                 <input></input>
                 <button>submit comment</button>

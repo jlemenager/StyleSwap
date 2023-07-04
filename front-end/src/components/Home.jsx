@@ -61,10 +61,42 @@ export default function Home() {
                 console.log(updatedLikes)
             }
         }
+
+    //show comments
+
+    // useEffect(()=>{
+    //     const getCommentsFromAPI = () => {
+    //         posts.map(post=>{
+    //             setComments(post.comments)
+    //         })
+    //     }
+    //     getCommentsFromAPI()
+    // },[comments])
+
+
+   
+        const [commentState, setCommentState] = useState('')
+        const [newComment, setNewComment] = useState('')
+    const handleCommentChange = (evt) => {
+        setCommentState({...commentState,[evt.target.id]: evt.target.value})
+    }
+
+    const showComments = (index) => {
+        const comment = document.querySelectorAll('.comment-list')[index]
+        if(comment.style.display==='none'){
+                comment.style.display = 'block'
+        } else {
+            comment.style.display = 'none'
+        }
+    }
+        const createComment = async() => {
+            let response = await axios.put(`http://localhost:3001/api/post/newcomment`,{ comments: newComment})
+            setNewComment(response.data.posts.comments)
+        }
     
-
+    
+    
     //   post delete function section
-
 
 
      const handlePostDelete = async (postId) => {
@@ -72,7 +104,6 @@ export default function Home() {
         const response = await axios.delete(`http://localhost:3001/api/post/${postId}`)
         setPosts(posts.filter((post) => post._id != postId))
     }
-      
 
     //  uploading Images function section
 
@@ -108,10 +139,7 @@ export default function Home() {
                         onChange={handleImage}
                         style={{ display: 'none' }}></input>
                 </div>
-                
                 <input type="submit" />
-                
-                
             </form> 
             </div>
             <h1>home</h1>
@@ -123,14 +151,24 @@ export default function Home() {
                 <p>{posts[posts.length-(idx+1)].products}</p>
                 <span className='likes'>Likes: { posts[posts.length-(idx+1)].likes}</span>
                 <br/>
-                <span>Comment: {posts[posts.length-(idx+1)].comments}</span>
+                <button onClick={()=>{
+                    showComments(idx)
+                }}>Comment</button>
+                <div className='comment-list'>
+                    {posts[posts.length-(idx+1)].comments.map(comment=>(
+                        <p key={comment}>{comment}</p> 
+                    ))}
+                    </div>
                 <br/>
                 <button onClick={() => {
                     handleLike(posts[posts.length-(idx+1)]._id)
                     }}>Like</button>
                 <label>comment:</label>
-                <input></input>
-                <button>submit comment</button>
+                <input className='comment' onClick={handleCommentChange}></input>
+                <button onClick={()=>{
+                    createComment()
+                    showComments(idx)
+                    }}>submit comment</button>
                 <button onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>Delete post</button>
                 </div>
             ))}

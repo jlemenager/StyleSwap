@@ -9,7 +9,8 @@ export default function Home() {
     let initialState = {
         username: '',
         description: '',
-        likes: 0
+        likes: 0,
+        image: ''
     }
     const [formState, setFormState] = useState(initialState)
     const handleChange = event => {
@@ -43,6 +44,7 @@ export default function Home() {
             if (!clicked) {
                 let response = await axios.put(`http://localhost:3001/api/post/${postId}/like`, {...posts, likes: updatedLikes });
                 setLikes(response.data.post.likes)
+                console.log(updatedLikes)
                 setClicked(true)
                    if (likes!==0){
                         document.querySelector('.likes').innerHTML = `Likes: ${likes}`
@@ -56,6 +58,7 @@ export default function Home() {
                         document.querySelector('.likes').innerHTML = `Likes: ${likes}`
                     }
                 console.log(postId)
+                console.log(updatedLikes)
             }
         }
     

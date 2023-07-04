@@ -158,6 +158,10 @@ textarea{
   height: 400px;
 }
 
+.comment-list{
+  display:none;
+}
+
 /* login section */
 
 .loginContainer h1  a{

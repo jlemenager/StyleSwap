@@ -104,6 +104,23 @@ const uploadImage = async (req, res) => {
     }
 }
 
+const getComments = async(req, res) => {
+    try{
+        let { comments } = req.params
+        const comment = await Post.find(comments)
+    } catch (e) {
+        res.status(500).send(e.message)
+    }
+}
+
+const createComment = async(req,res) => {
+    try{
+        let comment = new Post(req.body)
+        await comment.save()
+    } catch(e){
+        res.status(500).send(e.message)
+    }
+}
 
 module.exports = {
     getAllPosts,
@@ -113,5 +130,7 @@ module.exports = {
     deletePost,
     addLikeToPost,
     unLikeToPost,
-    uploadImage
+    uploadImage,
+    getComments,
+    createComment
 }

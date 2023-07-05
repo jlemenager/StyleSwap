@@ -93,6 +93,7 @@ export default function Home() {
         }
     }
 
+
     const createComment = async(postId, idx) => {
         console.log(posts[posts.length-(idx+1)].comments)
         console.log(posts[posts.length-(idx+1)])
@@ -102,6 +103,7 @@ export default function Home() {
         let response = await axios.put(`http://localhost:3001/api/post/${postId}/comments`, comment)
         console.log(comment)
     }
+
     
     //   post delete function section
 
@@ -175,7 +177,9 @@ export default function Home() {
                 </div>
                 </div>
                 <br/>
+
                 <input className='comment-bar' onChange={handleCommentChange}></input>
+
                 <button className='comment-submit' onClick={()=>{
                     createComment(posts[idx]._id, idx)
                     // showComments(idx)

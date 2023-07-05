@@ -47,7 +47,7 @@ export default function Home() {
                 console.log(updatedLikes)
                 setClicked(true)
                    if (likes!==0){
-                        document.querySelector('.likes').innerHTML = `Likes: ${likes}`
+                        document.querySelector('.likes').innerHTML = likes
                    }
             } else {
                 const updatedLikes = likes - 1
@@ -55,7 +55,7 @@ export default function Home() {
                 setLikes(response.data.post.likes)
                 setClicked(false)
                     if (likes!==0){
-                        document.querySelector('.likes').innerHTML = `Likes: ${likes}`
+                        document.querySelector('.likes').innerHTML = likes
                     }
                 console.log(postId)
                 console.log(updatedLikes)
@@ -89,8 +89,9 @@ export default function Home() {
             comment.style.display = 'none'
         }
     }
-        const createComment = async() => {
-            let response = await axios.put(`http://localhost:3001/api/post/newcomment`,{ comments: newComment})
+        const createComment = async(postId, idx) => {
+            let response = await axios.put(`http://localhost:3001/api/post/${postId}/comments`,{ ...posts[idx].comments, comments: newComment })
+            console.log(response)
             setNewComment(response.data.posts.comments)
         }
     
@@ -126,10 +127,9 @@ export default function Home() {
         <div className='feed'>
             <div className='post-form'>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username: </label>
-                <input type="text" value={formState.username} onChange={handleChange} id='username'/>
-                <label htmlFor="description">Description: </label>
-                <textarea type="text" value={formState.description} onChange={handleChange} id='description'/>
+                <input placeholder='Username' type="text" value={formState.username} onChange={handleChange} id='username'/>
+                <textarea type="text" value={formState.description} onChange={handleChange} id='description' placeholder="What's on your mind?"/>
+                <div className='form-bottom-buttons'>
                 <div onClick={handleImageClick}
                      className="upload">
                      <img src='./src/images/upload.png'
@@ -139,37 +139,43 @@ export default function Home() {
                         onChange={handleImage}
                         style={{ display: 'none' }}></input>
                 </div>
-                <input type="submit" />
+                <input className='submit-button-form' type="submit" />
+                </div>
             </form> 
             </div>
-            <h1>home</h1>
             {posts.map((post, idx) =>(
                 <div key={idx} className='post'>
-                <h2>{posts[posts.length-(idx+1)].username}</h2>
+                <div className='top-post'>
+                <div className='post-username-section'>
+                <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
+                <h3 className='post-username'>{posts[posts.length-(idx+1)].username}</h3>
+                </div>
                 <p>{posts[posts.length-(idx+1)].description}</p>
-                <img src={ posts[posts.length-(idx+1)].image}/>
-                <p>{posts[posts.length-(idx+1)].products}</p>
-                <span className='likes'>Likes: { posts[posts.length-(idx+1)].likes}</span>
+                </div>
+                <img className='product-image' src={ posts[posts.length-(idx+1)].image}/>
+                {/* <p>{posts[posts.length-(idx+1)].products}</p> */}
+                <div className='reaction-bar'>
+                <button className='like-button' onClick={() => {
+                    handleLike(posts[posts.length-(idx+1)]._id)
+                }}>Like</button>
+                <span className='likes'>{ posts[posts.length-(idx+1)].likes }</span>
                 <br/>
-                <button onClick={()=>{
+                <button className='comment-button' onClick={()=>{
                     showComments(idx)
                 }}>Comment</button>
                 <div className='comment-list'>
                     {posts[posts.length-(idx+1)].comments.map(comment=>(
-                        <p key={comment}>{comment}</p> 
+                        <p className='comment' key={comment}>{comment}</p> 
                     ))}
-                    </div>
+                </div>
+                </div>
                 <br/>
-                <button onClick={() => {
-                    handleLike(posts[posts.length-(idx+1)]._id)
-                    }}>Like</button>
-                <label>comment:</label>
-                <input className='comment' onClick={handleCommentChange}></input>
-                <button onClick={()=>{
-                    createComment()
+                <input className='comment-bar' onClick={handleCommentChange}></input>
+                <button className='comment-submit' onClick={()=>{
+                    createComment(posts[idx]._id, idx)
                     showComments(idx)
-                    }}>submit comment</button>
-                <button onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>Delete post</button>
+                    }}>Submit</button>
+                <button className='delete-button' onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>X</button>
                 </div>
             ))}
         </div>

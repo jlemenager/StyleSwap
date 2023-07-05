@@ -12,7 +12,7 @@ Router.put('/:id/like', controller.addLikeToPost)
 Router.put('/:id/unlike', controller.unLikeToPost)
 Router.post('/upload', controller.uploadImage)
 Router.get('/:id/comments', controller.getComments)
-Router.post('/newcomment', controller.createComment)
+Router.put('/:id/comments', controller.updateCommentsList)
 
 
 module.exports = Router

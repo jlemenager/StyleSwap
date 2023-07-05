@@ -113,21 +113,22 @@ const getComments = async(req, res) => {
     }
 }
 
+// const createComment = async(req,res) => {
+//     try{
+//         let comment = new Post(req.body.comment)
+//         await comment.save()
+//     } catch(e){
+//         res.status(500).send(e.message)
+//     }
+// }
+
 const createComment = async(req,res) => {
     try{
-        let comment = new Post(req.body)
-        await comment.save()
-    } catch(e){
-        res.status(500).send(e.message)
-    }
-}
-
-const updateCommentsList = async(req,res) => {
-    try{
-        let { comments } = req.params
-        let comment = await Post.findByIdAndUpdate(comment, req.body, { new: true })
-        if (comment) {
-            return res.status(200).json(comment)
+        let { id } = req.params
+        let post = await Post.findByIdAndUpdate(id,req.body,{new:true})
+        if (post) {
+            post.comments.push(req.body.commentState)
+            return res.status(200).json(req.body.commentState)
         }
          throw new Error('Post not found')
     } catch (error){
@@ -145,5 +146,5 @@ module.exports = {
     unLikeToPost,
     uploadImage,
     getComments,
-    updateCommentsList
+    createComment
 }

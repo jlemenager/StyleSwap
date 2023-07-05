@@ -1,15 +1,19 @@
 import UserContext from "../UserContext"
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import axios from 'axios'
+import Cart from './Cart'
+
 
 export default function Product () {
 
     const { products, setProducts } = useContext(UserContext)
 
+
     console.log(products)
     let initialState = {
         username: '',
-        cost: ''
+        cost: '',
+        image:''
     }
     const [formState, setFormState] = useState(initialState)
 
@@ -23,19 +27,44 @@ export default function Product () {
      event.preventDefault()
 
      const postNewProduct = async() => {
-        const response = await axios.post(`http://localhost:3001/api/product`, {...formState, username:formState.username, cost:formState.cost})
+        const response = await axios.post(`http://localhost:3001/api/product`, {...formState, username:formState.username, cost:formState.cost })
 
-        const newProduct = response.data
-
-        setProducts([newProduct, ...products])
-        // setProducts(response.data.products)
-       
+      setProducts([...products, response.data])
         location.reload()
      }
      postNewProduct()
-     setFormState(initialState)
+     
      
    }
+
+   const deleteProduct = async(productId) => {
+    const response = await axios.delete(`http://localhost:3001/api/product/${productId}`)
+
+    setProducts(products.filter((product) => product._id != productId))
+   }
+   const inputRef = useRef(null)
+   const [image, setImage] = useState('')
+
+   const handleImageClick = (event) => {
+      inputRef.current.click()
+   }
+
+   function handleImage(e) {
+    const file = e.target.files[0]
+    console.log(file)
+    setImage(file)
+   }
+//add to cart function section 
+
+
+const [selected, setSelected] = useState(null) 
+
+const addToCart = (product, idx) => {
+    // console.log(product.username, product.cost)
+    const selectedProduct = {username: product.username, cost:product.cost, image: product.image}
+    setSelected(selectedProduct)
+    console.log(selectedProduct)   
+}
 
 
 
@@ -54,21 +83,35 @@ export default function Product () {
                             value={formState.cost}
                             id='cost'
                             type='text'/>
-                    <input type="submit" />
+                          
+                   <div onClick={handleImageClick}
+                       >
+                      <img src='./src/images/upload.png'/>
+                      <input type="file"
+                           ref={inputRef}
+                           onChange={handleImage}
+                           value={image}
+                           style={{ display: 'none' }}
+                            />
+                   </div>
+                   <input type='submit'></input>
+                    
 
                 </form>
             </div>
 
          <div>
-               {products.map((product, idx) => (
+               {products.slice().reverse().map((product, idx) => (
                 <div className="post"
                       key={idx}>
-                    <h2>{products[products.length-(idx+1)].username}</h2>
-                    <img src={products[products.length-(idx+1)].image}/>
-                    <p>{products[products.length-(idx+1)].cost}</p>
-                    <button>Add To Cart</button>
+                    <h2>{product.username}</h2>
+                    <img src={product.image}/>
+                    <p>{product.cost}</p>
+                    <button onClick={() => addToCart(product, idx)}>Add To Cart</button>
+                    <button onClick={() => deleteProduct(product._id)}>delete</button>
                 </div>
                ))}
+               {<Cart selected={selected}/> }
             </div>
         </div>
     )

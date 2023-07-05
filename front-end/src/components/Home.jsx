@@ -90,9 +90,13 @@ export default function Home() {
         }
     }
         const createComment = async(postId, idx) => {
-            let response = await axios.put(`http://localhost:3001/api/post/${postId}/comments`,{ ...posts[idx].comments, comments: newComment })
-            console.log(response)
-            setNewComment(response.data.posts.comments)
+            let response = await axios.put(`http://localhost:3001/api/post/${postId}/comments`,{ ...posts[idx].comments,
+                                 comments: [...posts[idx].comments, commentState.comment] })
+                                 const updatedComments = response.data.posts.comments;
+                                 const updatedPosts = [...posts];
+                                 updatedPosts[idx].comments = updatedComments;
+                                 setPosts(updatedPosts);
+                                 setCommentState({ ...commentState, comment: '' });
         }
     
     
@@ -170,7 +174,8 @@ export default function Home() {
                 </div>
                 </div>
                 <br/>
-                <input className='comment-bar' onClick={handleCommentChange}></input>
+                <input className='comment-bar' 
+                onClick={handleCommentChange}></input>
                 <button className='comment-submit' onClick={()=>{
                     createComment(posts[idx]._id, idx)
                     showComments(idx)

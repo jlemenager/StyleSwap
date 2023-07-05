@@ -122,6 +122,19 @@ const createComment = async(req,res) => {
     }
 }
 
+const updateCommentsList = async(req,res) => {
+    try{
+        let { comments } = req.params
+        let comment = await Post.findByIdAndUpdate(comment, req.body, { new: true })
+        if (comment) {
+            return res.status(200).json(comment)
+        }
+         throw new Error('Post not found')
+    } catch (error){
+       return res.status(500).send(error.message)
+    }
+} 
+
 module.exports = {
     getAllPosts,
     getPost,
@@ -132,5 +145,5 @@ module.exports = {
     unLikeToPost,
     uploadImage,
     getComments,
-    createComment
+    updateCommentsList
 }

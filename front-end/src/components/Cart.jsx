@@ -5,28 +5,32 @@ import { useState } from "react"
 export default function Cart() {
     const [filteredCart, setFilteredCart] = useState('')
 
-    const storedProduct = JSON.parse(localStorage.getItem('cartItems'))
+    const storedProduct = JSON.parse(localStorage.getItem('cartAll'))
+
+    console.log(storedProduct)
 
    const deleteCart = (idx) => {
       const  updatedCartItem = storedProduct.filter((item, index) => index !== idx)
-       localStorage.setItem('cartItems', JSON.stringify(updatedCartItem))
+       localStorage.setItem('cartAll', JSON.stringify(updatedCartItem))
        setFilteredCart(updatedCartItem)
    }
 
-   let totalPrice = 0
+  
 
    const [updatedCost, setUpdatedCost] = useState(0)
- const updateOrderSummary = () => {
-        storedProduct.cost.forEach(total => {
-    const totalPrice = total.cost * item.quantity
-       setUpdatedCost(totalPrice)
-       
-    });
-    updateOrderSummary()
- }
- 
-  
-// console.log(storedProduct)
+//    console.log(storedProduct)
+
+   const updateOrderSummary = () => {
+         let totalPrice = 0
+         storedProduct.forEach(item => {
+         totalPrice = item.cost * item.quantity
+        
+      });
+     setUpdatedCost(totalCost) 
+     updateOrderSummary()
+   }
+    
+
     return(
        <div>
            {storedProduct.slice().reverse().map((store, idx) => (

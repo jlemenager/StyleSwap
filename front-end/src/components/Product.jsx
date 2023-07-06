@@ -1,7 +1,7 @@
 import UserContext from "../UserContext"
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import axios from 'axios'
-import Cart from './Cart'
+
 
 
 export default function Product () {
@@ -62,26 +62,25 @@ export default function Product () {
 const [storedProduct, setStoredProduct] = useState([])
 
 const addToCart = (product, idx) => {
-    // console.log(product.username, product.cost)
+
+   
+
     const selectedProduct = {username: product.username, 
                               cost:product.cost, 
                               image: product.image}  
 
-   setStoredProduct((prevstoredProduct) => [...prevstoredProduct, selectedProduct])
+  const updatedCartItem = [...storedProduct, selectedProduct]
+  setStoredProduct(updatedCartItem)
 
-   const updatedStoredProduct = [...storedProduct, selectedProduct]
 
-  localStorage.setItem('cartItems', JSON.stringify(updatedStoredProduct))
-  
-
-console.log(updatedStoredProduct)
+  localStorage.setItem('cartItems', JSON.stringify(updatedCartItem))
 
 }
 
  useEffect(() => {
     const getCartItems = () => {
       const parsedCartItems = JSON.parse(localStorage.getItem('cartItems'))
-
+     
       localStorage.setItem('cartAll', JSON.stringify(parsedCartItems))
       setStoredProduct(parsedCartItems)
     }

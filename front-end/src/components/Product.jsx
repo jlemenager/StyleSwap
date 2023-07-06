@@ -2,15 +2,12 @@ import UserContext from "../UserContext"
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import axios from 'axios'
 
-
-
 export default function Product () {
 
     const { products, setProducts } = useContext(UserContext)
-   
 
 
-    // console.log(products)
+    console.log(products)
     let initialState = {
         username: '',
         cost: '',
@@ -34,9 +31,7 @@ export default function Product () {
         location.reload()
      }
      postNewProduct()
-     
-     
-   }
+    }
 
    const deleteProduct = async(productId) => {
     const response = await axios.delete(`http://localhost:3001/api/product/${productId}`)
@@ -58,8 +53,7 @@ export default function Product () {
 //add to cart function section 
 
 
-
-const [storedProduct, setStoredProduct] = useState([])
+const [selected, setSelected] = useState(null) 
 
 const addToCart = (product, idx) => {
 
@@ -77,9 +71,10 @@ const addToCart = (product, idx) => {
 
 }
 
- useEffect(() => {
+useEffect(() => {
     const getCartItems = () => {
       const parsedCartItems = JSON.parse(localStorage.getItem('cartItems'))
+
      
       localStorage.setItem('cartAll', JSON.stringify(parsedCartItems))
       setStoredProduct(parsedCartItems)
@@ -88,54 +83,49 @@ const addToCart = (product, idx) => {
     getCartItems()
  }, [])
 
-
-
-
-    return(
-        <div className="mainContainer">
-            <div>
-                <h1>Be a Seller</h1>
-                <form onSubmit={handleSubmit}>
-                    <label>Username:</label>
-                    <input onChange={handleChange}
-                           value={formState.username}
-                           id='username'
-                           type="text"/>
-                    <label>cost:</label>
-                    <input onChange={handleChange}
-                            value={formState.cost}
-                            id='cost'
-                            type='text'/>
-                          
-                   <div onClick={handleImageClick}
-                       >
-                      <img src='./src/images/upload.png'/>
-                      <input type="file"
-                           ref={inputRef}
-                           onChange={handleImage}
-                           value={image}
-                           style={{ display: 'none' }}
-                            />
-                   </div>
-                   <input type='submit'></input>
-                    
-
-                </form>
-            </div>
-
-         <div>
-               {products.slice().reverse().map((product, idx) => (
-                <div className="post"
-                      key={idx}
-                      id={idx}>
-                    <h2>{product.username}</h2>
-                    <img src={product.image}/>
-                    <p>{product.cost}</p>
-                    <button onClick={() => addToCart(product, idx)}>Add To Cart</button>
-                    <button onClick={() => deleteProduct(product._id)}>delete</button>
-                </div>
-               ))}
-            </div>
+return(
+    <div className="mainContainer">
+        <div>
+            <h1>Be a Seller</h1>
+            <form onSubmit={handleSubmit}>
+                <label>Username:</label>
+                <input onChange={handleChange}
+                       value={formState.username}
+                       id='username'
+                       type="text"/>
+                <label>cost:</label>
+                <input onChange={handleChange}
+                        value={formState.cost}
+                        id='cost'
+                        type='text'/>
+                      
+               <div onClick={handleImageClick}
+                   >
+                  <img src='./src/images/upload.png'/>
+                  <input type="file"
+                       ref={inputRef}
+                       onChange={handleImage}
+                       value={image}
+                       style={{ display: 'none' }}
+                        />
+               </div>
+               <input type='submit'></input>
+                
+            </form>
         </div>
-    )
+     <div>
+           {products.slice().reverse().map((product, idx) => (
+            <div className="post"
+                  key={idx}
+                  id={idx}>
+                <h2>{product.username}</h2>
+                <img src={product.image}/>
+                <p>{product.cost}</p>
+                <button onClick={() => addToCart(product, idx)}>Add To Cart</button>
+                <button onClick={() => deleteProduct(product._id)}>delete</button>
+            </div>
+           ))}
+        </div>
+    </div>
+)
 }

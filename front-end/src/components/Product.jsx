@@ -7,9 +7,10 @@ import Cart from './Cart'
 export default function Product () {
 
     const { products, setProducts } = useContext(UserContext)
+   
 
 
-    console.log(products)
+    // console.log(products)
     let initialState = {
         username: '',
         cost: '',
@@ -17,7 +18,7 @@ export default function Product () {
     }
     const [formState, setFormState] = useState(initialState)
 
-    console.log(formState)
+    // console.log(formState)
 
    const handleChange  = event => {
       setFormState({...formState, [event.target.id]: event.target.value})
@@ -57,14 +58,37 @@ export default function Product () {
 //add to cart function section 
 
 
-const [selected, setSelected] = useState(null) 
+
+const [storedProduct, setStoredProduct] = useState([])
 
 const addToCart = (product, idx) => {
     // console.log(product.username, product.cost)
-    const selectedProduct = {username: product.username, cost:product.cost, image: product.image}
-    setSelected(selectedProduct)
-    console.log(selectedProduct)   
+    const selectedProduct = {username: product.username, 
+                              cost:product.cost, 
+                              image: product.image}  
+
+   setStoredProduct((prevstoredProduct) => [...prevstoredProduct, selectedProduct])
+
+   const updatedStoredProduct = [...storedProduct, selectedProduct]
+
+  localStorage.setItem('cartItems', JSON.stringify(updatedStoredProduct))
+  
+
+console.log(updatedStoredProduct)
+
 }
+
+ useEffect(() => {
+    const getCartItems = () => {
+      const parsedCartItems = JSON.parse(localStorage.getItem('cartItems'))
+
+      localStorage.setItem('cartAll', JSON.stringify(parsedCartItems))
+      setStoredProduct(parsedCartItems)
+    }
+    
+    getCartItems()
+ }, [])
+
 
 
 
@@ -103,7 +127,8 @@ const addToCart = (product, idx) => {
          <div>
                {products.slice().reverse().map((product, idx) => (
                 <div className="post"
-                      key={idx}>
+                      key={idx}
+                      id={idx}>
                     <h2>{product.username}</h2>
                     <img src={product.image}/>
                     <p>{product.cost}</p>
@@ -111,7 +136,6 @@ const addToCart = (product, idx) => {
                     <button onClick={() => deleteProduct(product._id)}>delete</button>
                 </div>
                ))}
-               {<Cart selected={selected}/> }
             </div>
         </div>
     )

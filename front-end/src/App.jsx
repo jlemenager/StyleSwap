@@ -45,6 +45,7 @@ function App() {
                                    products,
                                    setProducts 
                                 }}>
+       <header>something</header>
        <Nav />
       
 

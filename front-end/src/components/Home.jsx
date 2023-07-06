@@ -133,6 +133,7 @@ export default function Home() {
 
     return(
         <div className='main-page'>
+        
         <VerticalNav />
         <div className='feed'>
             <div className='post-form'>

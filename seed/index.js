@@ -12,16 +12,13 @@ const main = async () => {
             username: "john_doe",
             password: "pass123",
             profileimage: "https://images.pexels.com/photos/3755918/pexels-photo-3755918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            cost: 20.99,
             isLoggedIn: true,
             isSeller: false
-            
           },
           {
             username: "jane_smith",
             password: "secret456",
             profileimage: "https://images.pexels.com/photos/8113893/pexels-photo-8113893.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            cost: 15.49,
             isLoggedIn: true,
             isSeller: true,
             
@@ -30,7 +27,6 @@ const main = async () => {
             username: "user123",
             password: "password789",
             profileimage: "https://images.pexels.com/photos/5126585/pexels-photo-5126585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            cost: 9.99,
             isLoggedIn: false,
             isSeller: false, 
           },
@@ -38,7 +34,6 @@ const main = async () => {
             username: "testuser",
             password: "testpass",
             profileimage: "https://images.pexels.com/photos/16671612/pexels-photo-16671612/free-photo-of-portrait-of-a-man-in-a-blue-t-shirt.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            cost: 5.99,
             isLoggedIn: true,
             isSeller: true,
             
@@ -47,7 +42,6 @@ const main = async () => {
             username: "guest",
             password: "guestpass",
             profileimage: "https://images.pexels.com/photos/3790492/pexels-photo-3790492.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            cost: 12.99,
             isLoggedIn: false,
             isSeller: false
    
@@ -56,7 +50,6 @@ const main = async () => {
             username: "user456",
             password: "secure789",
             profileimage: "https://images.pexels.com/photos/7562076/pexels-photo-7562076.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            cost: 8.49,
             isLoggedIn: true,
             isSeller: true
             
@@ -65,7 +58,6 @@ const main = async () => {
             username: "user789",
             password: "password123",
             profileimage: "https://images.pexels.com/photos/5240247/pexels-photo-5240247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            cost: 6.99,
             isLoggedIn: false,
             isSeller: false
             
@@ -74,7 +66,6 @@ const main = async () => {
             username: "newuser",
             password: "newpass",
             profileimage: "https://images.pexels.com/photos/10958897/pexels-photo-10958897.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            cost: 3.99,
             isLoggedIn: false,
             isSeller: false
 
@@ -84,7 +75,6 @@ const main = async () => {
             username: "user790",
             password: "password1299",
             profileimage: "https://images.pexels.com/photos/10761393/pexels-photo-10761393.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            cost: 9.99,
             isLoggedIn: false,
             isSeller: false
             
@@ -93,7 +83,6 @@ const main = async () => {
             username: "user999",
             password: "password999",
             profileimage: "https://images.pexels.com/photos/7077368/pexels-photo-7077368.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            cost: 7.99,
             isLoggedIn: true
             
           }

@@ -5,9 +5,8 @@ const userInfoSchema = new Schema (
       username: {type: String, required: true},
       password: {type: String, required: true},
       profileImage: {type: String, required: false},
-      cost: {type: String, required: true},
-      isLoggedIn: {type: Boolean, required: true},
-      isSeller: {type: Boolean}
+      isLoggedIn: {type: Boolean, required: false},
+      isSeller: {type: Boolean, required:false}
     },
     {
        timestamps: true

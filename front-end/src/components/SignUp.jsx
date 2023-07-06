@@ -53,12 +53,12 @@ export default function SignUp () {
 
     return(
         <div>
-            <h1>Signup page</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} class='loginContainer signUp'>
+                <h1 className="headinglogin">Signup page</h1>
                 <label>Username:</label>
-                <input type="text" onChange={usernameHandleChange} placeholder='Enter your username...'/>
+                <input class='signUpInput' type="text" onChange={usernameHandleChange} placeholder='Enter your username...'/>
                 <label>Password:</label>
-                <input type="text" onChange={passwordHandleChange} placeholder='Enter your password...'/>
+                <input class='signUpInput' type="text" onChange={passwordHandleChange} placeholder='Enter your password...'/>
                 <div onClick={handleImageClick}
                      className="upload">
                      <img src='./src/images/upload.png'
@@ -68,7 +68,7 @@ export default function SignUp () {
                         onChange={handleImage}
                         style={{ display: 'none' }}></input>
                 </div>
-                <input type="submit"/>
+                <input class='signUpSubmit' type="submit"/>
             </form>
         </div>
     )

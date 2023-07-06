@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-export default function LoginPage(){
+export default function LogoutPage(){
     const [usernameFormState, setUsernameFormState] = useState('')
     const [passwordFormState, setPasswordFormState] = useState('')
     const [userInfo, setUserInfo] = useState({
@@ -31,8 +31,8 @@ export default function LoginPage(){
         const checkIfRealAccount = async() => {
             for (let i = 0;i<response.data.users.length;i++){
                 if (userInfo.password == response.data.users[i].password && userInfo.username == response.data.users[i].username){
-                    const putRequest = await axios.put(`http://localhost:3001/api/userinfo/loginpage/${response.data.users[i]._id}`, {...userInfo, isLoggedIn: true})
-                    alert(`Hello ${response.data.users[i].username}, you are logged in!`)
+                    const putRequest = await axios.put(`http://localhost:3001/api/userinfo/logoutpage/${response.data.users[i]._id}`, {...userInfo, isLoggedIn: false})
+                    alert(`Hello ${response.data.users[i].username}, you are logged out.`)
                 }  
             }
         }

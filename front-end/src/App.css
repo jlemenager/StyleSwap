@@ -1,6 +1,6 @@
 body{
   background-color: #F5F5F5;
-  padding: 0;
+  padding: 0 0 30px 0;
   margin: 0;
 }
 
@@ -285,6 +285,7 @@ p{
 .comment{
   background-color: #F5F5F5;
   margin: 10px 0;
+  text-align: left;
 }
 
 .delete-button{
@@ -313,8 +314,8 @@ p{
   align-items: center;
   background-color: white;
   width: 500px;
-  margin: 0 auto;
-  margin-top: 150px;
+  margin: 150px auto;
+  padding-bottom:40px;
   border-radius: 20px;
   
 }

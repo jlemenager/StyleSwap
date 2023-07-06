@@ -73,13 +73,10 @@ export default function Home() {
     //     getCommentsFromAPI()
     // },[comments])
 
-
-   
-        const [commentState, setCommentState] = useState('')
-        const [comment, setComment] = useState('')
+    const [commentState, setCommentState] = useState('')
+    const [comments1, setComments] = useState([])
 
     const handleCommentChange = (evt) => {
-        console.log(evt.target.value)
         setCommentState(evt.target.value)
         console.log(commentState)
     }
@@ -93,18 +90,24 @@ export default function Home() {
         }
     }
 
-
     const createComment = async(postId, idx) => {
-        console.log(posts[posts.length-(idx+1)].comments)
-        console.log(posts[posts.length-(idx+1)])
-        console.log(posts[posts.length-(idx+1)])
         let postComments = posts[posts.length-(idx+1)].comments
-        setComment({...postComments, comments: commentState})
-        let response = await axios.put(`http://localhost:3001/api/post/${postId}/comments`, comment)
-        console.log(comment)
+        postComments.push(commentState)
+        console.log(postComments)
+        setComments(['a'])
+        // console.log(...postComments)
+        console.log(comments1)
+        let response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+            username: posts[posts.length-(idx+1)].username,
+            image: posts[posts.length-(idx+1)].image,
+            description: posts[posts.length-(idx+1)].description,
+            products: posts[posts.length-(idx+1)].products,
+            likes: posts[posts.length-(idx+1)].likes,
+            comments: postComments
+        })
+        console.log(response)
     }
 
-    
     //   post delete function section
 
      const handlePostDelete = async (postId) => {
@@ -181,7 +184,7 @@ export default function Home() {
                 <input className='comment-bar' onChange={handleCommentChange}></input>
 
                 <button className='comment-submit' onClick={()=>{
-                    createComment(posts[idx]._id, idx)
+                    createComment(posts[posts.length-(idx+1)]._id, idx)
                     // showComments(idx)
                     }}>Submit</button>
                 <button className='delete-button' onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>X</button>

@@ -9,8 +9,9 @@ import Cart from './components/Cart'
 import Search from './components/Search'
 import Product from './components/Product'
 import SignUP from './components/SignUp'
-
+import LoginPage from './components/LogInPage'
 import './App.css'
+
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
           <Route path='/login' element={<LogIn/>}/>
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/signup' element={<SignUP/>}/>
+          <Route path='/loginpage' element={<LoginPage/>}/>
        </Routes>
      
     </UserContext.Provider>

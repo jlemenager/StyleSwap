@@ -15,7 +15,7 @@ export default function LogIn() {
              <span></span>
             </p>
            </div>
-               <button className="semail">Log In with email</button>
+               <button className="semail"><Link to='/loginpage'>Log In with email</Link></button>
          </div>
     )
 }

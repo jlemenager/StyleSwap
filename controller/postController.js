@@ -127,7 +127,6 @@ const createComment = async(req,res) => {
         let { id } = req.params
         let post = await Post.findByIdAndUpdate(id,req.body,{new:true})
         if (post) {
-            post.comments.push(req.body.commentState)
             return res.status(200).json(req.body.commentState)
         }
          throw new Error('Post not found')

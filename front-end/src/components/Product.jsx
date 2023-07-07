@@ -82,57 +82,50 @@ const [selected, setSelected] = useState(null)
  
 
   const isProductIncart = (product) => {
-    console.log('hello')
-    let result = false
+    console.log('hello');
+    let result = false;
     for (let i = 0; i < cart.length; i++) {
-        console.log(cart[i].username , product.username)
-    
-        if (cart[i].username === product.username) {
-            result = true
+      console.log(cart[i].username, product.username);
+      if (cart[i].cost === product.cost) {
+        result = true;
+      }
+      console.log(result);
+    }
+    return result;
+  };
+  
 
 
-        }
-        console.log(result)
-       
 
-        useEffect(() => {
-            const getCartItems = () => {
-        
-              localStorage.setItem('cartAll', JSON.stringify(parsedCartItems))
-              setStoredProduct(parsedCartItems)
-        
-            }
-    return result
-}
 
-  return(
-      <div className="mainContainer">
-          <div>
-              <h1>Be a Seller</h1>
-              <form onSubmit={handleSubmit}>
-                  <label>Username:</label>
-                  <input onChange={handleChange}
-                         value={formState.username}
-                         id='username'
-                         type="text"/>
-                  <label>cost:</label>
-                  <input onChange={handleChange}
-                          value={formState.cost}
-                          id='cost'
-                          type='text'/>
-
-                 <div onClick={handleImageClick}
-                     >
-                    <img src='./src/images/upload.png'/>
-                    <input type="file"
-                         ref={inputRef}
-                         onChange={handleImage}
-                         value={image}
-                         style={{ display: 'none' }}
-                          />
-                 </div>
-                 <input type='submit'></input>
-
+    return(
+        <div className="mainContainer">
+            <div>
+                <h1>Be a Seller</h1>
+                <form onSubmit={handleSubmit}>
+                    <label>Username:</label>
+                    <input onChange={handleChange}
+                           value={formState.username}
+                           id='username'
+                           type="text"/>
+                    <label>cost:</label>
+                    <input onChange={handleChange}
+                            value={formState.cost}
+                            id='cost'
+                            type='text'/>
+                          
+                   <div onClick={handleImageClick}
+                       >
+                      <img src='./src/images/upload.png'/>
+                      <input type="file"
+                           ref={inputRef}
+                           onChange={handleImage}
+                           value={image}
+                           style={{ display: 'none' }}
+                            />
+                   </div>
+                   <input type='submit'></input>
+                    
 
               </form>
           </div>
@@ -140,27 +133,26 @@ const [selected, setSelected] = useState(null)
        <div>
              {products.slice().reverse().map((product, idx) => {
 
-              return (
-              <div className="post"
+                return (
+                <div className="post"
+                 
+                      key={idx}
+                      id={idx}>
+                    <h2>{product.username}</h2>
+                    <img src={product.image}/>
+                    <p>{product.cost}</p>
+                    { isProductIncart(product) ? 
+                    <button disabled>Sold Out</button>
+                    :
+                    <button onClick={() => addToCart( product)}>Add To Cart</button>
+                    }
+                    <button onClick={() => deleteProduct(product._id)}>delete</button>
+                </div>
+                )
+       })}
 
-                    key={idx}
-                    id={idx}>
-                  <h2>{product.username}</h2>
-                  <img src={product.image}/>
-                  <p>{product.cost}</p>
-                  { isProductIncart(product) ? 
-                  <button disabled>Sold Out</button>
-                  :
-                  <button onClick={() => addToCart( product)}>Add To Cart</button>
-                  }
-                  <button onClick={() => deleteProduct(product._id)}>delete</button>
-              </div>
-              )
-} )}
-
-          </div>
-         ))}
       </div>
-  </div>
+   </div>
+    
 )
 }

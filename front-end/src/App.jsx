@@ -18,11 +18,13 @@ function App() {
 
   const [posts,setPosts] = useState([])
 
+  const getPostsAPI = async() =>{
+    const response = await axios.get('http://localhost:3001/api/post')
+    setPosts(response.data.posts)
+  }
+
   useEffect(()=>{
-    const getPostsAPI = async() =>{
-      const response = await axios.get('http://localhost:3001/api/post')
-      setPosts(response.data.posts)
-    }
+    
     getPostsAPI()
   },[])
   

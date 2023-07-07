@@ -39,13 +39,13 @@ export default function LoginPage(){
         checkIfRealAccount()
     }
     return(
-        <form onSubmit={handleSubmit} class='loginContainer logIn'>
-            <h1 class='headinglogin'>Log In</h1>
+        <form onSubmit={handleSubmit} className='loginContainer logIn'>
+            <h1 className='headinglogin'>Log In</h1>
             <label>Username:</label>
-            <input class='logInInput' onChange={usernameHandleChange} type="text" placeholder='Username'/>
+            <input className='logInInput' onChange={usernameHandleChange} type="text" placeholder='Username'/>
             <label>Password:</label>
-            <input class='logInInput' onChange={passwordHandleChange} type="text" placeholder='Password' />
-            <input class='logInSubmit' type="submit" />
+            <input className='logInInput' onChange={passwordHandleChange} type="text" placeholder='Password' />
+            <input className='logInSubmit' type="submit" />
         </form>
     )
 }

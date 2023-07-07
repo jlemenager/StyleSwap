@@ -18,7 +18,6 @@ export default function Home() {
     }
     const handleSubmit = event => {
         event.preventDefault()
-
         const postNewPost = async() => {
             const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description, likes: 0 })
             const newPost = response.data
@@ -39,26 +38,20 @@ export default function Home() {
     const [clicked, setClicked] = useState(false)
     
     const handleLike = async (postId) => {
-        const updatedLikes = likes + 1
-        
+        console.log(postId)
             if (!clicked) {
-                let response = await axios.put(`http://localhost:3001/api/post/${postId}/like`, {...posts, likes: updatedLikes });
+                const updatedLikes = likes + 1
+                const response = await axios.put(`http://localhost:3001/api/post/${postId}/like`, {...posts, likes: updatedLikes });
                 setLikes(response.data.post.likes)
-                console.log(updatedLikes)
                 setClicked(true)
-                   if (likes!==0){
-                        document.querySelector('.likes').innerHTML = likes
-                   }
+                document.querySelector('.likes').innerHTML = likes
             } else {
                 const updatedLikes = likes - 1
-                let response = await axios.put(`http://localhost:3001/api/post/${postId}/unlike`, {...posts, likes: updatedLikes})
+                const response = await axios.put(`http://localhost:3001/api/post/${postId}/unlike`, {...posts, likes: updatedLikes})
                 setLikes(response.data.post.likes)
                 setClicked(false)
-                    if (likes!==0){
-                        document.querySelector('.likes').innerHTML = likes
-                    }
-                console.log(postId)
-                console.log(updatedLikes)
+                document.querySelector('.likes').innerHTML = likes
+                console.log(response.data)
             }
         }
 
@@ -82,22 +75,36 @@ export default function Home() {
     }
 
     const showComments = (index) => {
-        const comment = document.querySelectorAll('.comment-list')[index]
+        const comment = document.querySelectorAll('.comment-list-section')[index]
+        // const commentList = document.querySelectorAll('.comment-list-section')[index]
         if(comment.style.display==='none'){
-                comment.style.display = 'block'
-                
+            comment.style.display = 'flex'
         } else {
             comment.style.display = 'none'
         }
     }
 
+    const showCommentsOnSubmit = (index) => {
+        const comment = document.querySelectorAll('.comment-list-section')[index]
+        const input = document.querySelectorAll('.write-comment')[index]
+        // const commentList = document.querySelectorAll('.comment-list-section')[index]
+        if(comment.style.display==='none' || input.value !== ''){
+            comment.style.display = 'flex'
+        }
+        console.log(index)
+    }
+
+    // useEffect(()=>{
+    //     const scrollPosition = sessionStorage.getItem('scrollPosition')
+    //     if (scrollPosition){
+    //         window.scrollTo(0,parseInt(scrollPosition))
+    //         sessionStorage.removeItem('scrollPosition')
+    //     }
+    // },[])
+
     const createComment = async(postId, idx) => {
         let postComments = posts[posts.length-(idx+1)].comments
         postComments.push(commentState)
-        console.log(postComments)
-        setComments(['a'])
-        // console.log(...postComments)
-        console.log(comments1)
         let response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
             username: posts[posts.length-(idx+1)].username,
             image: posts[posts.length-(idx+1)].image,
@@ -106,7 +113,6 @@ export default function Home() {
             likes: posts[posts.length-(idx+1)].likes,
             comments: postComments
         })
-        console.log(response)
     }
 
     //   post delete function section
@@ -134,7 +140,6 @@ export default function Home() {
 
     return(
         <div className='main-page'>
-        
         <VerticalNav />
         <div className='feed'>
             <div className='post-form'>
@@ -157,6 +162,7 @@ export default function Home() {
             </div>
             {posts.map((post, idx) =>(
                 <div key={idx} className='post'>
+                <button className='delete-button' onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>X</button>
                 <div className='top-post'>
                 <div className='post-username-section'>
                 <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
@@ -167,29 +173,36 @@ export default function Home() {
                 <img className='product-image' src={ posts[posts.length-(idx+1)].image}/>
                 {/* <p>{posts[posts.length-(idx+1)].products}</p> */}
                 <div className='reaction-bar'>
-                <button className='like-button' onClick={() => {
+                <img className='like-button reaction-image' onClick={() => {
                     handleLike(posts[posts.length-(idx+1)]._id)
-                }}>Like</button>
+                }} src="src/images/like.png" alt='like'/>
                 <span className='likes'>{ posts[posts.length-(idx+1)].likes }</span>
                 <br/>
-                <button className='comment-button' onClick={()=>{
-                    showComments(idx)
-                }}>Comment</button>
-                <div className='comment-list'>
-                    {posts[posts.length-(idx+1)].comments.map(comment=>(
-                        <p className='comment' key={comment}>{comment}</p> 
-                    ))}
-                </div>
+                <img className='comment-button reaction-image' onClick={()=>{
+                    showComments(idx)}} src="src/images/comment.png" alt='comment'/>
                 </div>
                 <br/>
-
-                <input className='comment-bar' onChange={handleCommentChange}></input>
-
+                <div className='write-comment-section'>
+                <img className='nav-icon' src="src/images/user-icon.png" alt="user-icon" />
+                <div className="write-comment">
+                <input className='comment-bar' onChange={handleCommentChange} placeholder='Write your comment here...'></input>
                 <button className='comment-submit' onClick={()=>{
                     createComment(posts[posts.length-(idx+1)]._id, idx)
-                    showComments(idx)
+                    showCommentsOnSubmit(idx)
                     }}>Submit</button>
-                <button className='delete-button' onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>X</button>
+                </div>
+                </div>
+                <div className='comment-list-section'>
+                    <div className='comment-list-line'></div>
+                    <div className='comment-list'>
+                    {posts[posts.length-(idx+1)].comments.map((comment,idx)=>(
+                        <div key={idx} className='comment-with-icon'>
+                        <img className='nav-icon' src="src/images/user-icon.png" alt="user-icon" />
+                        <p className='comment'>{comment}</p> 
+                        </div>
+                    ))}
+                    </div>
+                </div>
                 </div>
             ))}
         </div>

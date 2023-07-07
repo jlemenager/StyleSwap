@@ -3,6 +3,7 @@ const { Comment } = require('../models/index')
 const { Post } = require('../models/index')
 const { Product } = require('../models/index')
 const { UserInfo } = require('../models/index')
+const { Cart } = require('../models/index')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
@@ -272,6 +273,26 @@ const main = async () => {
     ]
     await Product.deleteMany()
     await Product.insertMany(product)
+
+    const cart = [
+      {
+            username: "testuser",
+            image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=810&q=80",
+            cost: 5.99,
+      },
+      {
+            username: "user999",
+            image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+            cost: 7.99,
+      },
+      {
+            username: "newuser",
+            image: "https://images.unsplash.com/photo-1520591799316-6b30425429aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+            cost: 3.99,
+      }
+    ]
+    await Cart.deleteMany()
+    await Cart.insertMany(cart)
 
 }
 

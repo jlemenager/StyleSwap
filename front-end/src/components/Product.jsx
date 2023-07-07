@@ -59,35 +59,48 @@ export default function Product () {
 
 
 
-const [storedProduct, setStoredProduct] = useState([])
 
-const addToCart = (product, idx) => {
+  const addToCart = async (product) => {
 
-   
-
-    const selectedProduct = {username: product.username, 
-                              cost:product.cost, 
-                              image: product.image}  
-
-  const updatedCartItem = [...storedProduct, selectedProduct]
-  setStoredProduct(updatedCartItem)
-
-
-  localStorage.setItem('cartItems', JSON.stringify(updatedCartItem))
-
-}
-
- useEffect(() => {
-    const getCartItems = () => {
-      const parsedCartItems = JSON.parse(localStorage.getItem('cartItems'))
-     
-      localStorage.setItem('cartAll', JSON.stringify(parsedCartItems))
-      setStoredProduct(parsedCartItems)
-    }
+    const cartItem = {
+                          username: product.username,
+                          image: product.image,
+                          cost: product.cost
+                     }
+                   
+   const response = await axios.post(`http://localhost:3001/api/cart`, cartItem)
+    //  console.log(response.data)
     
-    getCartItems()
- }, [])
+  }
+    const [cart, setCart] = useState([])
+  const getCart = async () => {
+    const response = await axios.get(`http://localhost:3001/api/cart`)
+    setCart(response.data.carts)
+  }
 
+  useEffect(() => {
+    getCart()
+  }, [])
+
+ 
+
+  const isProductIncart = (product) => {
+    console.log('hello')
+    let result = false
+    for (let i = 0; i < cart.length; i++) {
+        console.log(cart[i].username , product.username)
+    
+        if (cart[i].username === product.username) {
+            result = true
+
+        }
+        console.log(result)
+       
+    }
+    return result
+  }
+
+  
 
 
 
@@ -124,17 +137,25 @@ const addToCart = (product, idx) => {
             </div>
 
          <div>
-               {products.slice().reverse().map((product, idx) => (
+               {products.slice().reverse().map((product, idx) => {
+
+                return (
                 <div className="post"
+                 
                       key={idx}
                       id={idx}>
                     <h2>{product.username}</h2>
                     <img src={product.image}/>
                     <p>{product.cost}</p>
-                    <button onClick={() => addToCart(product, idx)}>Add To Cart</button>
+                    { isProductIncart(product) ? 
+                    <button disabled>Sold Out</button>
+                    :
+                    <button onClick={() => addToCart( product)}>Add To Cart</button>
+                    }
                     <button onClick={() => deleteProduct(product._id)}>delete</button>
                 </div>
-               ))}
+                )
+} )}
             </div>
         </div>
     )

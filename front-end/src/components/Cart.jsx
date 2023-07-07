@@ -1,51 +1,62 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useState } from "react"
+import axios from "axios"
 
 
 export default function Cart() {
-    const [filteredCart, setFilteredCart] = useState('')
 
-    const storedProduct = JSON.parse(localStorage.getItem('cartAll'))
+    const [cart, setCart] = useState([])
 
-    console.log(storedProduct)
+    
+      console.log(cart)
 
-   const deleteCart = (idx) => {
-      const  updatedCartItem = storedProduct.filter((item, index) => index !== idx)
-       localStorage.setItem('cartAll', JSON.stringify(updatedCartItem))
-       setFilteredCart(updatedCartItem)
+    const getCart = async () => {
+
+        const response = await axios.get(`http://localhost:3001/api/cart`)
+        // const cartItem = response.data
+        setCart(response.data.carts)
+    }
+    
+   useEffect(() => {
+      getCart()
+   }, [])
+
+ 
+
+   const deleteCart = async (itemId) => {
+
+     const response = await axios.delete(`http://localhost:3001/api/cart/${itemId}`)
+     setCart( cart.filter((item) => item._id !== itemId ) )
    }
-
-  
 
    const [updatedCost, setUpdatedCost] = useState(0)
-//    console.log(storedProduct)
 
-   const updateOrderSummary = () => {
-         let totalPrice = 0
-         storedProduct.forEach(item => {
-         totalPrice = item.cost * item.quantity
-        
-      });
-     setUpdatedCost(totalCost) 
-     updateOrderSummary()
-   }
+   useEffect(() => {
+    const updateOrderSummary = () => {
+        let totalPrice = 0
+        cart.forEach(item => {
+        totalPrice += item.cost 
+     });
+       setUpdatedCost(parseFloat(totalPrice)) 
     
+   }
+   updateOrderSummary()
+   }, [cart])
+
 
     return(
        <div>
-           {storedProduct.slice().reverse().map((store, idx) => (
-             <div key={idx}>
-               <h2>{store.username}</h2>
-               <p>{store.cost}</p>
-               <img src={store.image}/>
-               <button onClick={() => deleteCart(idx)}>delete</button>
+           <h3>cart page</h3>
+           {cart.map(item => (
+             <div key={item._id}>
+                <p>{item.username}</p>
+                <img src={item.image}/>
+                <p>{item.cost}</p>
+                <button onClick={() => deleteCart(item._id)}>delete</button>
             </div>
            ))}
-
-           <div className="total">
-               <h3>Total</h3> 
-                <h4>{updatedCost}</h4>
-           </div>
+           <h1>Order Summary</h1>
+          <h2>${updatedCost}</h2>
        </div>
 
       

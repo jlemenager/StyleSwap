@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-export default function LoginPage(){
+export default function LogoutPage(){
     const [usernameFormState, setUsernameFormState] = useState('')
     const [passwordFormState, setPasswordFormState] = useState('')
     const [userInfo, setUserInfo] = useState({
@@ -31,21 +31,21 @@ export default function LoginPage(){
         const checkIfRealAccount = async() => {
             for (let i = 0;i<response.data.users.length;i++){
                 if (userInfo.password == response.data.users[i].password && userInfo.username == response.data.users[i].username){
-                    const putRequest = await axios.put(`http://localhost:3001/api/userinfo/loginpage/${response.data.users[i]._id}`, {...userInfo, isLoggedIn: true})
-                    alert(`Hello ${response.data.users[i].username}, you are logged in!`)
+                    const putRequest = await axios.put(`http://localhost:3001/api/userinfo/logoutpage/${response.data.users[i]._id}`, {...userInfo, isLoggedIn: false})
+                    alert(`Hello ${response.data.users[i].username}, you are logged out.`)
                 }  
             }
         }
         checkIfRealAccount()
     }
     return(
-        <form onSubmit={handleSubmit} class='loginContainer logIn'>
-            <h1 class='headinglogin'>Log In</h1>
+        <form onSubmit={handleSubmit} class='loginContainer logOut'>
+            <h1 className="headinglogin">Log Out</h1>
             <label>Username:</label>
-            <input class='logInInput' onChange={usernameHandleChange} type="text" placeholder='Username'/>
+            <input class='logOutInput' onChange={usernameHandleChange} type="text" placeholder='Username' />
             <label>Password:</label>
-            <input class='logInInput' onChange={passwordHandleChange} type="text" placeholder='Password' />
-            <input class='logInSubmit' type="submit" />
+            <input class='logOutInput' onChange={passwordHandleChange} type="text" placeholder='Password' />
+            <input class='logOutSubmit' type="submit" />
         </form>
     )
 }

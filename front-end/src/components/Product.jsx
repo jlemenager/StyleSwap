@@ -2,15 +2,12 @@ import UserContext from "../UserContext"
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import axios from 'axios'
 
-
-
 export default function Product () {
 
     const { products, setProducts } = useContext(UserContext)
-   
 
 
-    // console.log(products)
+    console.log(products)
     let initialState = {
         username: '',
         cost: '',
@@ -34,9 +31,7 @@ export default function Product () {
         location.reload()
      }
      postNewProduct()
-     
-     
-   }
+    }
 
    const deleteProduct = async(productId) => {
     const response = await axios.delete(`http://localhost:3001/api/product/${productId}`)
@@ -58,6 +53,8 @@ export default function Product () {
 //add to cart function section 
 
 
+
+const [selected, setSelected] = useState(null) 
 
 
   const addToCart = async (product) => {
@@ -93,12 +90,23 @@ export default function Product () {
         if (cart[i].username === product.username) {
             result = true
 
+
         }
         console.log(result)
        
+
+useEffect(() => {
+    const getCartItems = () => {
+      const parsedCartItems = JSON.parse(localStorage.getItem('cartItems'))
+
+     
+      localStorage.setItem('cartAll', JSON.stringify(parsedCartItems))
+      setStoredProduct(parsedCartItems)
+
     }
     return result
   }
+
 
   
 
@@ -156,7 +164,10 @@ export default function Product () {
                 </div>
                 )
 } )}
+
             </div>
+           ))}
         </div>
-    )
+    </div>
+)
 }

@@ -85,6 +85,7 @@ export default function Home() {
         const comment = document.querySelectorAll('.comment-list')[index]
         if(comment.style.display==='none'){
                 comment.style.display = 'block'
+                
         } else {
             comment.style.display = 'none'
         }
@@ -186,7 +187,7 @@ export default function Home() {
 
                 <button className='comment-submit' onClick={()=>{
                     createComment(posts[posts.length-(idx+1)]._id, idx)
-                    // showComments(idx)
+                    showComments(idx)
                     }}>Submit</button>
                 <button className='delete-button' onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>X</button>
                 </div>

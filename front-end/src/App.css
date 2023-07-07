@@ -1,6 +1,6 @@
 body{
   background-color: #F5F5F5;
-  padding: 0;
+  padding: 0 0 30px 0;
   margin: 0;
 }
 
@@ -285,6 +285,7 @@ p{
 .comment{
   background-color: #F5F5F5;
   margin: 10px 0;
+  text-align: left;
 }
 
 .delete-button{
@@ -313,8 +314,8 @@ p{
   align-items: center;
   background-color: white;
   width: 500px;
-  margin: 0 auto;
-  margin-top: 150px;
+  margin: 150px auto;
+  padding-bottom:40px;
   border-radius: 20px;
   
 }
@@ -385,3 +386,65 @@ p{
   font-size: 25px;
 }
 
+/* Sign Up Page */
+
+.signUp{
+  padding:0 40px 20px;
+}
+
+.signUpInput{
+  height:40px;
+  margin-top:10px;
+}
+
+.signUpSubmit{
+  height:40px;
+  width:30%;
+  background-color: black;
+  color:white;
+  margin-top:15px;
+}
+
+.loginContainer .upload{
+  width:30%;
+  height:50px;
+  margin-top:30px;
+}
+
+/* Log In Page */
+
+.logIn{
+  padding:0 40px 20px;
+}
+
+.logInInput{
+  height:40px;
+  margin-top:10px;
+}
+
+.logInSubmit{
+  height:40px;
+  width:30%;
+  background-color: black;
+  color:white;
+  margin-top:30px;
+}
+
+/* Log Out Page */
+
+.logOut{
+  padding:0 40px 20px;
+}
+
+.logOutInput{
+  height:40px;
+  margin-top:10px;
+}
+
+.logOutSubmit{
+  height:40px;
+  width:30%;
+  background-color: black;
+  color:white;
+  margin-top:30px;
+}

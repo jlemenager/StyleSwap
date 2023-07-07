@@ -4,7 +4,7 @@ const db = require('../db')
 
 const getAllPosts = async(req, res) => {
     try{
-        const posts = await Post.find()
+        const posts = await Post.find().populate({path: 'username', select: 'username'})
          res.status(200).json({ posts })
     } catch (error){
          res.status(500).send(error.message)

@@ -48,7 +48,7 @@ function App() {
                                    setProducts,
                                    getPostsAPI 
                                 }}>
-       <header>something</header>
+       <header>Find your favorite styles and recycle clothing at the same time!</header>
        <Nav />
       
 

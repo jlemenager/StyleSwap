@@ -169,6 +169,7 @@ textarea{
   color:#F5F5F5;
   background-color: black;
 }
+
 header{
   background-color: rgb(0, 0, 0);
   margin: 0;
@@ -188,21 +189,23 @@ header{
   justify-content: center;
   align-items: center;
   background-color: white;
-  padding:185px 0 100px;
+  padding:40px 0 60px 0;
   border-radius: 3%;
   box-shadow:2px 2px 10px #d9d9d9;
-  position: relative;
+  /* position: relative; */
   width:85%;
 }
 
 .top-post{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  position: absolute;
+  /* position: absolute;
   left:23px;
-  top:47px;
+  top:47px; */
+  padding: 0 25px 25px 25px;
+  /* margin-left: -90px; */
 }
 
 .post-username-section{
@@ -221,8 +224,9 @@ header{
   margin:0;
 }
 
-p{
+.post p{
   margin:20px 0;
+  text-align: left;
 }
 
 .product-image{
@@ -233,70 +237,123 @@ p{
 .reaction-bar{
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
-  position: absolute;
+  align-items: center;
+  margin:30px 0 0 0;
+  padding:10px 0;
+  /* position: absolute;
   left:21px;
-  top:930px;
+  top:930px; */
+  border:1px solid black;
+  border-style: solid none solid none;
+  width:88%;
+  text-align: left;
 }
 
 .like-button{
+  display: inline-block;
   margin-right:9px;
   cursor: pointer;
   background-color: black;
   color:white;
+  width:25px;
 }
 
 .likes{
   margin-right:20px;
   font-weight:700;
+  display: inline-block;
 }
 
 .comment-button{
+  display: inline-block;
+  cursor: pointer;
+  width:24px;
+  /* background-color: black;
+  color:white; */
+}
+
+.write-comment-section{
+  display: flex;
+  justify-content: space-between;
+  width:88%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.write-comment{
+  width:90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.comment-bar{
+  height:30px;
+  margin:20px 0 20px 0;
+  padding: 0;
+  border-radius:3%;
+}
+
+.comment-submit{
+  /* position:absolute; */
+  height:32px;
+  /* right: 28px;
+  top: 975px; */
+  padding: 0 30px;
   cursor: pointer;
   background-color: black;
   color:white;
 }
 
-.comment-bar{
-  width:92%;
-  height:30px;
-  border:1px solid black;
-  margin:71px 0 0 -27px;
-  padding: 0;
-}
-
-.comment-submit{
-  position:absolute;
-  height:32px;
-  right: 28px;
-  top: 980px;
-  padding: 0 30px;
-  cursor: pointer;
-  background-color: black;
-  color:white
+.comment-list-section{
+  display:none;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 5%;
+  width:85%;
+  overflow: hidden;
 }
 
 .comment-list{
-  display:none;
-  margin-top: 90px;
-  width:500px;
+  width:98%;
+  display:flex;
+  flex-direction: column;
+}
+
+.comment-with-icon{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:96%;
+  margin:0 0 0 36px;
+}
+
+.comment-list-line{
+  border:1px solid black;
+  border-style: none solid none none;
+  width:6px;
+  height:100%;
 }
 
 .comment{
   background-color: #F5F5F5;
-  margin: 10px 0;
+  margin: 40px 0 40px 30px;
   text-align: left;
+  height: 30px;
+  width:90%;
 }
 
 .delete-button{
-  position: absolute;
+  /* position: absolute;
   top:25px;
-  right:28px;
+  right:28px; */
   border: none;
   background-color: white;
   color:black;
   font-size:1.3rem;
   cursor: pointer;
+  text-align: right;
+  width:95%;
 }
 
 /* login section */

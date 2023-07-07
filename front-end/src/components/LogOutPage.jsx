@@ -39,13 +39,13 @@ export default function LogoutPage(){
         checkIfRealAccount()
     }
     return(
-        <form onSubmit={handleSubmit} class='loginContainer logOut'>
+        <form onSubmit={handleSubmit} className='loginContainer logOut'>
             <h1 className="headinglogin">Log Out</h1>
             <label>Username:</label>
-            <input class='logOutInput' onChange={usernameHandleChange} type="text" placeholder='Username' />
+            <input className='logOutInput' onChange={usernameHandleChange} type="text" placeholder='Username' />
             <label>Password:</label>
-            <input class='logOutInput' onChange={passwordHandleChange} type="text" placeholder='Password' />
-            <input class='logOutSubmit' type="submit" />
+            <input className='logOutInput' onChange={passwordHandleChange} type="text" placeholder='Password' />
+            <input className='logOutSubmit' type="submit" />
         </form>
     )
 }

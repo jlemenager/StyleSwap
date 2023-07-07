@@ -82,33 +82,19 @@ const [selected, setSelected] = useState(null)
  
 
   const isProductIncart = (product) => {
-    console.log('hello')
-    let result = false
+    console.log('hello');
+    let result = false;
     for (let i = 0; i < cart.length; i++) {
-        console.log(cart[i].username , product.username)
-    
-        if (cart[i].username === product.username) {
-            result = true
-
-
-        }
-        console.log(result)
-       
-
-useEffect(() => {
-    const getCartItems = () => {
-      const parsedCartItems = JSON.parse(localStorage.getItem('cartItems'))
-
-     
-      localStorage.setItem('cartAll', JSON.stringify(parsedCartItems))
-      setStoredProduct(parsedCartItems)
-
+      console.log(cart[i].username, product.username);
+      if (cart[i].cost === product.cost) {
+        result = true;
+      }
+      console.log(result);
     }
-    return result
-  }
-
-
+    return result;
+  };
   
+
 
 
 
@@ -163,11 +149,10 @@ useEffect(() => {
                     <button onClick={() => deleteProduct(product._id)}>delete</button>
                 </div>
                 )
-} )}
+       })}
 
-            </div>
-           ))}
-        </div>
-    </div>
+      </div>
+   </div>
+    
 )
 }

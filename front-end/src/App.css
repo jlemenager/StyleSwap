@@ -34,7 +34,7 @@ body{
 }
 
 .nav-icon{
-  width:35px;
+  width:25px;
 }
 
 .logo{
@@ -54,6 +54,16 @@ body{
 .login{
   margin-right: 25px;
 }
+.nav-links h1 {
+  font-size: 23px;
+}
+.nav-links a{
+  text-decoration: none;
+  color: #2e4b9c;
+  font-family: 'Courier New', Courier, monospace;
+  
+}
+
 
 /* Main Page */
 
@@ -504,4 +514,24 @@ header{
   background-color: black;
   color:white;
   margin-top:30px;
+}
+/* product section */
+.mainTop{
+  display: flex;
+  align-items: center;
+  gap: 200px
+}
+.formProduct form{
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+  width: 600px;
+  flex-direction: column;
+}
+.formProduct input{
+  height: 10px;
+}
+.formProduct label{
+  font-size: 14px;
+
 }

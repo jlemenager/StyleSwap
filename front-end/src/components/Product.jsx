@@ -1,6 +1,8 @@
 import UserContext from "../UserContext"
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import axios from 'axios'
+import VerticalNav from './VerticalNav'
+
 
 export default function Product () {
 
@@ -67,19 +69,25 @@ const [selected, setSelected] = useState(null)
                    
    const response = await axios.post(`http://localhost:3001/api/cart`, cartItem)
     //  console.log(response.data)
+    window.location.reload()
     
   }
     const [cart, setCart] = useState([])
   const getCart = async () => {
     const response = await axios.get(`http://localhost:3001/api/cart`)
     setCart(response.data.carts)
+  
   }
 
   useEffect(() => {
     getCart()
+ 
   }, [])
 
- 
+
+
+
+
 
   const isProductIncart = (product) => {
     console.log('hello');
@@ -87,21 +95,23 @@ const [selected, setSelected] = useState(null)
     for (let i = 0; i < cart.length; i++) {
       console.log(cart[i].username, product.username);
       if (cart[i].cost === product.cost) {
-        result = true;
+        result = true
       }
-      console.log(result);
+      console.log(result)
+    
     }
     return result;
   };
   
 
-
-
-
     return(
         <div className="mainContainer">
-            <div>
-                <h1>Be a Seller</h1>
+          <div className="mainTop">
+            <div className="heroImage">
+              <img src=''/>
+            </div>
+          
+            <div className="formProduct">
                 <form onSubmit={handleSubmit}>
                     <label>Username:</label>
                     <input onChange={handleChange}
@@ -125,9 +135,8 @@ const [selected, setSelected] = useState(null)
                             />
                    </div>
                    <input type='submit'></input>
-                    
-
                 </form>
+            </div>
             </div>
 
          <div>
@@ -144,7 +153,7 @@ const [selected, setSelected] = useState(null)
                     { isProductIncart(product) ? 
                     <button disabled>Sold Out</button>
                     :
-                    <button onClick={() => addToCart( product)}>Add To Cart</button>
+                    <button className="addtocart" onClick={() => addToCart( product)}>Add To Cart</button>
                     }
                     <button onClick={() => deleteProduct(product._id)}>delete</button>
                 </div>

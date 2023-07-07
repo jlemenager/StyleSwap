@@ -33,26 +33,45 @@ export default function Home() {
 
 //    likes function section
 
-    const [likes, setLikes] = useState(0)
+    // let [likes, setLikes] = useState(0)
 
-    const [clicked, setClicked] = useState(false)
+    let [clicked, setClicked] = useState(false)
+
+    const { getPostsAPI } = useContext(UserContext)
     
-    const handleLike = async (postId) => {
+    const handleLike = async (postId, idx) => {
         console.log(postId)
-            if (!clicked) {
-                const updatedLikes = likes + 1
-                const response = await axios.put(`http://localhost:3001/api/post/${postId}/like`, {...posts, likes: updatedLikes });
-                setLikes(response.data.post.likes)
+            if (clicked===false) {
+                // const updatedLikes = likes + 1
+                const response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+                    username: posts[posts.length-(idx+1)].username,
+                    image: posts[posts.length-(idx+1)].image,
+                    description: posts[posts.length-(idx+1)].description,
+                    products: posts[posts.length-(idx+1)].products,
+                    likes: posts[posts.length-(idx+1)].likes+=1,
+                    comments: posts[posts.length-(idx+1)].comments
+                });
+                console.log(response)
+                // setLikes(response.data.post.likes)
+                // console.log(likes)
                 setClicked(true)
-                document.querySelector('.likes').innerHTML = likes
-            } else {
-                const updatedLikes = likes - 1
-                const response = await axios.put(`http://localhost:3001/api/post/${postId}/unlike`, {...posts, likes: updatedLikes})
-                setLikes(response.data.post.likes)
+                // getPostsAPI()
+                // document.querySelectorAll('.likes')[idx].innerHTML = response.data.post.likes
+            } else if (clicked===true){
+                // const updatedLikes = likes - 1
+                const response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+                    username: posts[posts.length-(idx+1)].username,
+                    image: posts[posts.length-(idx+1)].image,
+                    description: posts[posts.length-(idx+1)].description,
+                    products: posts[posts.length-(idx+1)].products,
+                    likes: posts[posts.length-(idx+1)].likes-=1,
+                    comments: posts[posts.length-(idx+1)].comments
+                })
+                // setLikes(response.data.post.likes)
                 setClicked(false)
-                document.querySelector('.likes').innerHTML = likes
-                console.log(response.data)
-            }
+                console.log(response)
+                // document.querySelectorAll('.likes')[idx].innerHTML = response.data.post.likes
+            } 
         }
 
     //show comments
@@ -77,20 +96,23 @@ export default function Home() {
     const showComments = (index) => {
         const comment = document.querySelectorAll('.comment-list-section')[index]
         // const commentList = document.querySelectorAll('.comment-list-section')[index]
-        if(comment.style.display==='none'){
-            comment.style.display = 'flex'
-        } else {
+        if(comment.style.display==='flex'){
             comment.style.display = 'none'
+        } else {
+            comment.style.display = 'flex'
         }
     }
 
     const showCommentsOnSubmit = (index) => {
         const comment = document.querySelectorAll('.comment-list-section')[index]
-        const input = document.querySelectorAll('.write-comment')[index]
+        let input = document.querySelectorAll('.comment-bar')[index]
         // const commentList = document.querySelectorAll('.comment-list-section')[index]
         if(comment.style.display==='none' || input.value !== ''){
             comment.style.display = 'flex'
+            input.value=''
         }
+        
+        
         console.log(index)
     }
 
@@ -113,6 +135,7 @@ export default function Home() {
             likes: posts[posts.length-(idx+1)].likes,
             comments: postComments
         })
+        getPostsAPI()
     }
 
     //   post delete function section
@@ -174,7 +197,7 @@ export default function Home() {
                 {/* <p>{posts[posts.length-(idx+1)].products}</p> */}
                 <div className='reaction-bar'>
                 <img className='like-button reaction-image' onClick={() => {
-                    handleLike(posts[posts.length-(idx+1)]._id)
+                    handleLike(posts[posts.length-(idx+1)]._id, idx)
                 }} src="src/images/like.png" alt='like'/>
                 <span className='likes'>{ posts[posts.length-(idx+1)].likes }</span>
                 <br/>

@@ -139,8 +139,8 @@ const [selected, setSelected] = useState(null)
             </div>
             </div>
 
-         <div>
-               {products.slice().reverse().map((product, idx) => {
+       <div>
+             {products.slice().reverse().map((product, idx) => {
 
                 return (
                 <div className="post"

@@ -1,4 +1,4 @@
-const { UserInfo } = require('../models')
+const { UserInfo } = require('../models/index.js')
 const db = require('../db')
 
 const getAllUsers = async(req, res) => {

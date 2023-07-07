@@ -4,7 +4,7 @@ const db = require('../db')
 
 const getAllCarts = async (req, res) => {
     try{
-      const carts = await Cart.find()
+      const carts = await Cart.find().populate({path: 'username', select: 'username'})
        res.status(200).json({ carts })
     }catch(error){
          res.status(500).send(error.message)

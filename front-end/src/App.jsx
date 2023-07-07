@@ -45,14 +45,15 @@ function App() {
     <UserContext.Provider value={{ posts,
                                    setPosts,
                                    products,
-                                   setProducts 
+                                   setProducts,
+                                   getPostsAPI 
                                 }}>
        <header>something</header>
        <Nav />
       
 
        <Routes>
-          <Route path='/' element={<Home/>}/>
+          <Route path='/' element={<Home />}/>
           <Route path='/search' element={<Search/>}/>
           <Route path='/product' element={<Product/>}/>
           <Route path='/login' element={<LogIn/>}/>

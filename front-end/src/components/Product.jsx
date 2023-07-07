@@ -127,11 +127,11 @@ const [selected, setSelected] = useState(null)
                    <input type='submit'></input>
                     
 
-                </form>
-            </div>
+              </form>
+          </div>
 
-         <div>
-               {products.slice().reverse().map((product, idx) => {
+       <div>
+             {products.slice().reverse().map((product, idx) => {
 
                 return (
                 <div className="post"

@@ -1,5 +1,6 @@
 const { Post } = require('../models')
 const db = require('../db')
+// const cloudinary = require('../utils/Cloudinary')
 
 
 const getAllPosts = async(req, res) => {
@@ -24,9 +25,23 @@ const getPost = async(req,res) => {
 }
 
 const createPost = async(req,res) => {
+    // const { username,description,image,likes,comments} = req.body
     try{
+        // const result = await cloudinary.uploader.upload(image, {
+        //     folder: 'posts'
+        // })
         const post = new Post(req.body)
         await post.save()
+        // const post = await Post.create({
+        //     username,
+        //     description,
+        //     image:{
+        //         public_id: result.public_id,
+        //         url: result.secure_url
+        //     },
+        //     likes, 
+        //     comments
+        // })
         return res.status(200).json({ post })
     } catch(error){
         return res.status(500).send(error.message)

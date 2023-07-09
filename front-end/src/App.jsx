@@ -18,6 +18,8 @@ function App() {
 
   const [posts,setPosts] = useState([])
 
+  const [products, setProducts] = useState([])
+
   const getPostsAPI = async() =>{
     const response = await axios.get('http://localhost:3001/api/post')
     setPosts(response.data.posts)
@@ -26,31 +28,25 @@ function App() {
   useEffect(()=>{
     getPostsAPI()
   },[])
-  
-
-  const [products, setProducts] = useState([])
 
   useEffect(() => {
     const getProduct = async() => {
       const response = await axios.get(`http://localhost:3001/api/product`)
       setProducts(response.data.products)
     }
-
     getProduct()
   }, [])
-
-
+  
   return (
    <div>
     <UserContext.Provider value={{ posts,
                                    setPosts,
                                    products,
                                    setProducts,
-                                   getPostsAPI 
+                                   getPostsAPI
                                 }}>
-       <header>Find your favorite styles and recycle clothing at the same time!</header>
+       <header>something</header>
        <Nav />
-      
 
        <Routes>
           <Route path='/' element={<Home />}/>

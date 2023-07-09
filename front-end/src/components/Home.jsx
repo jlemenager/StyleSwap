@@ -6,30 +6,34 @@ import VerticalNav from './VerticalNav'
 export default function Home() {
 
     //post function section
-    const { posts, setPosts } = useContext(UserContext)
+    const { posts, setPosts, getPostsAPI, vertUsername, setVertUsername,vertId,setVertId } = useContext(UserContext)
     let initialState = {
-        username: '',
+        username: vertId,
         description: '',
         likes: 0,
         image: ''
     }
+    
     const [formState, setFormState] = useState(initialState)
     const handleChange = event => {
         setFormState({...formState, [event.target.id]: event.target.value})
     }
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
         event.preventDefault()
+        console.log(formState)
         const postNewPost = async() => {
-            const response = await axios.post(`http://localhost:3001/api/post`, { ...formState, username:formState.username, description:formState.description, likes: 0 })
+            const response = await axios.post(`http://localhost:3001/api/post/`, {...formState, username: formState.username, description:formState.description, likes:0} )
             const newPost = response.data
+            console.log(newPost)
             setPosts([newPost, ...posts])
             setPosts(response.data.posts)
             setFormState(initialState)
         }
-        location.reload()
-        postNewPost()
         // location.reload()
-        console.log(posts)
+        postNewPost()
+        location.reload()
+        // console.log(posts)
+        // console.log(newPost)
     }
 
 //    likes function section
@@ -37,8 +41,6 @@ export default function Home() {
     // let [likes, setLikes] = useState(0)
 
     let [clicked, setClicked] = useState(false)
-
-    const { getPostsAPI } = useContext(UserContext)
     
     const handleLike = async (postId, idx) => {
         console.log(postId)
@@ -113,7 +115,6 @@ export default function Home() {
             input.value=''
         }
         
-        
         console.log(index)
     }
 
@@ -164,12 +165,16 @@ export default function Home() {
 
     return(
         <div className='main-page'>
-        <VerticalNav />
+        <VerticalNav vertUsername={vertUsername} setVertUsername={setVertUsername} vertId={vertId} setVertId={setVertId}/>
         <div className='feed'>
             <div className='post-form'>
             <form onSubmit={handleSubmit}>
-                <input placeholder='Username' type="text" value={formState.username} onChange={handleChange} id='username'/>
-                <textarea type="text" value={formState.description} onChange={handleChange} id='description' placeholder="What's on your mind?"/>
+                {/* <input placeholder='Username' type="text" value={formState.username} onChange={handleChange} id='username'/> */}
+                <div className='post-username-section'>
+                <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
+                <h3 className='post-username'>{vertUsername}</h3>
+                </div>
+                <textarea type="text" value={formState.description} onChange={handleChange} id='description' placeholder="What's your style?"/>
                 <div className='form-bottom-buttons'>
                 <div onClick={handleImageClick}
                      className="upload">
@@ -190,7 +195,8 @@ export default function Home() {
                 <div className='top-post'>
                 <div className='post-username-section'>
                 <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
-                <h3 className='post-username'>{posts[posts.length-(idx+1)].username}</h3>
+                <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3>
+                
                 </div>
                 <p>{posts[posts.length-(idx+1)].description}</p>
                 </div>

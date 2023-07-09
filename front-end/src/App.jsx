@@ -19,39 +19,52 @@ function App() {
 
   const [posts,setPosts] = useState([])
 
+  const [products, setProducts] = useState([])
+
+  const [vertUsername, setVertUsername] = useState('')
+  const [vertId, setVertId] = useState('')
+
   const getPostsAPI = async() =>{
     const response = await axios.get('http://localhost:3001/api/post')
     setPosts(response.data.posts)
   }
 
   useEffect(()=>{
+    localStorage.setItem('userId', JSON.stringify(vertId))
+    localStorage.setItem('username', JSON.stringify(vertUsername))
+  },[vertUsername,vertId])
+
+  // useEffect(()=>{
+  //   JSON.parse(localStorage.getItem('userId'))
+  //   JSON.parse(localStorage.getItem('username')) 
+  // },[])
+
+  useEffect(()=>{
     getPostsAPI()
   },[])
-  
-
-  const [products, setProducts] = useState([])
 
   useEffect(() => {
     const getProduct = async() => {
       const response = await axios.get(`http://localhost:3001/api/product`)
       setProducts(response.data.products)
     }
-
     getProduct()
   }, [])
-
-
+  
   return (
    <div className='App'>
     <UserContext.Provider value={{ posts,
                                    setPosts,
                                    products,
                                    setProducts,
-                                   getPostsAPI 
+                                   getPostsAPI,
+                                   vertUsername,
+                                   setVertUsername,
+                                   vertId,
+                                   setVertId
                                 }}>
-       <header>Find your favorite styles and recycle clothing at the same time!</header>
+       <header>Find your favorite styles and recycle clothing at the same time</header>
        <Nav />
-      
 
        <Routes>
           <Route path='/' element={<Home />}/>

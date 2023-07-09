@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import UserContext from "../UserContext"
+import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 export default function LoginPage(){
     const [usernameFormState, setUsernameFormState] = useState('')
@@ -24,7 +25,7 @@ export default function LoginPage(){
             password: passwordFormState
         })
     },[usernameFormState,passwordFormState])
-
+    const { vertUsername,setVertUsername,vertId,setVertId } = useContext(UserContext)
     const handleSubmit = async(event) => {
         event.preventDefault()
         const response = await axios.get(`http://localhost:3001/api/userinfo`)
@@ -33,6 +34,9 @@ export default function LoginPage(){
                 if (userInfo.password == response.data.users[i].password && userInfo.username == response.data.users[i].username){
                     const putRequest = await axios.put(`http://localhost:3001/api/userinfo/loginpage/${response.data.users[i]._id}`, {...userInfo, isLoggedIn: true})
                     alert(`Hello ${response.data.users[i].username}, you are logged in!`)
+                    setVertUsername(response.data.users[i].username)
+                    setVertId(response.data.users[i]._id)
+                    // location.reload()
                 }  
             }
         }

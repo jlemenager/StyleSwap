@@ -17,7 +17,7 @@ const getCart = async (req, res) => {
        const cart = await Cart.findById(id)
        if(!cart) throw Error ('cart not found')
        res.json({ cart })
-    }catch{
+    }catch(error){
        return res.status(500).send(error.message)
     }
 }
@@ -27,7 +27,7 @@ const createCart = async (req, res) => {
         const cart = new Cart(req.body)
         await cart.save()
         return res.status(200).json({ cart })
-    }catch{
+    }catch(error){
         return res.status(500).send(error.message)
     }
 }

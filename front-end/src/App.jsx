@@ -21,10 +21,23 @@ function App() {
 
   const [products, setProducts] = useState([])
 
+  const [vertUsername, setVertUsername] = useState('')
+  const [vertId, setVertId] = useState('')
+
   const getPostsAPI = async() =>{
     const response = await axios.get('http://localhost:3001/api/post')
     setPosts(response.data.posts)
   }
+
+  useEffect(()=>{
+    localStorage.setItem('userId', JSON.stringify(vertId))
+    localStorage.setItem('username', JSON.stringify(vertUsername))
+  },[vertUsername,vertId])
+
+  // useEffect(()=>{
+  //   JSON.parse(localStorage.getItem('userId'))
+  //   JSON.parse(localStorage.getItem('username')) 
+  // },[])
 
   useEffect(()=>{
     getPostsAPI()
@@ -44,9 +57,13 @@ function App() {
                                    setPosts,
                                    products,
                                    setProducts,
-                                   getPostsAPI
+                                   getPostsAPI,
+                                   vertUsername,
+                                   setVertUsername,
+                                   vertId,
+                                   setVertId
                                 }}>
-       <header>something</header>
+       <header>Find your favorite styles and recycle clothing at the same time</header>
        <Nav />
 
        <Routes>

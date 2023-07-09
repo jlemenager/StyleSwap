@@ -2,7 +2,7 @@ import UserContext from "../UserContext"
 import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
 import VerticalNav from './VerticalNav'
-import Footer from "./Footer"
+
 export default function Home() {
 
     //post function section
@@ -190,7 +190,7 @@ export default function Home() {
                 <div className='top-post'>
                 <div className='post-username-section'>
                 <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
-                <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3>
+                <h3 className='post-username'>{posts[posts.length-(idx+1)].username}</h3>
                 </div>
                 <p>{posts[posts.length-(idx+1)].description}</p>
                 </div>

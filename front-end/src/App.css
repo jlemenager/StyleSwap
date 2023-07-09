@@ -1,16 +1,11 @@
 body{
   background-color: #F5F5F5;
-  padding: 0 0 30px 0;
-  margin: 0;
-}
-
-#root {
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
   margin: 0;
   padding: 0;
+  font-family: 'Courier New', Courier, monospace;
 }
+
 
 /* Nav Bar */
 
@@ -34,7 +29,7 @@ body{
 }
 
 .nav-icon{
-  width:35px;
+  width:25px;
 }
 
 .logo{
@@ -54,6 +49,16 @@ body{
 .login{
   margin-right: 25px;
 }
+.nav-links h1 {
+  font-size: 23px;
+}
+.nav-links a{
+  text-decoration: none;
+  color: #2e4b9c;
+  font-family: 'Courier New', Courier, monospace;
+  
+}
+
 
 /* Main Page */
 
@@ -504,4 +509,197 @@ header{
   background-color: black;
   color:white;
   margin-top:30px;
+}
+/* product section */
+
+.heroImage{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.heroImage img{
+ width: 100%;
+ height: 500px;
+}
+.heroImage input{
+  align-items: center;
+  width: 500px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  position: relative;
+  height: 40px;
+  border-radius: 10px;
+  padding-left: 40px;
+  font-size: 15px;
+}
+
+
+.heroContent{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: relative;
+  bottom: 350px;
+  color: white;
+  text-align: left;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.heroContent .heroSearch{
+  width: 35px;
+  height: 35px;
+  position: relative;
+  bottom: 60px;
+  right: 250px;
+}
+.heroInput{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.heroHeadings{
+  width: 390px;
+}
+.heroHeadings p{
+  font-size: 18px;
+}
+.borderBlack{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #18264b;
+  width: 100%;
+  height: 40px;
+  margin-top: -240px;
+}
+.formProduct{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 250px;
+  flex-wrap: wrap;
+}
+.formProduct form{
+ width: 400px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 200px;
+ box-shadow: 1px 1px 5px #a3a3a3;
+}
+.formProduct form input{
+  height: 30px;
+}
+.uploadNButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  cursor: pointer;
+}
+.uploadNButton button{
+  height: 30px;
+  width: 50px;
+  background-color: #2b458f;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.formProduct .descriptionInput{
+  height: 38px;
+  padding-left: 10px;
+  font-size: 15px;
+}
+.sellNow{
+  color: rgb(225, 223, 223);
+  background: none;
+  border: 1px solid rgb(235, 233, 233);
+  height: 25px;
+  box-shadow: 2px 2px 5px rgba(255, 254, 254, 0.3);
+}
+.mainPostContainer{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 70px;
+  margin: 100px 0px;
+  text-align: center;
+}
+.mainPostContainer .product img{
+  width: 250px;
+  height: 320px;
+  box-shadow: 2px 2px 5px rgba(173, 173, 173, 0.3);
+}
+.userNDelete{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+}
+.userNDelete button{
+  background: none;
+  border: none;
+  color: rgb(164, 164, 164);
+  position: relative;
+  left: 20px;
+}
+.mainPostContainer .addtocart{
+  background-color: #18264b;
+  color: white;
+  height: 32px;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+ .product h2 {
+  color: #080d1a;
+}
+.product p{
+  color: #050811;
+  font-weight: bold;
+}
+
+/* footer section */
+
+.footerMain {
+  background-color: #18264b;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 300px;
+}
+
+
+.footerMain a{
+  text-decoration: none;
+  color: white;
+}
+
+/* cart section */
+
+.mainCart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.bagNSummary{
+  display: flex;
+  justify-content: center;
+}
+.cartCard img{
+  width: 200px;
+  height: 100px;
+  background-position: center;
+}
+.cartC{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

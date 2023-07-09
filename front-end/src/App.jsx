@@ -12,6 +12,7 @@ import SignUP from './components/SignUp'
 import LogInPage from './components/LogInPage'
 import LogOutPage from './components/LogOutPage'
 import './App.css'
+import Footer from './components/Footer'
 
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
 
 
   return (
-   <div>
+   <div className='App'>
     <UserContext.Provider value={{ posts,
                                    setPosts,
                                    products,
@@ -62,9 +63,10 @@ function App() {
           <Route path='/loginpage' element={<LogInPage/>}/>
           <Route path='/logoutpage' element={<LogOutPage/>}/>
        </Routes>
-     
+       
+       <Footer/>
     </UserContext.Provider>
-   
+  
    </div>
   )
 }

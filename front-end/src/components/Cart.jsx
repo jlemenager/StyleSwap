@@ -37,7 +37,7 @@ export default function Cart() {
         cart.forEach(item => {
         totalPrice += item.cost 
      });
-       setUpdatedCost(parseFloat(totalPrice)) 
+       setUpdatedCost(parseInt(totalPrice)) 
     
    }
    updateOrderSummary()
@@ -45,19 +45,29 @@ export default function Cart() {
 
 
     return(
-       <div>
-           <h3>cart page</h3>
-           {cart.map(item => (
-             <div key={item._id}>
-                <p>{item.username}</p>
-                <img src={item.image}/>
-                <p>{item.cost}</p>
-                <button onClick={() => deleteCart(item._id)}>delete</button>
-            </div>
-           ))}
-           <h1>Order Summary</h1>
-          <h2>${updatedCost}</h2>
+<div className="mainCart">
+      <div>
+            <h1>Your Bag</h1>
        </div>
+        <div className="bagNSummary">
+             <div className="cartCard">
+                {cart.map(item => (
+                  <div key={item._id}
+                       className="cartC">
+                   <p>{item.username}</p>
+                   <img src={item.image}/>
+                   <p>{item.cost}</p>
+                   <button onClick={() => deleteCart(item._id)}>delete</button>
+                 </div>
+               ))}
+            </div>
+        
+             <h1>Order Summary</h1>
+             <h2>${updatedCost}</h2>
+         </div>
+         <div>
+     </div>
+  </div>
 
       
     )

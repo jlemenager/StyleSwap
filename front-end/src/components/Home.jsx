@@ -2,6 +2,7 @@ import UserContext from "../UserContext"
 import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
 import VerticalNav from './VerticalNav'
+import Footer from "./Footer"
 export default function Home() {
 
     //post function section
@@ -233,7 +234,9 @@ export default function Home() {
                 </div>
                 </div>
             ))}
+         
         </div>
+        
         </div>
     )
 }

@@ -1,6 +1,10 @@
 import UserContext from "../UserContext"
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import axios from 'axios'
+import heroImage from '../images/hero.png'
+import { Link } from "react-router-dom"
+import heroSearch from '../images/heroSearch.png'
+
 
 export default function Product () {
 
@@ -67,19 +71,44 @@ const [selected, setSelected] = useState(null)
                    
    const response = await axios.post(`http://localhost:3001/api/cart`, cartItem)
     //  console.log(response.data)
+    window.location.reload()
     
   }
     const [cart, setCart] = useState([])
   const getCart = async () => {
     const response = await axios.get(`http://localhost:3001/api/cart`)
     setCart(response.data.carts)
+  
   }
 
   useEffect(() => {
     getCart()
+ 
   }, [])
 
- 
+  useEffect(() => {
+    const sellNow = document.getElementsByClassName('sellNow')[0];
+    const formProduct = document.getElementsByClassName('formProduct')[0];
+  
+    const sellNowFunction = () => {
+      if (formProduct.style.display === 'none') {
+        formProduct.style.display = 'block';
+    
+      } else {
+        formProduct.style.display = 'none';
+      }
+    };
+
+    formProduct.style.display = 'none'
+    
+  
+    sellNow.addEventListener('click', sellNowFunction);
+  
+    return () => {
+      sellNow.removeEventListener('click', sellNowFunction);
+    };
+  }, []);
+
 
   const isProductIncart = (product) => {
     console.log('hello');
@@ -87,35 +116,60 @@ const [selected, setSelected] = useState(null)
     for (let i = 0; i < cart.length; i++) {
       console.log(cart[i].username, product.username);
       if (cart[i].cost === product.cost) {
-        result = true;
+        result = true
       }
-      console.log(result);
+      console.log(result)
+    
     }
     return result;
   };
   
-
-
-
-
-    return(
-        <div className="mainContainer">
-            <div>
-                <h1>Be a Seller</h1>
-                <form onSubmit={handleSubmit}>
-                    <label>Username:</label>
+ return(
+  <div className="mainContainer">
+    <div className="heroNForm">
+      <div className="mainTop">
+        <div className="heroImage">
+                 <img className='hero' src={heroImage}
+                  /> 
+              <div className="heroContent">
+                     <div className="heroHeadings">
+                        <h1>Your Style, Your Way</h1>
+                        <p>Find vintage inspiration and modern style online</p>
+                     </div>
+                  <div className="heroInput">
+                     <input placeholder="Search anything"/>
+                     <Link><img className="heroSearch" src={heroSearch} /></Link>
+                  </div>
+             </div>
+            <div  className="borderBlack">
+             <button className="sellNow">Sell Now</button>
+         </div>
+        </div>
+       
+          
+        <div className="formProduct"
+             style={{ display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center'}}>
+            <form onSubmit={handleSubmit}>
+              <div>
                     <input onChange={handleChange}
                            value={formState.username}
                            id='username'
-                           type="text"/>
-                    <label>cost:</label>
+                           type="text"
+                           placeholder="Description of item"
+                           className="usernameInput"
+                           style={{height: '15px',
+                                   fontSize: '15px'}}/>
                     <input onChange={handleChange}
                             value={formState.cost}
                             id='cost'
-                            type='text'/>
-                          
-                   <div onClick={handleImageClick}
-                       >
+                            type='text'
+                            placeholder="Price of item"
+                            className="descriptionInput"/>
+              </div>
+           <div className="uploadNButton">            
+              <div onClick={handleImageClick}>
                       <img src='./src/images/upload.png'/>
                       <input type="file"
                            ref={inputRef}
@@ -123,36 +177,44 @@ const [selected, setSelected] = useState(null)
                            value={image}
                            style={{ display: 'none' }}
                             />
-                   </div>
-                   <input type='submit'></input>
-                    
+               </div>
+               <div>
+                   <button type='submit'>Post</button>
+              </div>
+            </div>
+            </form>
+        </div>
+    </div>
+  </div>
 
-              </form>
-          </div>
-
-       <div>
+       <div className='mainPostContainer'>
              {products.slice().reverse().map((product, idx) => {
 
                 return (
-                <div className="post"
+                <div className="product"
                  
                       key={idx}
                       id={idx}>
+                <div className="userNDelete">
                     <h2>{product.username}</h2>
+                    <button onClick={() => deleteProduct(product._id)}>x</button>
+                </div>
+                <div>
                     <img src={product.image}/>
                     <p>{product.cost}</p>
                     { isProductIncart(product) ? 
                     <button disabled>Sold Out</button>
                     :
-                    <button onClick={() => addToCart( product)}>Add To Cart</button>
+                    <button className="addtocart" onClick={() => addToCart( product)}>Add To Cart</button>
                     }
-                    <button onClick={() => deleteProduct(product._id)}>delete</button>
+                 </div>
+                    
                 </div>
                 )
        })}
 
       </div>
-   </div>
+ </div>
     
 )
 }

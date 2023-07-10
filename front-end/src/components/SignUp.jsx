@@ -1,9 +1,11 @@
 import { useState,useRef, useEffect, useContext } from 'react'
 import UserContext from '../UserContext'
+import VerticalNav from './VerticalNav'
 import axios from 'axios'
 
 export default function SignUp () {
 
+    const { userFile, setUserFile, handleUserImageUpload } = useContext(UserContext)
     const [usernameFormState, setUsernameFormState] = useState('')
     const [passwordFormState, setPasswordFormState] = useState('')
     const [userInfo, setUserInfo] = useState({
@@ -22,32 +24,34 @@ export default function SignUp () {
         console.log(passwordFormState)
     }
 
+
     useEffect(()=>{
         setUserInfo({
             username: usernameFormState, 
             password: passwordFormState,
+            profileImage: userFile,
             isLoggedIn: true
         })
-    },[usernameFormState, passwordFormState])
+    },[usernameFormState, passwordFormState, userFile])
     console.log(userInfo)
 
-    const handleSubmit = async(evt) => {
+    const handleSubmit = (evt) => {
         evt.preventDefault()
-        const postLoginInfo = async(req,res) =>{
-            const response2 = await axios.post(`http://localhost:3001/api/userinfo/signup`, userInfo)
-            console.log(response.data)  
-        }
-        postLoginInfo()    
-    }
-
-    const changeUser = async() => {
-        const response = await axios.get(`http://localhost:3001/api/userinfo`)
-        alert(`Hello ${userInfo.username}, welcome to StyleSwap!`)
-        setVertUsername(response.data.users[response.data.users.length-1].username) 
-        setVertId(response.data.users[response.data.users.length-1]._id)
-        localStorage.setItem('userId', response.data.users[response.data.users.length-1]._id)
-        localStorage.setItem('username', response.data.users[response.data.users.length-1].username)
-        console.log(vertUsername)
+            const postLoginInfo = async(req,res) =>{
+                const response2 = await axios.post(`http://localhost:3001/api/userinfo/signup`, userInfo)
+            }
+            const changeUser = async() => {
+                const response = await axios.get(`http://localhost:3001/api/userinfo`)
+                alert(`Hello ${userInfo.username}, welcome to StyleSwap!`)
+                setVertUsername(response.data.users[response.data.users.length-1].username) 
+                setVertId(response.data.users[response.data.users.length-1]._id)
+                localStorage.setItem('userId', response.data.users[response.data.users.length-1]._id)
+                localStorage.setItem('username', response.data.users[response.data.users.length-1].username)
+                localStorage.setItem('userImage', response.data.users[response.data.users.length-1].profileImage)
+                console.log(vertUsername)
+            }  
+        postLoginInfo()
+        setTimeout(changeUser, 500)
     }
 
     const inputRef = useRef(null)
@@ -65,24 +69,24 @@ export default function SignUp () {
 
     return(
         <div>
-            <form onSubmit={()=>{
-                handleSubmit()
-                setTimeout(()=>console.log('pause'),1000)
-                changeUser()
-                }} className='loginContainer signUp'>
+            <form onSubmit={handleSubmit} className='loginContainer signUp'>
                 <h1 className="headinglogin">Signup page</h1>
                 <label>Username:</label>
                 <input className='signUpInput' type="text" onChange={usernameHandleChange} placeholder='Enter your username...'/>
                 <label>Password:</label>
                 <input className='signUpInput' type="text" onChange={passwordHandleChange} placeholder='Enter your password...'/>
-                <div onClick={handleImageClick}
-                     className="upload">
-                     <img src='./src/images/upload.png'
+                <div className='form-bottom-buttons'>
+                   <div onClick={handleImageClick}
+                       className="upload">
+                        <img src='./src/images/upload.png'
                         style={{ cursor: 'pointer' }} />
-                     <input type='file' 
+                        <input type='file' 
                         ref={inputRef}
-                        onChange={handleImage}
+                        onChange={(event)=> {
+                            handleUserImageUpload(event)
+                           }}
                         style={{ display: 'none' }}></input>
+                   </div>
                 </div>
                 <input className='signUpSubmit' type="submit"/>
             </form>

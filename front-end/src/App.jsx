@@ -26,6 +26,7 @@ function App() {
   // .then(result=>console.log(result));
 
   const [posts,setPosts] = useState([])
+  const [userFile, setUserFile] = useState(localStorage.getItem('userImage'))
 
   const [products, setProducts] = useState([])
 
@@ -50,6 +51,40 @@ function App() {
     }
     getProduct()
   }, [])
+
+  const handleUserImageUpload = async(event) => {
+    const files = event.target.files
+    console.log(files[0])
+    setUserFile('http://localhost:3001/images/' + files[0].name)
+    const myImage = files[0]
+    const imageType = /image.*/
+  
+    // if (!myImage.type.match(imageType)) {
+    //   alert('Sorry, only images are allowed')
+    //   return
+    // }
+  
+    // if (myImage.size > (100*1024)) {
+    //   alert('Sorry, the max allowed size for images is 100KB')
+    //   return
+    // }
+    const formData = new FormData()
+    formData.append('myFile', files[0])
+    console.log(files[0].name)
+    await axios.post('http://localhost:3001/saveImage', formData)
+    console.log(formData)
+    // fetch('/saveImage', {
+    //   method: 'POST',
+    //   body: formData
+    // })
+    // .then(response => response.json())
+    .then(data => {
+      console.log(data.data.path)
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  }
   
   return (
    <div className='App'>
@@ -61,7 +96,10 @@ function App() {
                                    vertUsername,
                                    setVertUsername,
                                    vertId,
-                                   setVertId
+                                   setVertId,
+                                   userFile,
+                                   setUserFile,
+                                   handleUserImageUpload
                                 }}>
        <header>Find your favorite styles and recycle clothing at the same time</header>
        <Nav />

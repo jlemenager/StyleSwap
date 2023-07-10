@@ -7,7 +7,7 @@ import Footer from "./Footer"
 export default function Home() {
 
     //post function section
-    const { posts, setPosts, getPostsAPI, vertUsername, setVertUsername, vertId,setVertId } = useContext(UserContext)
+    const { posts, setPosts, getPostsAPI, vertUsername, setVertUsername, vertId,setVertId, userFile, setUserFile, handleUserImageUpload } = useContext(UserContext)
     let initialState = {
         username: vertId,
         description: '',
@@ -227,7 +227,7 @@ export default function Home() {
 
     return posts ? (
         <div className='main-page'>
-        <VerticalNav vertUsername={vertUsername} setVertUsername={setVertUsername} vertId={vertId} setVertId={setVertId}/>
+        <VerticalNav vertUsername={vertUsername} setVertUsername={setVertUsername} vertId={vertId} setVertId={setVertId} userFile={userFile} setUserFile={setUserFile} handleImageUpload={handleImageUpload} />
         <div className='feed'>
             <div className='post-form'>
                <form onSubmit={handleSubmit}>
@@ -238,7 +238,7 @@ export default function Home() {
                             <h3 className='post-username'>{vertUsername}</h3>
                          </div>
                          <div>
-                             <img className='post-user-icon' src="src/images/userTwo.png" alt="user icon" />
+                             <img className='post-user-icon' src={userFile} alt="user icon" />
                           </div>
                     </div>
                     <div>

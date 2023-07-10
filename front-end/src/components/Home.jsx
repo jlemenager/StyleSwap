@@ -3,6 +3,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
 import VerticalNav from './VerticalNav'
 import Footer from "./Footer"
+// import UploadWidget from "./UploadWidget"
 export default function Home() {
 
     //post function section
@@ -17,19 +18,40 @@ export default function Home() {
     const handleChange = event => {
         setFormState({...formState, [event.target.id]: event.target.value})
     }
+    const [file, setFile] = useState('')
+
+    const uploadImage = () => {
+        const data = new FormData()
+        data.append("file", image)
+        data.append("upload_preset", "image-upload")
+        data.append("cloud_name","dikdtblpr")
+        fetch("https://api.cloudinary.com/v1_1/dikdtblpr/image/upload",{
+        method:"post",
+        body: data
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data.url)
+        setUrl(data.url)
+        })
+        .catch(err => console.log(err))
+}   
+
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log(formState)
         const postNewPost = async() => {
-            const response = await axios.post(`http://localhost:3001/api/post/`, {...formState, username: formState.username, description:formState.description, likes:0} )
+            console.log(formState)
+            const response = await axios.post(`http://localhost:3001/api/post/`, {...formState, username: formState.username, description:formState.description, image:'http://localhost:3001/images/' + file, likes:0} )
             const newPost = response.data
             console.log(newPost)
-            setPosts([newPost, ...posts])
-            setPosts(response.data.posts)
+            // setPosts(response.data.posts)
+            setPosts([...posts, newPost])
             setFormState(initialState)
         }
-        // location.reload()
+        //location.reload()
         postNewPost()
+        // uploadImage()
         location.reload()
         // console.log(posts)
         // console.log(newPost)
@@ -151,6 +173,8 @@ export default function Home() {
 
     const inputRef = useRef(null)
     const [image, setImage] = useState('')
+    const [url, setUrl] = useState('')
+    
 
     const handleImageClick = (event) => {
         inputRef.current.click()
@@ -158,11 +182,48 @@ export default function Home() {
 
     function handleImage(e) {
         const file = e.target.files[0]
+        // function(error, result) {console.log(result);};
         console.log(file)
+        setImage(file)
         setImage('')
     }
 
-    return(
+    const handleImageUpload = async(event) => {
+        const files = event.target.files
+        console.log(files[0])
+        setFile(files[0].name)
+        const myImage = files[0]
+        const imageType = /image.*/
+      
+        // if (!myImage.type.match(imageType)) {
+        //   alert('Sorry, only images are allowed')
+        //   return
+        // }
+      
+        // if (myImage.size > (100*1024)) {
+        //   alert('Sorry, the max allowed size for images is 100KB')
+        //   return
+        // }
+        const formData = new FormData()
+        formData.append('myFile', files[0])
+        console.log(files[0].name)
+        await axios.post('http://localhost:3001/saveImage', formData)
+        console.log(formData)
+        // fetch('/saveImage', {
+        //   method: 'POST',
+        //   body: formData
+        // })
+        // .then(response => response.json())
+        .then(data => {
+          console.log(data.data.path)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+      }
+      
+
+    return posts ? (
         <div className='main-page'>
         <VerticalNav vertUsername={vertUsername} setVertUsername={setVertUsername} vertId={vertId} setVertId={setVertId}/>
         <div className='feed'>
@@ -193,6 +254,10 @@ export default function Home() {
                         <input className='submit-button-form' type="submit" />
                     </div>
                 </div>
+                {/* <UploadWidget /> */}
+                <input type="file" id="fileUpload" onChange={(event)=> {
+                 handleImageUpload(event)
+                }}/>
             </form> 
             </div>
             {posts.map((post, idx) =>(
@@ -201,13 +266,12 @@ export default function Home() {
                 <div className='top-post'>
                 <div className='post-username-section'>
                 <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
+                {/* {posts[posts.length-(idx+1)].username.username ? <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3> : null} */}
                 <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3>
-                
                 </div>
                 <p>{posts[posts.length-(idx+1)].description}</p>
                 </div>
                 <img className='product-image' src={ posts[posts.length-(idx+1)].image}/>
-                {/* <p>{posts[posts.length-(idx+1)].products}</p> */}
                 <div className='reaction-bar'>
                 <img className='like-button reaction-image' onClick={() => {
                     handleLike(posts[posts.length-(idx+1)]._id, idx)
@@ -245,5 +309,5 @@ export default function Home() {
         </div>
         
         </div>
-    )
+    ): console.log('not loading')
 }

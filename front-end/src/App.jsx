@@ -11,33 +11,33 @@ import Product from './components/Product'
 import SignUP from './components/SignUp'
 import LogInPage from './components/LogInPage'
 import LogOutPage from './components/LogOutPage'
+// import cloudinary from '../utils/Cloudinary'
 import './App.css'
 import Footer from './components/Footer'
 
 
 function App() {
 
+  // cloudinary.v2.search
+  // .expression('resource_type:image AND tags=kitten AND uploaded_at>1d AND bytes>1m')
+  // .sort_by('public_id','desc')
+  // .max_results(30)
+  // .execute()
+  // .then(result=>console.log(result));
+
   const [posts,setPosts] = useState([])
 
   const [products, setProducts] = useState([])
 
-  const [vertUsername, setVertUsername] = useState('')
-  const [vertId, setVertId] = useState('')
+  console.log(localStorage.getItem('username'))
+
+  const [vertUsername, setVertUsername] = useState(localStorage.getItem('username'))
+  const [vertId, setVertId] = useState(localStorage.getItem('userId'))
 
   const getPostsAPI = async() =>{
     const response = await axios.get('http://localhost:3001/api/post')
     setPosts(response.data.posts)
   }
-
-  useEffect(()=>{
-    localStorage.setItem('userId', JSON.stringify(vertId))
-    localStorage.setItem('username', JSON.stringify(vertUsername))
-  },[vertUsername,vertId])
-
-  // useEffect(()=>{
-  //   JSON.parse(localStorage.getItem('userId'))
-  //   JSON.parse(localStorage.getItem('username')) 
-  // },[])
 
   useEffect(()=>{
     getPostsAPI()

@@ -70,7 +70,7 @@ export default function SignUp () {
     return(
         <div>
             <form onSubmit={handleSubmit} className='loginContainer signUp'>
-                <div className='mainSignup'>
+                <div className='mainSingup'>
                     <div>
                        <h1 className="headinglogin">Signup page</h1>
                        <p>Already have an account? <Link to='/loginpage'>Log In</Link></p>
@@ -83,6 +83,7 @@ export default function SignUp () {
                 <div className='form-bottom-buttons'>
                    <div onClick={handleImageClick}
                        className="upload">
+
                         <img src='./src/images/upload.png'
                         style={{ cursor: 'pointer' }} />
                         <input type='file'

@@ -8,6 +8,7 @@ export default function LogoutPage(){
         username: '',
         password: ''
     })
+    const { vertUsername, setVertUsername, userFile, setUserFile } = useContext(UserContext)
 
     const usernameHandleChange = (event) => {
         setUsernameFormState(event.target.value)
@@ -25,7 +26,6 @@ export default function LogoutPage(){
             password: passwordFormState
         })
     },[usernameFormState,passwordFormState])
-    const { vertUsername, setVertUsername } = useContext(UserContext)
     const handleSubmit = async(event) => {
         event.preventDefault()
         const response = await axios.get(`http://localhost:3001/api/userinfo`)
@@ -35,6 +35,7 @@ export default function LogoutPage(){
                     const putRequest = await axios.put(`http://localhost:3001/api/userinfo/logoutpage/${response.data.users[i]._id}`, {...userInfo, isLoggedIn: false})
                     alert(`Hello ${response.data.users[i].username}, you are logged out.`)
                     setVertUsername('Not Logged In')
+                    setUserFile('src/images/user-icon.png')
                 }  
             }
         }

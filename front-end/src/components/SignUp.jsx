@@ -25,7 +25,6 @@ export default function SignUp () {
         console.log(passwordFormState)
     }
 
-
     useEffect(()=>{
         setUserInfo({
             username: usernameFormState, 
@@ -87,7 +86,7 @@ export default function SignUp () {
 
                         <img src='./src/images/upload.png'
                         style={{ cursor: 'pointer' }} />
-                        <input type='file' 
+                        <input type='file'
                         ref={inputRef}
                         onChange={(event)=> {
                             handleUserImageUpload(event)

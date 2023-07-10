@@ -8,16 +8,16 @@ import heroSearch from '../images/heroSearch.png'
 
 export default function Product () {
 
-    const { products, setProducts } = useContext(UserContext)
-
+    const { products, setProducts,vertUsername, setVertUsername, vertId,setVertId } = useContext(UserContext)
 
     console.log(products)
     let initialState = {
-        username: '',
+        username: vertUsername,
         cost: '',
         image:''
     }
     const [formState, setFormState] = useState(initialState)
+    const [file, setFile] = useState('')
 
     // console.log(formState)
 
@@ -25,11 +25,45 @@ export default function Product () {
       setFormState({...formState, [event.target.id]: event.target.value})
    }
 
+   const handleImageUpload = async(event) => {
+    const files = event.target.files
+    console.log(files[0])
+    setFile(files[0].name)
+    const myImage = files[0]
+    const imageType = /image.*/
+  
+    // if (!myImage.type.match(imageType)) {
+    //   alert('Sorry, only images are allowed')
+    //   return
+    // }
+  
+    // if (myImage.size > (100*1024)) {
+    //   alert('Sorry, the max allowed size for images is 100KB')
+    //   return
+    // }
+    const formData = new FormData()
+    formData.append('myFile', files[0])
+    console.log(files[0].name)
+    await axios.post('http://localhost:3001/saveImage', formData)
+    console.log(formData)
+    // fetch('/saveImage', {
+    //   method: 'POST',
+    //   body: formData
+    // })
+    // .then(response => response.json())
+    .then(data => {
+      console.log(data.data.path)
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  }
+
    const handleSubmit = event => {
      event.preventDefault()
 
      const postNewProduct = async() => {
-        const response = await axios.post(`http://localhost:3001/api/product`, {...formState, username:formState.username, cost:formState.cost })
+        const response = await axios.post(`http://localhost:3001/api/product`, {...formState, username:formState.username, cost:formState.cost, image: 'http://localhost:3001/images/' + file})
 
       setProducts([...products, response.data])
         location.reload()
@@ -54,6 +88,7 @@ export default function Product () {
     console.log(file)
     setImage(file)
    }
+
 //add to cart function section 
 
 
@@ -153,14 +188,15 @@ const [selected, setSelected] = useState(null)
                       alignItems: 'center'}}>
             <form onSubmit={handleSubmit}>
               <div>
-                    <input onChange={handleChange}
+                    <h3>{vertUsername}</h3>
+                    {/* <input onChange={handleChange}
                            value={formState.username}
                            id='username'
                            type="text"
                            placeholder="Description of item"
                            className="usernameInput"
                            style={{height: '15px',
-                                   fontSize: '15px'}}/>
+                                   fontSize: '15px'}}/> */}
                     <input onChange={handleChange}
                             value={formState.cost}
                             id='cost'
@@ -178,6 +214,9 @@ const [selected, setSelected] = useState(null)
                            style={{ display: 'none' }}
                             />
                </div>
+               <input type="file" id="fileUpload" onChange={(event)=> {
+                 handleImageUpload(event)
+                }}/>
                <div>
                    <button type='submit'>Post</button>
               </div>

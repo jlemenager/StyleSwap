@@ -1,4 +1,5 @@
-import { useState,useRef, useEffect } from 'react'
+import { useState,useRef, useEffect, useContext } from 'react'
+import UserContext from '../UserContext'
 import axios from 'axios'
 
 export default function SignUp () {
@@ -9,6 +10,7 @@ export default function SignUp () {
         username: '',
         password: '',
     })
+    const { vertUsername,setVertUsername,vertId,setVertId } = useContext(UserContext)
 
     const usernameHandleChange = (evt) => {
         setUsernameFormState(evt.target.value)
@@ -23,19 +25,29 @@ export default function SignUp () {
     useEffect(()=>{
         setUserInfo({
             username: usernameFormState, 
-            password: passwordFormState
+            password: passwordFormState,
+            isLoggedIn: true
         })
     },[usernameFormState, passwordFormState])
     console.log(userInfo)
 
-    const handleSubmit = (evt) => {
+    const handleSubmit = async(evt) => {
         evt.preventDefault()
         const postLoginInfo = async(req,res) =>{
-            const response = await axios.post(`http://localhost:3001/api/userinfo/signup`, userInfo)
-            console.log(response.data)
-            
+            const response2 = await axios.post(`http://localhost:3001/api/userinfo/signup`, userInfo)
+            console.log(response.data)  
         }
-        postLoginInfo()
+        postLoginInfo()    
+    }
+
+    const changeUser = async() => {
+        const response = await axios.get(`http://localhost:3001/api/userinfo`)
+        alert(`Hello ${userInfo.username}, welcome to StyleSwap!`)
+        setVertUsername(response.data.users[response.data.users.length-1].username) 
+        setVertId(response.data.users[response.data.users.length-1]._id)
+        localStorage.setItem('userId', response.data.users[response.data.users.length-1]._id)
+        localStorage.setItem('username', response.data.users[response.data.users.length-1].username)
+        console.log(vertUsername)
     }
 
     const inputRef = useRef(null)
@@ -53,7 +65,11 @@ export default function SignUp () {
 
     return(
         <div>
-            <form onSubmit={handleSubmit} className='loginContainer signUp'>
+            <form onSubmit={()=>{
+                handleSubmit()
+                setTimeout(()=>console.log('pause'),1000)
+                changeUser()
+                }} className='loginContainer signUp'>
                 <h1 className="headinglogin">Signup page</h1>
                 <label>Username:</label>
                 <input className='signUpInput' type="text" onChange={usernameHandleChange} placeholder='Enter your username...'/>

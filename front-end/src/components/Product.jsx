@@ -209,14 +209,16 @@ const [selected, setSelected] = useState(null)
                       <img src='./src/images/upload.png'/>
                       <input type="file"
                            ref={inputRef}
-                           onChange={handleImage}
+                           id="fileUpload" onChange={(event)=> {
+                            handleImageUpload(event)
+                           }}
                            value={image}
                            style={{ display: 'none' }}
                             />
                </div>
-               <input type="file" id="fileUpload" onChange={(event)=> {
+               {/* <input type="file" id="fileUpload" onChange={(event)=> {
                  handleImageUpload(event)
-                }}/>
+                }}/> */}
                <div>
                    <button type='submit'>Post</button>
               </div>

@@ -48,12 +48,19 @@ export default function LoginPage(){
     }
     return(
         <form onSubmit={handleSubmit} className='loginContainer logIn'>
-            <h1 className='headinglogin'>Log In</h1>
-            <label>Username:</label>
-            <input className='logInInput' onChange={usernameHandleChange} type="text" placeholder='Username'/>
-            <label>Password:</label>
-            <input className='logInInput' onChange={passwordHandleChange} type="text" placeholder='Password' />
-            <input className='logInSubmit' type="submit" /> 
+            <div className='loginContainerTwo'>
+                <div>
+                    <h1 className='headinglogin'>Log In</h1>
+                    <p>New to this site? <Link to='/signup'>Sign up</Link></p>
+                </div>
+                <div className='loginInputbu'>
+                    <input className='logInInput' onChange={usernameHandleChange} type="text" placeholder='Username'/>
+                    <input className='logInInput' onChange={passwordHandleChange} type="text" placeholder='Password' />
+                </div>
+                 <div className='loginTwoButton'>
+                    <button className='logInSubmit' type="submit">Log In</button>
+                 </div>
+            </div>
         </form>
     )
 }

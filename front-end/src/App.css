@@ -394,10 +394,11 @@ header{
   justify-content: center;
   align-items: center;
   background-color: white;
-  width: 500px;
+  width: 400px;
   margin: 150px auto;
   padding-bottom:40px;
   border-radius: 20px;
+  height: 460px;
   
 }
 .loginContainer .headingsignup{
@@ -415,7 +416,7 @@ header{
   color: black;
 }
 .loginContainer h1{
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .loginContainer span{
@@ -433,12 +434,13 @@ header{
   margin-bottom: 20px;
   background: none;
   border: 1px solid lightgray;
-  font-size: 20px;
+  font-size: 13px;
   cursor: pointer;
 }
 .loginContainer .google img{
   position: relative;
-  right: 70px
+  right: 27px;
+  width: 25px;
 }
 .loginContainer .upfb{
   display: flex;
@@ -448,12 +450,13 @@ header{
   height: 60px;
   background-color: #1877f2;
   color: white;
-  font-size: 20px; 
+  font-size: 13px; 
   border: none;
 }
 .loginContainer .upfb img{
   position: relative;
-  right: 70px
+  right: 20px;
+  width: 25px;
 }
 .loginContainer .semail{
   width: 400px;
@@ -465,6 +468,20 @@ header{
 .loginContainer h3{
   margin-bottom: 70px;
   font-size: 25px;
+}
+.loginButton{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 10px;
+}
+.loginContainer .loginButton button{
+  width: 300px;
+  height: 50px;
+}
+.loginContainer .loginOthers button{
+  width: 200px;
+  height: 35px;
 }
 
 /* Sign Up Page */
@@ -492,24 +509,6 @@ header{
   margin-top:30px;
 }
 
-/* Log In Page */
-
-.logIn{
-  padding:0 40px 20px;
-}
-
-.logInInput{
-  height:40px;
-  margin-top:10px;
-}
-
-.logInSubmit{
-  height:40px;
-  width:30%;
-  background-color: black;
-  color:white;
-  margin-top:30px;
-}
 
 /* Log Out Page */
 
@@ -716,14 +715,23 @@ header{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
+  margin-top: 60px;
+}
+.mainCart h1{
+  position: relative;
+  bottom: 40px;
 }
 .bagNSummary{
-  display: flex;
-  justify-content: center;
+  height: 100%;
+  border-top: 2px solid lightgray;
+}
+.cartCard{
+  width: 1000px;
+  margin-bottom: 50px;
 }
 .cartCard img{
-  width: 200px;
+  width: 120px;
   height: 100px;
   background-position: center;
 }
@@ -731,4 +739,115 @@ header{
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 2px solid rgb(217, 216, 216);
+  gap: 200px;
+  margin-bottom: 100px;
+  margin-top: 70px;
+}
+.cartBox{
+  display: flex;
+  flex-direction: row;
+  gap: 200px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.cartBox p{
+  font-weight: bold;
+  font-size: 18px;
+}
+.cartBox button{
+  background-color: #18264b;
+  height: 35px;
+  width: 100px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.orderSummary{
+ position: relative;
+ left: 280px;
+ gap: 50px;
+}
+.orderSummary h1{
+  font-size: 28px;
+}
+.orderSummary h2{
+  position: relative;
+  bottom: 20px;
+}
+
+/* login two container  */
+.loginContainerTwo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+}
+.loginInputbu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+.loginInputbu input{
+  width: 264px;
+  height: 40px;
+  border: 2px solid lightgray;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+.loginTwoButton button{
+  width: 280px;
+  margin-top: 30px;
+  height: 40px;
+  background-color: #2b458f;
+  border: none;
+  font-size: 20px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3)
+}
+
+/* signup section */
+.signUp{
+  width: 300px;
+}
+.mainSignup{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.signUpInput{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.signupInput input{
+  width: 280px;
+  border: 2px solid rgb(210, 209, 209);
+  padding-left: 10px;
+
+}
+.uploadNS{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.uploadNS button{
+  width: 280px;
+  background-color: #2b458f;
+  border: none;
+  font-size: 18px;
+  height: 40px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3)
 }

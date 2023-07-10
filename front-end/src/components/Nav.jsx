@@ -15,7 +15,7 @@ export default function Nav () {
         
             <div className='center-links'>
                  <Link to='/'><img src='src/images/home.png'/></Link>
-                 <Link to='/product'><img className='nav-icon center marketplace' src="src/images/product.png"/></Link>
+                 <Link to='/product'><img className='nav-icon marketplace' src="src/images/product.png"/></Link>
                  {/* <Link><img src='src/images/heroSearch.png'/></Link> */}
             </div>
 

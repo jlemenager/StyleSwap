@@ -223,9 +223,8 @@ export default function Home() {
           console.error(error)
         })
       }
-      
 
-    return posts ? (
+    return (
         <div className='main-page'>
         <VerticalNav vertUsername={vertUsername} setVertUsername={setVertUsername} vertId={vertId} setVertId={setVertId} userFile={userFile} setUserFile={setUserFile} handleImageUpload={handleImageUpload} />
         <div className='feed'>
@@ -235,7 +234,7 @@ export default function Home() {
                  <div className='post-username-section'>
                     <div className="formUserIcon">
                         <div>
-                            <h3 className='post-username'>{vertUsername}</h3>
+                            <h3 className='post-username form-username'>{vertUsername}</h3>
                          </div>
                          <div>
                              <img className='post-user-icon' src={userFile} alt="user icon" />
@@ -267,8 +266,6 @@ export default function Home() {
      {posts.map((post, idx) =>(
  <div key={idx} className='post'>
     <div className='top-post'>
-      
-    
          <div className='post-username-section'>
                <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
                 {/* {posts[posts.length-(idx+1)].username.username ? <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3> : null} */}
@@ -304,7 +301,7 @@ export default function Home() {
                
      <div className='write-comment-section'>
             <div>
-                <img className='nav-icon' src="src/images/user.png" alt="user-icon" />
+                <img className='nav-icon' src={userFile} alt="user-icon" />
             </div>
             <div className="write-comment">
                 <input className='comment-bar' onChange={handleCommentChange} placeholder='Write your comment here...'></input>
@@ -321,7 +318,7 @@ export default function Home() {
              <div className='comment-list'>
                     {posts[posts.length-(idx+1)].comments.map((comment,idx)=>(
                         <div key={idx} className='comment-with-icon'>
-                        <img className='nav-icon' src="src/images/userTwo.png" alt="user-icon" />
+                        <img className='nav-icon' src='src/images/user-icon.png' alt="user-icon" />
                         <p className='comment'>{comment}</p> 
                        </div>
                     ))}
@@ -329,9 +326,8 @@ export default function Home() {
           </div>
      </div>
             ))}
-         
    </div>
-        
+    
 </div>
-    ): console.log('not loading')
+    )
 }

@@ -20,22 +20,22 @@ export default function Home() {
     }
     const [file, setFile] = useState('')
 
-    const uploadImage = () => {
-        const data = new FormData()
-        data.append("file", image)
-        data.append("upload_preset", "image-upload")
-        data.append("cloud_name","dikdtblpr")
-        fetch("https://api.cloudinary.com/v1_1/dikdtblpr/image/upload",{
-        method:"post",
-        body: data
-        })
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data.url)
-        setUrl(data.url)
-        })
-        .catch(err => console.log(err))
-}   
+//     const uploadImage = () => {
+//         const data = new FormData()
+//         data.append("file", image)
+//         data.append("upload_preset", "image-upload")
+//         data.append("cloud_name","dikdtblpr")
+//         fetch("https://api.cloudinary.com/v1_1/dikdtblpr/image/upload",{
+//         method:"post",
+//         body: data
+//         })
+//         .then(resp => resp.json())
+//         .then(data => {
+//             console.log(data.url)
+//         setUrl(data.url)
+//         })
+//         .catch(err => console.log(err))
+// }   
 
     const handleSubmit = (event) => {
         event.preventDefault()

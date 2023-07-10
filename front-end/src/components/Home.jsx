@@ -321,7 +321,7 @@ export default function Home() {
              <div className='comment-list'>
                     {posts[posts.length-(idx+1)].comments.map((comment,idx)=>(
                         <div key={idx} className='comment-with-icon'>
-                        <img className='nav-icon' src="src/images/user.png" alt="user-icon" />
+                        <img className='nav-icon' src="src/images/userTwo.png" alt="user-icon" />
                         <p className='comment'>{comment}</p> 
                        </div>
                     ))}

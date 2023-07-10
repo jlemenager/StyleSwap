@@ -71,14 +71,20 @@ export default function SignUp () {
     return(
         <div>
             <form onSubmit={handleSubmit} className='loginContainer signUp'>
-                <h1 className="headinglogin">Signup page</h1>
-                <label>Username:</label>
-                <input className='signUpInput' type="text" onChange={usernameHandleChange} placeholder='Enter your username...'/>
-                <label>Password:</label>
-                <input className='signUpInput' type="text" onChange={passwordHandleChange} placeholder='Enter your password...'/>
+                <div className='mainSingup'>
+                    <div>
+                       <h1 className="headinglogin">Signup page</h1>
+                       <p>Already have an account? <Link to='/loginpage'>Log In</Link></p>
+                </div>
+            <div className='signupInput'>
+                    <input className='signUpInput' type="text" onChange={usernameHandleChange} placeholder='Enter your username...'/>
+                    <input className='signUpInput' type="text" onChange={passwordHandleChange} placeholder='Enter your password...'/>
+                </div>
+                <div className='uploadNS'>
                 <div className='form-bottom-buttons'>
                    <div onClick={handleImageClick}
                        className="upload">
+
                         <img src='./src/images/upload.png'
                         style={{ cursor: 'pointer' }} />
                         <input type='file' 
@@ -89,7 +95,11 @@ export default function SignUp () {
                         style={{ display: 'none' }}></input>
                    </div>
                 </div>
-                <input className='signUpSubmit' type="submit"/>
+                <div>
+                <button className='signUpSubmit' type="submit">Sign Up</button>
+                </div>
+                </div>
+                </div>
             </form>
         </div>
     )

@@ -202,7 +202,7 @@ export default function Home() {
     <div className='top-post'>
          <div className='post-username-section'>
                <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
-               <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3>
+               <h3 className='post-username'>User</h3>
                
            </div>
            <div>

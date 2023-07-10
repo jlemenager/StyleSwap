@@ -18,13 +18,16 @@ import Footer from './components/Footer'
 function App() {
 
   const [posts,setPosts] = useState([])
-  const [userFile, setUserFile] = useState(localStorage.getItem('userImage'))
+  const [userFile, setUserFile] = useState(  localStorage.getItem('userImage'))
+
 
   const [products, setProducts] = useState([])
 
   const [vertUsername, setVertUsername] = useState(localStorage.getItem('username'))
+  
 
   const [vertId, setVertId] = useState(localStorage.getItem('userId'))
+  
 
   const getPostsAPI = async() =>{
     const response = await axios.get('http://localhost:3001/api/post')

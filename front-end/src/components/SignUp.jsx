@@ -1,6 +1,7 @@
 import { useState,useRef, useEffect, useContext } from 'react'
 import UserContext from '../UserContext'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 export default function SignUp () {
 
@@ -70,21 +71,31 @@ export default function SignUp () {
                 setTimeout(()=>console.log('pause'),1000)
                 changeUser()
                 }} className='loginContainer signUp'>
-                <h1 className="headinglogin">Signup page</h1>
-                <label>Username:</label>
-                <input className='signUpInput' type="text" onChange={usernameHandleChange} placeholder='Enter your username...'/>
-                <label>Password:</label>
-                <input className='signUpInput' type="text" onChange={passwordHandleChange} placeholder='Enter your password...'/>
-                <div onClick={handleImageClick}
-                     className="upload">
-                     <img src='./src/images/upload.png'
-                        style={{ cursor: 'pointer' }} />
-                     <input type='file' 
-                        ref={inputRef}
-                        onChange={handleImage}
-                        style={{ display: 'none' }}></input>
+                    <div className='mainsignup'>
+                        <div className='signUpContent'>
+                             <h1 className="headinglogin">Sign Up</h1>
+                             <p>Already have an account? <Link to='/loginpage'>Log In</Link></p>
+                        </div>
+                        <div className='signupInput'>
+                             <input className='signUpInput' type="text" onChange={usernameHandleChange} placeholder='Enter your username...'/>
+                            <input className='signUpInput' type="text" onChange={passwordHandleChange} placeholder='Enter your password...'/>
+                            </div>
+                    <div className='uploadNS'>
+                        <div onClick={handleImageClick}
+                          className="upload">
+                             <img src='./src/images/upload.png'
+                              style={{ cursor: 'pointer' }} />
+                             <input type='file' 
+                                    ref={inputRef}
+                                    onChange={handleImage}
+                                    style={{ display: 'none' }}></input>
+                       </div>
+                       <div>
+               
+                          <button className='signUpSubmit' type="submit">Sign Up</button>
+                 </div>
+                 </div>
                 </div>
-                <input className='signUpSubmit' type="submit"/>
             </form>
         </div>
     )

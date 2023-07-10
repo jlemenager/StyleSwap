@@ -40,20 +40,29 @@ export default function Cart() {
         <div className="cartCard">
           {cart.map((item) => (
             <div key={item._id} className="cartC">
-              {typeof item.username === "object" ? (
+              {/* {typeof item.username === "object" ? (
                 <p>{item.username.username}</p>
               ) : (
                 <p>{item.username}</p>
-              )}
-              <img src={item.image} alt={item.username} />
-              <p>{item.cost}</p>
-              <button onClick={() => deleteCart(item._id)}>delete</button>
+              )} */}
+               <div className="cartBox">
+                  <div>
+                    <img src={item.image} alt={item.username} />
+                  </div>
+                  <div>
+                    <p>{item.cost}</p>
+                  </div>
+                  <div>
+                    <button onClick={() => deleteCart(item._id)}>delete</button>
+                  </div>
+                </div>
             </div>
           ))}
         </div>
-
-        <h1>Order Summary</h1>
-        <h2>${updatedCost}</h2>
+          <div className="orderSummary">
+             <h1>Order Summary</h1>
+             <h2>${updatedCost}</h2>
+          </div>
       </div>
     </div>
   )

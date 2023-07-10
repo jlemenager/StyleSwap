@@ -11,19 +11,11 @@ import Product from './components/Product'
 import SignUP from './components/SignUp'
 import LogInPage from './components/LogInPage'
 import LogOutPage from './components/LogOutPage'
-// import cloudinary from '../utils/Cloudinary'
 import './App.css'
 import Footer from './components/Footer'
 
 
 function App() {
-
-  // cloudinary.v2.search
-  // .expression('resource_type:image AND tags=kitten AND uploaded_at>1d AND bytes>1m')
-  // .sort_by('public_id','desc')
-  // .max_results(30)
-  // .execute()
-  // .then(result=>console.log(result));
 
   const [posts,setPosts] = useState([])
   const [userFile, setUserFile] = useState(localStorage.getItem('userImage'))
@@ -58,16 +50,7 @@ function App() {
     setUserFile('http://localhost:3001/images/' + files[0].name)
     const myImage = files[0]
     const imageType = /image.*/
-  
-    // if (!myImage.type.match(imageType)) {
-    //   alert('Sorry, only images are allowed')
-    //   return
-    // }
-  
-    // if (myImage.size > (100*1024)) {
-    //   alert('Sorry, the max allowed size for images is 100KB')
-    //   return
-    // }
+
     const formData = new FormData()
     formData.append('myFile', files[0])
     console.log(files[0].name)
@@ -85,6 +68,7 @@ function App() {
       console.error(error)
     })
   }
+  // https://flaviocopes.com/file-upload-using-ajax/ : Used this as a guide to set up image uploading
   
   return (
    <div className='App'>

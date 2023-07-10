@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(
     fileupload()
 )
+// https://flaviocopes.com/file-upload-using-ajax/ : Used this as a guide to set up image uploading
 
 app.get('/', (req, res) => {
     res.send('landing page')
@@ -45,5 +46,6 @@ app.post('/saveImage', (req, res) => {
       res.end(JSON.stringify({ status: 'success', path: '/img/houses/' + fileName }))
     })
   })
+  // https://flaviocopes.com/file-upload-using-ajax/ : Used this as a guide to set up image uploading
 
   app.use('/images', express.static('images'))

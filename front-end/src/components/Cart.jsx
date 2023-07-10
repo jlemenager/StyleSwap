@@ -40,11 +40,6 @@ export default function Cart() {
         <div className="cartCard">
           {cart.map((item) => (
             <div key={item._id} className="cartC">
-              {/* {typeof item.username === "object" ? (
-                <p>{item.username.username}</p>
-              ) : (
-                <p>{item.username}</p>
-              )} */}
                <div className="cartBox">
                   <div>
                     <img src={item.image} alt={item.username} />

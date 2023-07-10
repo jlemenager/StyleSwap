@@ -19,8 +19,6 @@ export default function Product () {
     const [formState, setFormState] = useState(initialState)
     const [file, setFile] = useState('')
 
-    // console.log(formState)
-
    const handleChange  = event => {
       setFormState({...formState, [event.target.id]: event.target.value})
    }
@@ -31,16 +29,7 @@ export default function Product () {
     setFile(files[0].name)
     const myImage = files[0]
     const imageType = /image.*/
-  
-    // if (!myImage.type.match(imageType)) {
-    //   alert('Sorry, only images are allowed')
-    //   return
-    // }
-  
-    // if (myImage.size > (100*1024)) {
-    //   alert('Sorry, the max allowed size for images is 100KB')
-    //   return
-    // }
+ 
     const formData = new FormData()
     formData.append('myFile', files[0])
     console.log(files[0].name)
@@ -189,14 +178,6 @@ const [selected, setSelected] = useState(null)
             <form onSubmit={handleSubmit}>
               <div>
                     <h3>{vertUsername}</h3>
-                    {/* <input onChange={handleChange}
-                           value={formState.username}
-                           id='username'
-                           type="text"
-                           placeholder="Description of item"
-                           className="usernameInput"
-                           style={{height: '15px',
-                                   fontSize: '15px'}}/> */}
                     <input onChange={handleChange}
                             value={formState.cost}
                             id='cost'
@@ -216,9 +197,6 @@ const [selected, setSelected] = useState(null)
                            style={{ display: 'none' }}
                             />
                </div>
-               {/* <input type="file" id="fileUpload" onChange={(event)=> {
-                 handleImageUpload(event)
-                }}/> */}
                <div>
                    <button type='submit'>Post</button>
               </div>

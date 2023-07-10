@@ -114,7 +114,7 @@ const [selected, setSelected] = useState(null)
     console.log('hello');
     let result = false;
     for (let i = 0; i < cart.length; i++) {
-      console.log(cart[i].username.username, product.username.username);
+      console.log(cart[i].username, product.username);
       if (cart[i].cost === product.cost) {
         result = true
       }
@@ -196,7 +196,7 @@ const [selected, setSelected] = useState(null)
                       key={idx}
                       id={idx}>
                 <div className="userNDelete">
-                    <h2>{product.username.username}</h2>
+                    <h2>{product.username}</h2>
                     <button onClick={() => deleteProduct(product._id)}>x</button>
                 </div>
                 <div>

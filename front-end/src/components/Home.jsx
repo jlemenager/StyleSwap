@@ -6,7 +6,7 @@ import Footer from "./Footer"
 export default function Home() {
 
     //post function section
-    const { posts, setPosts, getPostsAPI, vertUsername, setVertUsername,vertId,setVertId } = useContext(UserContext)
+    const { posts, setPosts, getPostsAPI, vertUsername, setVertUsername, vertId,setVertId } = useContext(UserContext)
     let initialState = {
         username: vertId,
         description: '',
@@ -167,24 +167,31 @@ export default function Home() {
         <VerticalNav vertUsername={vertUsername} setVertUsername={setVertUsername} vertId={vertId} setVertId={setVertId}/>
         <div className='feed'>
             <div className='post-form'>
-            <form onSubmit={handleSubmit}>
-                {/* <input placeholder='Username' type="text" value={formState.username} onChange={handleChange} id='username'/> */}
-                <div className='post-username-section'>
-                <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
-                <h3 className='post-username'>{vertUsername}</h3>
+               <form onSubmit={handleSubmit}>
+                
+                 <div className='post-username-section'>
+                    <div>
+                       <img className='post-user-icon' src="src/images/userTwo.png" alt="user icon" />
+                       <h3 className='post-username'>{vertUsername}</h3>
+                    </div>
+                    <div>
+                       <textarea type="text" value={formState.description} onChange={handleChange} id='description' placeholder="What's your style?"/>
+                    </div>
                 </div>
-                <textarea type="text" value={formState.description} onChange={handleChange} id='description' placeholder="What's your style?"/>
+
                 <div className='form-bottom-buttons'>
-                <div onClick={handleImageClick}
-                     className="upload">
-                     <img src='./src/images/upload.png'
+                   <div onClick={handleImageClick}
+                       className="upload">
+                        <img src='./src/images/upload.png'
                         style={{ cursor: 'pointer' }} />
-                     <input type='file' 
+                        <input type='file' 
                         ref={inputRef}
                         onChange={handleImage}
                         style={{ display: 'none' }}></input>
-                </div>
-                <input className='submit-button-form' type="submit" />
+                   </div>
+                   <div>
+                        <input className='submit-button-form' type="submit" />
+                    </div>
                 </div>
             </form> 
             </div>
@@ -212,7 +219,7 @@ export default function Home() {
                 </div>
                 <br/>
                 <div className='write-comment-section'>
-                <img className='nav-icon' src="src/images/user-icon.png" alt="user-icon" />
+                <img className='nav-icon' src="src/images/user.png" alt="user-icon" />
                 <div className="write-comment">
                 <input className='comment-bar' onChange={handleCommentChange} placeholder='Write your comment here...'></input>
                 <button className='comment-submit' onClick={()=>{
@@ -226,7 +233,7 @@ export default function Home() {
                     <div className='comment-list'>
                     {posts[posts.length-(idx+1)].comments.map((comment,idx)=>(
                         <div key={idx} className='comment-with-icon'>
-                        <img className='nav-icon' src="src/images/user-icon.png" alt="user-icon" />
+                        <img className='nav-icon' src="src/images/user.png" alt="user-icon" />
                         <p className='comment'>{comment}</p> 
                         </div>
                     ))}

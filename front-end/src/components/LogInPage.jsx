@@ -1,4 +1,5 @@
-import UserContext from "../UserContext"
+import { Link } from 'react-router-dom'
+ import UserContext from "../UserContext"
 import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 export default function LoginPage(){
@@ -36,7 +37,6 @@ export default function LoginPage(){
                     alert(`Hello ${response.data.users[i].username}, you are logged in!`)
                     setVertUsername(response.data.users[i].username)
                     setVertId(response.data.users[i]._id)
-
                     localStorage.setItem('userId', response.data.users[i]._id)
                     localStorage.setItem('username', response.data.users[i].username)
                     console.log(vertUsername)
@@ -53,7 +53,7 @@ export default function LoginPage(){
             <input className='logInInput' onChange={usernameHandleChange} type="text" placeholder='Username'/>
             <label>Password:</label>
             <input className='logInInput' onChange={passwordHandleChange} type="text" placeholder='Password' />
-            <input className='logInSubmit' type="submit" />
+            <input className='logInSubmit' type="submit" /> 
         </form>
     )
 }

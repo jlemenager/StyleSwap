@@ -107,7 +107,7 @@ const main = async () => {
         {
             username: johnDoe[0]._id,
             image: "https://images.pexels.com/photos/1040173/pexels-photo-1040173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            description: "I love this style when I'm on the move. I'm an avid traveller and nature lover, and matching this tan sweater with brown cargo pants makes me feel stylish everywhere I go!",
+            description: "My green fake fur style!",
             products: "Backpack, hiking shoes, camera",
             likes: 0,
             comments: ['amazing', 'perfect'],
@@ -117,7 +117,7 @@ const main = async () => {
           {
             username: janeSmith[0]._id,
             image: "https://images.pexels.com/photos/852860/pexels-photo-852860.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            description: "My favorite style to wear out. No matter where I go.",
+            description: "I would wear this every day in the summer if I could!",
             products: "Cookware set, recipe book, apron",
             likes: 0,
             comments: ['amazing', 'perfect'],
@@ -127,7 +127,7 @@ const main = async () => {
           {
             username: user123[0]._id,
             image: "https://images.pexels.com/photos/4066288/pexels-photo-4066288.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            description: "I'm a Health and fitness enthusiast, so wearing loose clothes like this is a must.",
+            description: "Can never go wrong with a baggy white t-shirt.",
             products: "Gym equipment, protein supplements, workout clothes",
             likes: 0,
             comments: ['amazing', 'perfect'],
@@ -137,7 +137,7 @@ const main = async () => {
           {
             username: testuser[0]._id,
             image: "https://images.pexels.com/photos/14180011/pexels-photo-14180011.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            description: "Check out my vest with white longsleeves look!",
+            description: "Love this style. The orange and white contrast makes me happy!",
             products: "Dresses, handbags, sunglasses",
             likes: 0,
             comments: ['amazing', 'perfect'],
@@ -147,7 +147,7 @@ const main = async () => {
           {
             username: guest[0]._id,
             image: "https://images.pexels.com/photos/8396717/pexels-photo-8396717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            description: "This style makes me feel happy.",
+            description: "I wear this on all of my photoshoots!",
             products: "Pet toys, pet food, grooming supplies",
             likes: 0,
             comments: ['amazing', 'perfect'],
@@ -157,7 +157,7 @@ const main = async () => {
           {
             username: user456[0]._id,
             image: "https://images.pexels.com/photos/11590844/pexels-photo-11590844.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            description: "I wear this on all of my photoshoots!",
+            description: "This style makes me feel happy.",
             products: "Smartphones, laptops, headphones",
             likes: 0,
             comments: ['amazing', 'perfect'],
@@ -167,7 +167,7 @@ const main = async () => {
           {
             username: user789[0]._id,
             image: "https://images.pexels.com/photos/15932407/pexels-photo-15932407/free-photo-of-woman-in-stylish-clothes-posing-near-wall.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            description: "Love this style. The orange and white contrast makes me happy!",
+            description: "Check out my vest with white longsleeves look!",
             products: "Paintbrushes, canvases, art prints",
             likes: 0,
             comments: ['amazing', 'perfect'],
@@ -177,7 +177,7 @@ const main = async () => {
           {
             username: user790[0]._id,
             image: "https://images.pexels.com/photos/11049239/pexels-photo-11049239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            description: "Can never go wrong with a baggy white t-shirt.",
+            description: "I'm a Health and fitness enthusiast, so wearing loose clothes like this is a must.",
             products: "Wall art, decorative pillows, furniture",
             likes: 0,
             comments: ['amazing', 'perfect'],
@@ -187,7 +187,7 @@ const main = async () => {
           {
             username: newuser[0]._id,
             image: "https://images.pexels.com/photos/12595572/pexels-photo-12595572.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            description: "I would wear this every day in the summer if I could!",
+            description: "My favorite style to wear out. No matter where I go.",
             products: "Bestselling books, book accessories, bookmarks",
             likes: 0,
             comments: ['amazing', 'perfect'],
@@ -197,7 +197,7 @@ const main = async () => {
           {
             username: user999[0]._id,
             image: "https://images.pexels.com/photos/12599037/pexels-photo-12599037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            description: "My green fake fur style!",
+            description: "I love this style when I'm on the move. I'm an avid traveller and nature lover, and matching this tan sweater with brown cargo pants makes me feel stylish everywhere I go!",
             products: "Headphones, vinyl records, musical instruments",
             likes: 0,
             comments: ['amazing', 'perfect'],

@@ -168,7 +168,7 @@ const [selected, setSelected] = useState(null)
                             placeholder="Price of item"
                             className="descriptionInput"/>
               </div>
-           <div className="uploadNButton">            
+          <div className="uploadNButton">            
               <div onClick={handleImageClick}>
                       <img src='./src/images/upload.png'/>
                       <input type="file"
@@ -181,7 +181,7 @@ const [selected, setSelected] = useState(null)
                <div>
                    <button type='submit'>Post</button>
               </div>
-            </div>
+          </div>
             </form>
         </div>
     </div>

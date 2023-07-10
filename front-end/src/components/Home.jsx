@@ -161,6 +161,8 @@ export default function Home() {
         getPostsAPI()
     }
 
+
+
     //   post delete function section
 
      const handlePostDelete = async (postId) => {
@@ -231,9 +233,13 @@ export default function Home() {
                <form onSubmit={handleSubmit}>
                 
                  <div className='post-username-section'>
-                    <div>
-                       <img className='post-user-icon' src="src/images/userTwo.png" alt="user icon" />
-                       <h3 className='post-username'>{vertUsername}</h3>
+                    <div className="formUserIcon">
+                        <div>
+                            <h3 className='post-username'>{vertUsername}</h3>
+                         </div>
+                         <div>
+                             <img className='post-user-icon' src="src/images/userTwo.png" alt="user icon" />
+                          </div>
                     </div>
                     <div>
                        <textarea type="text" value={formState.description} onChange={handleChange} id='description' placeholder="What's your style?"/>
@@ -247,67 +253,85 @@ export default function Home() {
                         style={{ cursor: 'pointer' }} />
                         <input type='file' 
                         ref={inputRef}
-                        onChange={handleImage}
+                        onChange={(event)=> {
+                            handleImageUpload(event)
+                           }}
                         style={{ display: 'none' }}></input>
                    </div>
                    <div>
                         <input className='submit-button-form' type="submit" />
                     </div>
                 </div>
-                {/* <UploadWidget /> */}
-                <input type="file" id="fileUpload" onChange={(event)=> {
-                 handleImageUpload(event)
-                }}/>
             </form> 
             </div>
-            {posts.map((post, idx) =>(
-                <div key={idx} className='post'>
-                <button className='delete-button' onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>X</button>
-                <div className='top-post'>
-                <div className='post-username-section'>
-                <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
+     {posts.map((post, idx) =>(
+ <div key={idx} className='post'>
+    <div className='top-post'>
+      
+    
+         <div className='post-username-section'>
+               <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
                 {/* {posts[posts.length-(idx+1)].username.username ? <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3> : null} */}
-                <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3>
-                </div>
-                <p>{posts[posts.length-(idx+1)].description}</p>
-                </div>
-                <img className='product-image' src={ posts[posts.length-(idx+1)].image}/>
-                <div className='reaction-bar'>
+               <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3>
+           </div>
+           <div>
+              <button className='delete-button' onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>x</button>
+           </div>
+   
+  </div>
+  <div className="descriptionNImage">
+          <div className="postDescription">
+             <p>{posts[posts.length-(idx+1)].description}</p>
+          </div>
+          <div>
+              <img className='product-image' src={ posts[posts.length-(idx+1)].image}/>
+          </div>
+    </div>
+     <div className='reaction-bar'>
+             <div>
                 <img className='like-button reaction-image' onClick={() => {
                     handleLike(posts[posts.length-(idx+1)]._id, idx)
-                }} src="src/images/like.png" alt='like'/>
+                }} src="src/images/heart.png" alt='like'/>
+              </div>
+              <div>
                 <span className='likes'>{ posts[posts.length-(idx+1)].likes }</span>
-                <br/>
+              </div>
+              <div>
                 <img className='comment-button reaction-image' onClick={()=>{
                     showComments(idx)}} src="src/images/comment.png" alt='comment'/>
-                </div>
-                <br/>
-                <div className='write-comment-section'>
+              </div>
+    </div>
+               
+     <div className='write-comment-section'>
+            <div>
                 <img className='nav-icon' src="src/images/user.png" alt="user-icon" />
-                <div className="write-comment">
+            </div>
+            <div className="write-comment">
                 <input className='comment-bar' onChange={handleCommentChange} placeholder='Write your comment here...'></input>
+            </div>
+            <div>
                 <button className='comment-submit' onClick={()=>{
                     createComment(posts[posts.length-(idx+1)]._id, idx)
                     showCommentsOnSubmit(idx)
-                    }}>Submit</button>
-                </div>
-                </div>
-                <div className='comment-list-section'>
-                    <div className='comment-list-line'></div>
-                    <div className='comment-list'>
+                    }}><img src="src/images/commentButton.png"/></button>
+             </div>
+     </div>
+     <div className='comment-list-section'>
+         <div className='comment-list-line'></div>
+             <div className='comment-list'>
                     {posts[posts.length-(idx+1)].comments.map((comment,idx)=>(
                         <div key={idx} className='comment-with-icon'>
                         <img className='nav-icon' src="src/images/user.png" alt="user-icon" />
                         <p className='comment'>{comment}</p> 
-                        </div>
+                       </div>
                     ))}
-                    </div>
-                </div>
-                </div>
+             </div>
+          </div>
+     </div>
             ))}
          
-        </div>
+   </div>
         
-        </div>
+</div>
     ): console.log('not loading')
 }

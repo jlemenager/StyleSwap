@@ -10,7 +10,6 @@ const getAllProducts = async(req,res) => {
         return res.status(500).send(e.message)
     }
 }
-
 const getProduct = async(req,res) => {
     try{
         const { id } = req.params

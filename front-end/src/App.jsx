@@ -22,9 +22,8 @@ function App() {
 
   const [products, setProducts] = useState([])
 
-  console.log(localStorage.getItem('username'))
-
   const [vertUsername, setVertUsername] = useState(localStorage.getItem('username'))
+
   const [vertId, setVertId] = useState(localStorage.getItem('userId'))
 
   const getPostsAPI = async() =>{

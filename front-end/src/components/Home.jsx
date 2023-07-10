@@ -106,8 +106,6 @@ export default function Home() {
         getPostsAPI()
     }
 
-
-
     //   post delete function section
 
      const handlePostDelete = async (postId) => {
@@ -205,6 +203,7 @@ export default function Home() {
          <div className='post-username-section'>
                <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
                <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3>
+               
            </div>
            <div>
               <button className='delete-button' onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>x</button>

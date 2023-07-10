@@ -20,23 +20,6 @@ export default function Home() {
     }
     const [file, setFile] = useState('')
 
-//     const uploadImage = () => {
-//         const data = new FormData()
-//         data.append("file", image)
-//         data.append("upload_preset", "image-upload")
-//         data.append("cloud_name","dikdtblpr")
-//         fetch("https://api.cloudinary.com/v1_1/dikdtblpr/image/upload",{
-//         method:"post",
-//         body: data
-//         })
-//         .then(resp => resp.json())
-//         .then(data => {
-//             console.log(data.url)
-//         setUrl(data.url)
-//         })
-//         .catch(err => console.log(err))
-// }   
-
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log(formState)
@@ -45,28 +28,18 @@ export default function Home() {
             const response = await axios.post(`http://localhost:3001/api/post/`, {...formState, username: formState.username, description:formState.description, image:'http://localhost:3001/images/' + file, likes:0} )
             const newPost = response.data
             console.log(newPost)
-            // setPosts(response.data.posts)
             setPosts([...posts, newPost])
             setFormState(initialState)
         }
-        //location.reload()
         postNewPost()
-        // uploadImage()
         location.reload()
-        // console.log(posts)
-        // console.log(newPost)
     }
-
-//    likes function section
-
-    // let [likes, setLikes] = useState(0)
 
     let [clicked, setClicked] = useState(false)
     
     const handleLike = async (postId, idx) => {
         console.log(postId)
             if (clicked===false) {
-                // const updatedLikes = likes + 1
                 const response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
                     username: posts[posts.length-(idx+1)].username,
                     image: posts[posts.length-(idx+1)].image,
@@ -76,13 +49,8 @@ export default function Home() {
                     comments: posts[posts.length-(idx+1)].comments
                 });
                 console.log(response)
-                // setLikes(response.data.post.likes)
-                // console.log(likes)
                 setClicked(true)
-                // getPostsAPI()
-                // document.querySelectorAll('.likes')[idx].innerHTML = response.data.post.likes
             } else if (clicked===true){
-                // const updatedLikes = likes - 1
                 const response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
                     username: posts[posts.length-(idx+1)].username,
                     image: posts[posts.length-(idx+1)].image,
@@ -91,23 +59,10 @@ export default function Home() {
                     likes: posts[posts.length-(idx+1)].likes-=1,
                     comments: posts[posts.length-(idx+1)].comments
                 })
-                // setLikes(response.data.post.likes)
                 setClicked(false)
                 console.log(response)
-                // document.querySelectorAll('.likes')[idx].innerHTML = response.data.post.likes
             } 
         }
-
-    //show comments
-
-    // useEffect(()=>{
-    //     const getCommentsFromAPI = () => {
-    //         posts.map(post=>{
-    //             setComments(post.comments)
-    //         })
-    //     }
-    //     getCommentsFromAPI()
-    // },[comments])
 
     const [commentState, setCommentState] = useState('')
     const [comments1, setComments] = useState([])
@@ -119,7 +74,6 @@ export default function Home() {
 
     const showComments = (index) => {
         const comment = document.querySelectorAll('.comment-list-section')[index]
-        // const commentList = document.querySelectorAll('.comment-list-section')[index]
         if(comment.style.display==='flex'){
             comment.style.display = 'none'
         } else {
@@ -130,7 +84,6 @@ export default function Home() {
     const showCommentsOnSubmit = (index) => {
         const comment = document.querySelectorAll('.comment-list-section')[index]
         let input = document.querySelectorAll('.comment-bar')[index]
-        // const commentList = document.querySelectorAll('.comment-list-section')[index]
         if(comment.style.display==='none' || input.value !== ''){
             comment.style.display = 'flex'
             input.value=''
@@ -138,14 +91,6 @@ export default function Home() {
         
         console.log(index)
     }
-
-    // useEffect(()=>{
-    //     const scrollPosition = sessionStorage.getItem('scrollPosition')
-    //     if (scrollPosition){
-    //         window.scrollTo(0,parseInt(scrollPosition))
-    //         sessionStorage.removeItem('scrollPosition')
-    //     }
-    // },[])
 
     const createComment = async(postId, idx) => {
         let postComments = posts[posts.length-(idx+1)].comments
@@ -184,7 +129,6 @@ export default function Home() {
 
     function handleImage(e) {
         const file = e.target.files[0]
-        // function(error, result) {console.log(result);};
         console.log(file)
         setImage(file)
         setImage('')
@@ -196,16 +140,7 @@ export default function Home() {
         setFile(files[0].name)
         const myImage = files[0]
         const imageType = /image.*/
-      
-        // if (!myImage.type.match(imageType)) {
-        //   alert('Sorry, only images are allowed')
-        //   return
-        // }
-      
-        // if (myImage.size > (100*1024)) {
-        //   alert('Sorry, the max allowed size for images is 100KB')
-        //   return
-        // }
+
         const formData = new FormData()
         formData.append('myFile', files[0])
         console.log(files[0].name)
@@ -223,6 +158,7 @@ export default function Home() {
           console.error(error)
         })
       }
+    // https://flaviocopes.com/file-upload-using-ajax/ : Used this as a guide to set up image uploading
 
     return (
         <div className='main-page'>
@@ -268,7 +204,6 @@ export default function Home() {
     <div className='top-post'>
          <div className='post-username-section'>
                <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
-                {/* {posts[posts.length-(idx+1)].username.username ? <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3> : null} */}
                <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3>
            </div>
            <div>
@@ -327,7 +262,6 @@ export default function Home() {
      </div>
             ))}
    </div>
-    
 </div>
     )
 }

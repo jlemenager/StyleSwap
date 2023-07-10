@@ -36,6 +36,10 @@ export default function LoginPage(){
                     alert(`Hello ${response.data.users[i].username}, you are logged in!`)
                     setVertUsername(response.data.users[i].username)
                     setVertId(response.data.users[i]._id)
+
+                    localStorage.setItem('userId', response.data.users[i]._id)
+                    localStorage.setItem('username', response.data.users[i].username)
+                    console.log(vertUsername)
                     // location.reload()
                 }  
             }

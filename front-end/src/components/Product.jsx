@@ -8,12 +8,12 @@ import heroSearch from '../images/heroSearch.png'
 
 export default function Product () {
 
-    const { products, setProducts, vertUsername, setVertUsername, vertId, setVertId } = useContext(UserContext)
+    const { products, setProducts } = useContext(UserContext)
 
 
     console.log(products)
     let initialState = {
-
+        username: '',
         cost: '',
         image:''
     }
@@ -29,10 +29,9 @@ export default function Product () {
      event.preventDefault()
 
      const postNewProduct = async() => {
-        const response = await axios.post(`http://localhost:3001/api/product`, {...formState, username: vertUsername, cost:formState.cost})
+        const response = await axios.post(`http://localhost:3001/api/product`, {...formState, username:formState.username, cost:formState.cost })
 
       setProducts([...products, response.data])
-      setFormState(initialState)
         location.reload()
      }
      postNewProduct()
@@ -79,7 +78,7 @@ const [selected, setSelected] = useState(null)
   const getCart = async () => {
     const response = await axios.get(`http://localhost:3001/api/cart`)
     setCart(response.data.carts)
-
+  
   }
 
   useEffect(() => {
@@ -115,7 +114,7 @@ const [selected, setSelected] = useState(null)
     console.log('hello');
     let result = false;
     for (let i = 0; i < cart.length; i++) {
-      console.log(cart[i].username.username, product.username.username);
+      console.log(cart[i].username, product.username);
       if (cart[i].cost === product.cost) {
         result = true
       }
@@ -154,9 +153,8 @@ const [selected, setSelected] = useState(null)
                       alignItems: 'center'}}>
             <form onSubmit={handleSubmit}>
               <div>
-                   {/* <h3>user{vertUsername}</h3> */}
                     <input onChange={handleChange}
-                          //  value={formState.username}
+                           value={formState.username}
                            id='username'
                            type="text"
                            placeholder="Description of item"
@@ -198,7 +196,7 @@ const [selected, setSelected] = useState(null)
                       key={idx}
                       id={idx}>
                 <div className="userNDelete">
-                    <h2>{product.username.username}</h2>
+                    <h2>{product.username}</h2>
                     <button onClick={() => deleteProduct(product._id)}>x</button>
                 </div>
                 <div>

@@ -210,28 +210,28 @@ const main = async () => {
 
     const product = [
         {
-            username: johnDoe[0]._id,
+            username: "johnDoe",
             image: "https://images.pexels.com/photos/6764007/pexels-photo-6764007.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
             cost: 20.99,
             isLive: true
           },
           
           {
-            username: janeSmith[0]._id,
+            username:" janeSmith",
             image: "https://images.pexels.com/photos/8594503/pexels-photo-8594503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
             cost: 15.49,
             isLive: false
           },
           
           {
-            username: user123[0]._id,
+            username: "user123",
             image: "https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
             cost: 9.99,
             isLive: true
           },
           
           {
-            username: testuser[0]._id,
+            username: "testuser",
             image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=810&q=80",
             cost: 5.99,
             isLive: true
@@ -245,35 +245,35 @@ const main = async () => {
           },
           
           {
-            username: user456[0]._id,
+            username: "user456",
             image: "https://images.unsplash.com/photo-1467043237213-65f2da53396f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
             cost: 8.49,
             isLive: true
           },
           
           {
-            username: user789[0]._id,
+            username: "user789",
             image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=872&q=80",
             cost: 6.99,
             isLive: false
           },
           
           {
-            username: user790[0]._id,
+            username: "user790",
             image: "https://images.unsplash.com/photo-1554568218-0f1715e72254?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
             cost: 0.99,
             isLive: true
           },
           
           {
-            username: newuser[0]._id,
+            username: "newuser",
             image: "https://images.unsplash.com/photo-1520591799316-6b30425429aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
             cost: 3.99,
             isLive: true
           },
           
           {
-            username: user999[0]._id,
+            username: "user999",
             image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
             cost: 7.99,
             isLive: false

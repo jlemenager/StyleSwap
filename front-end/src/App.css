@@ -9,6 +9,7 @@ body{
 
 /* Nav Bar */
 
+
 .right-title{
   display: flex;
   align-items: center;
@@ -18,7 +19,11 @@ body{
 /* .nav-title{
   margin-left:15px;
 } */
-
+.nav-icon, .nav-logo-vert, .post-user-icon{
+  width: 25px;
+  border-radius: 100%;
+  margin-right: 20px;
+}
 .nav-links {
   display: flex;
   justify-content: space-between;

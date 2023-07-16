@@ -56,7 +56,8 @@ body{
   display: flex;
   align-items: center;
   gap: 100px; /* Adjust the gap between the center links */
-  margin-right:107px;
+  margin-right:80px;
+  /* changed this margin-right from 107*/
 }
 
 .logo{
@@ -94,7 +95,9 @@ body{
 
 .main-page{
   display: grid;
-  grid-template-columns: 25% 60%;
+  /* grid-template-columns: 25% 60%; what it was originally*/
+  grid-template-columns: 33% 33% 33%;
+  /* added this */
   margin: 30px 0px;
 }
 
@@ -139,7 +142,8 @@ body{
   flex-direction: column;
   justify-content: center;
   width:81%;
-  margin: 0 0 0 13%;
+  margin: 0 0 0 3.5%; 
+  /* changed margin from 13% on the left*/
 }
 
 .post-form{
@@ -395,6 +399,36 @@ header{
   cursor: pointer;
   text-align: right;
   width:95%;
+}
+
+/* Popular Trends Section (added this) */
+.popular-trends{
+  text-align: left;
+  margin:40px 8px 0 130px;
+  color:#2b458f;
+  background-color: white;
+  padding:9px 20px 1px;
+  border:2px blur white;
+  border-radius:2.5%;
+  height:100vh;
+  
+}
+.trend-title{
+  opacity:0.8;
+  margin-bottom:60px;
+}
+
+.trend-container{
+  background-color: #F5F5F5;
+  padding:10px 20px 1px;
+  border-radius: 5%;
+  margin-bottom:20px;
+}
+
+.trend{
+  font-size:0.8rem;
+  margin-bottom:50px;
+  color: black;
 }
 
 /* login section */

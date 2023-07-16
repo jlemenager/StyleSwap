@@ -9,7 +9,10 @@ export default function Home() {
     //post function section
     const { posts, setPosts, getPostsAPI, vertUsername, setVertUsername, vertId,setVertId, userFile, setUserFile, handleUserImageUpload } = useContext(UserContext)
     let initialState = {
-        username: vertId,
+        profileimage: userFile,
+        //added this
+        username: vertUsername,
+        //changed from vertId
         description: '',
         likes: 0,
         image: ''
@@ -25,7 +28,8 @@ export default function Home() {
         console.log(formState)
         const postNewPost = async() => {
             console.log(formState)
-            const response = await axios.post(`http://localhost:3001/api/post/`, {...formState, username: formState.username, description:formState.description, image:'http://localhost:3001/images/' + file, likes:0} )
+            const response = await axios.post(`http://localhost:3001/api/post/`, {...formState, profileimage:formState.profileimage, username: formState.username, description:formState.description, image:'http://localhost:3001/images/' + file, likes:0} )
+            //added formState.profileimage
             const newPost = response.data
             console.log(newPost)
             setPosts([...posts, newPost])
@@ -41,6 +45,8 @@ export default function Home() {
         console.log(postId)
             if (clicked===false) {
                 const response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+                    profileimage: posts[posts.length-(idx+1)].profileimage,
+                    //added this
                     username: posts[posts.length-(idx+1)].username,
                     image: posts[posts.length-(idx+1)].image,
                     description: posts[posts.length-(idx+1)].description,
@@ -52,6 +58,8 @@ export default function Home() {
                 setClicked(true)
             } else if (clicked===true){
                 const response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+                    profileimage: posts[posts.length-(idx+1)].profileimage,
+                    //added this
                     username: posts[posts.length-(idx+1)].username,
                     image: posts[posts.length-(idx+1)].image,
                     description: posts[posts.length-(idx+1)].description,
@@ -92,10 +100,17 @@ export default function Home() {
         console.log(index)
     }
 
+    // let commentImage = 'src/images/user-icon.png'
+    // const showCommentImage = (this) => {
+    //     this.commentImage = userFile
+    // }
+
     const createComment = async(postId, idx) => {
         let postComments = posts[posts.length-(idx+1)].comments
         postComments.push(commentState)
         let response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+            profileimage: posts[posts.length-(idx+1)].profileimage,
+            // added this
             username: posts[posts.length-(idx+1)].username,
             image: posts[posts.length-(idx+1)].image,
             description: posts[posts.length-(idx+1)].description,
@@ -201,9 +216,9 @@ export default function Home() {
  <div key={idx} className='post'>
     <div className='top-post'>
          <div className='post-username-section'>
-               <img className='post-user-icon' src="src/images/user-icon.png" alt="user icon" />
-               <h3 className='post-username'>{posts[posts.length-(idx+1)].username.username}</h3>
-               
+               <img className='post-user-icon' src={posts[posts.length-(idx+1)].profileimage} alt="user icon" />
+               {/* "src/images/user-icon.png" */}
+               <h3 className='post-username'>{posts[posts.length-(idx+1)].username}</h3>
            </div>
            <div>
               <button className='delete-button' onClick={() => handlePostDelete(posts[posts.length-(idx+1)]._id)}>x</button>
@@ -215,7 +230,7 @@ export default function Home() {
              <p>{posts[posts.length-(idx+1)].description}</p>
           </div>
           <div>
-              <img className='product-image' src={ posts[posts.length-(idx+1)].image}/>
+              <img className='product-image' src={posts[posts.length-(idx+1)].image}/>
           </div>
     </div>
      <div className='reaction-bar'>
@@ -261,6 +276,25 @@ export default function Home() {
      </div>
             ))}
    </div>
+   <div className='popular-trends'>
+        <h3 className="trend-title">Popular Trends</h3>
+        <div className='trend-container'>
+        <p className='trend'>'matching this tan sweater with brown cargo pants makes me feel stylish everywhere I go!' -user999</p>
+        </div>
+        <div className='trend-container'>
+        <p className='trend'>'Check out my vest with white longsleeves look' -user789</p>
+        </div>
+        <div className='trend-container'>
+        <p className='trend'>'orange and white contrast' -testuser</p>
+        </div>
+        <div className='trend-container'>
+        <p className='trend'>'baggy white t-shirt' -user123</p>
+        </div>
+        <div className='trend-container'>
+        <p className='trend'>'green fake fur' -john doe</p>
+        </div>
+   </div>
+   {/* added this popular-trends section */}
 </div>
     )
 }

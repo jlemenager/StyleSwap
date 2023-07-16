@@ -7,7 +7,7 @@ const postSchema = new Schema (
       username: {type: String, required: false},
       // {type: Schema.Types.ObjectId, ref:'UserInfo'}
       image: {type: String, required: false},
-      description: {type: String, required: true},
+      description: {type: String, required: false},
       products: {type: String, required: false},
       likes: {type: Number, required: false},
       comments: {type: Array, required: false},

@@ -411,7 +411,7 @@ header{
   border:2px blur white;
   border-radius:2.5%;
   height:100vh;
-  
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .trend-title{
   opacity:0.8;
@@ -901,4 +901,21 @@ header{
   font-size: 18px;
   height: 40px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3)
+}
+
+
+/* Media Queries */
+
+@media screen and (max-width:600px){
+  .nav-links-vertical{
+    display: flex;
+  }
+  .main-page{
+    display: flex;
+    flex-direction: column;
+  }
+  .popular-trends{
+    display: none;
+  }
+
 }

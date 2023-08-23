@@ -29,7 +29,7 @@ export default function Home() {
         console.log(formState)
         const postNewPost = async() => {
             console.log(formState)
-            const response = await axios.post(`http://localhost:3001/api/post/`, {...formState, profileimage:formState.profileimage, username: formState.username, description:formState.description, image:'http://localhost:3001/images/' + file, likes:0} )
+            const response = await axios.post(`http://styleswap-production.up.railway.app/api/post/`, {...formState, profileimage:formState.profileimage, username: formState.username, description:formState.description, image:'http://localhost:3001/images/' + file, likes:0} )
             //added formState.profileimage
             const newPost = response.data
             console.log(newPost)
@@ -45,7 +45,7 @@ export default function Home() {
     const handleLike = async (postId, idx) => {
         console.log(postId)
             if (clicked===false) {
-                const response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+                const response = await axios.put(`http://styleswap-production.up.railway.app/api/post/${postId}`, {
                     profileimage: posts[posts.length-(idx+1)].profileimage,
                     //added this
                     username: posts[posts.length-(idx+1)].username,
@@ -58,7 +58,7 @@ export default function Home() {
                 console.log(response)
                 setClicked(true)
             } else if (clicked===true){
-                const response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+                const response = await axios.put(`http://styleswap-production.up.railway.app/api/post/${postId}`, {
                     profileimage: posts[posts.length-(idx+1)].profileimage,
                     //added this
                     username: posts[posts.length-(idx+1)].username,
@@ -109,7 +109,7 @@ export default function Home() {
     const createComment = async(postId, idx) => {
         let postComments = posts[posts.length-(idx+1)].comments
         postComments.push(commentState)
-        let response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+        let response = await axios.put(`http://styleswap-production.up.railway.app/api/post/${postId}`, {
             profileimage: posts[posts.length-(idx+1)].profileimage,
             // added this
             username: posts[posts.length-(idx+1)].username,
@@ -126,7 +126,7 @@ export default function Home() {
 
      const handlePostDelete = async (postId) => {
 
-        const response = await axios.delete(`http://localhost:3001/api/post/${postId}`)
+        const response = await axios.delete(`http://styleswap-production.up.railway.app/api/post/${postId}`)
         setPosts(posts.filter((post) => post._id != postId))
     }
 
@@ -158,7 +158,7 @@ export default function Home() {
         const formData = new FormData()
         formData.append('myFile', files[0])
         console.log(files[0].name)
-        await axios.post('http://localhost:3001/saveImage', formData)
+        await axios.post('http://styleswap-production.up.railway.app/saveImage', formData)
         console.log(formData)
         // fetch('/saveImage', {
         //   method: 'POST',

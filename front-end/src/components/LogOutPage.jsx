@@ -28,11 +28,11 @@ export default function LogoutPage(){
     },[usernameFormState,passwordFormState])
     const handleSubmit = async(event) => {
         event.preventDefault()
-        const response = await axios.get(`http://localhost:3001/api/userinfo`)
+        const response = await axios.get(`http://styleswap-production.up.railway.app/api/userinfo`)
         const checkIfRealAccount = async() => {
             for (let i = 0;i<response.data.users.length;i++){
                 if (userInfo.password == response.data.users[i].password && userInfo.username == response.data.users[i].username){
-                    const putRequest = await axios.put(`http://localhost:3001/api/userinfo/logoutpage/${response.data.users[i]._id}`, {...userInfo, isLoggedIn: false})
+                    const putRequest = await axios.put(`http://styleswap-production.up.railway.app/api/userinfo/logoutpage/${response.data.users[i]._id}`, {...userInfo, isLoggedIn: false})
                     alert(`Hello ${response.data.users[i].username}, you are logged out.`)
                     setVertUsername('Not Logged In')
                     setUserFile('src/images/user-icon.png')

@@ -4,6 +4,10 @@ import axios from 'axios'
 import VerticalNav from './VerticalNav'
 import Footer from "./Footer"
 import usericon from '../images/user-icon.png'
+import upload from '../images/upload.png'
+import heart from '../images/heart.png'
+import comment from '../images/comment.png'
+import commentButton from '../images/commentButton.png'
 // import UploadWidget from "./UploadWidget"
 export default function Home() {
 
@@ -199,7 +203,7 @@ export default function Home() {
                 <div className='form-bottom-buttons'>
                    <div onClick={handleImageClick}
                        className="upload">
-                        <img src='./src/images/upload.png'
+                        <img src={upload}
                         style={{ cursor: 'pointer' }} />
                         <input type='file' 
                         ref={inputRef}
@@ -239,14 +243,14 @@ export default function Home() {
              <div>
                 <img className='like-button reaction-image' onClick={() => {
                     handleLike(posts[posts.length-(idx+1)]._id, idx)
-                }} src="src/images/heart.png" alt='like'/>
+                }} src={heart} alt='like'/>
               </div>
               <div>
                 <span className='likes'>{ posts[posts.length-(idx+1)].likes }</span>
               </div>
               <div>
                 <img className='comment-button reaction-image' onClick={()=>{
-                    showComments(idx)}} src="src/images/comment.png" alt='comment'/>
+                    showComments(idx)}} src={comment} alt='comment'/>
               </div>
     </div>
                
@@ -261,7 +265,7 @@ export default function Home() {
                 <button className='comment-submit' onClick={()=>{
                     createComment(posts[posts.length-(idx+1)]._id, idx)
                     showCommentsOnSubmit(idx)
-                    }}><img src="src/images/commentButton.png"/></button>
+                    }}><img src={commentButton}/></button>
              </div>
      </div>
      <div className='comment-list-section'>

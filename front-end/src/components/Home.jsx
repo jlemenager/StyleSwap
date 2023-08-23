@@ -3,7 +3,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
 import VerticalNav from './VerticalNav'
 import Footer from "./Footer"
-import usericon from 'src/images/user-icon.png'
+import usericon from '../images/user-icon.png'
 // import UploadWidget from "./UploadWidget"
 export default function Home() {
 

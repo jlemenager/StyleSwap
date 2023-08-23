@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import UserContext from '../UserContext'
 import Home from './Home'
 import heroSearch from '../images/heroSearch.png'
-import logo from 'src/images/logo.png'
+import logo from '../images/logo.png'
 
 export default function Nav () {
     const { userFile, setUserFile, handleUserImageUpload } = useContext(UserContext)

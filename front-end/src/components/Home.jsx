@@ -3,6 +3,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
 import VerticalNav from './VerticalNav'
 import Footer from "./Footer"
+import usericon from '../images/user-icon.png'
 // import UploadWidget from "./UploadWidget"
 export default function Home() {
 
@@ -267,7 +268,7 @@ export default function Home() {
              <div className='comment-list'>
                     {posts[posts.length-(idx+1)].comments.map((comment,idx)=>(
                         <div key={idx} className='comment-with-icon'>
-                        <img className='nav-icon' src='src/images/user-icon.png' alt="user-icon" />
+                        <img className='nav-icon' src={usericon} alt="user-icon" />
                         <p className='comment'>{comment}</p> 
                        </div>
                     ))}

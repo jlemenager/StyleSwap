@@ -38,10 +38,10 @@ export default function SignUp () {
     const handleSubmit = (evt) => {
         evt.preventDefault()
             const postLoginInfo = async(req,res) =>{
-                const response2 = await axios.post(`http://styleswap-production.up.railway.app/api/userinfo/signup`, userInfo)
+                const response2 = await axios.post(`https://styleswap-production.up.railway.app/api/userinfo/signup`, userInfo)
             }
             const changeUser = async() => {
-                const response = await axios.get(`http://styleswap-production.up.railway.app/api/userinfo`)
+                const response = await axios.get(`https://styleswap-production.up.railway.app/api/userinfo`)
                 alert(`Hello ${userInfo.username}, welcome to StyleSwap!`)
                 setVertUsername(response.data.users[response.data.users.length-1].username) 
                 setVertId(response.data.users[response.data.users.length-1]._id)

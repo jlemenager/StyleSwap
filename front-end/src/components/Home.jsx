@@ -178,6 +178,7 @@ export default function Home() {
         <div className='main-page'>
         <VerticalNav vertUsername={vertUsername} setVertUsername={setVertUsername} vertId={vertId} setVertId={setVertId} userFile={userFile} setUserFile={setUserFile} handleImageUpload={handleImageUpload} />
         <div className='feed'>
+            <h1>Hello</h1>
             <div className='post-form'>
                <form onSubmit={handleSubmit}>
                 

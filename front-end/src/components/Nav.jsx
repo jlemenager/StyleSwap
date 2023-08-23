@@ -3,13 +3,14 @@ import { useContext } from 'react'
 import UserContext from '../UserContext'
 import Home from './Home'
 import heroSearch from '../images/heroSearch.png'
+import logo from 'src/images/logo.png'
 
 export default function Nav () {
     const { userFile, setUserFile, handleUserImageUpload } = useContext(UserContext)
     return(
         <div className='nav-links'>
             <div className='right-title'>
-                   <Link to='/'><img className='logo' src="src/images/logo.png" alt="logo" /></Link>
+                   <Link to='/'><img className='logo' src={logo} alt="logo" /></Link>
                    <Link to='/'><h1 className='nav-title'>StyleSwap</h1></Link>
             </div>
         

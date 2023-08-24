@@ -41,7 +41,7 @@ export default function Home() {
             setFormState(initialState)
         }
         postNewPost()
-        // location.reload()
+        location.reload()
     }
 
     let [clicked, setClicked] = useState(false)

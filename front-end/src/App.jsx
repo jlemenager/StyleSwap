@@ -91,10 +91,10 @@ function App() {
        <Nav />
 
        <Routes>
-          <Route path='/' element={<Home />}/>
+          <Route path='/home' element={<Home />}/>
           <Route path='/search' element={<Search/>}/>
           <Route path='/product' element={<Product/>}/>
-          <Route path='/login' element={<LogIn/>}/>
+          <Route path='/' element={<LogIn/>}/>
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/signup' element={<SignUP/>}/>
           <Route path='/loginpage' element={<LogInPage/>}/>

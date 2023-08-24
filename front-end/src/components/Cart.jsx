@@ -5,7 +5,7 @@ export default function Cart() {
   const [cart, setCart] = useState([])
 
   const getCart = async () => {
-    const response = await axios.get("http://localhost:3001/api/cart")
+    const response = await axios.get("https://styleswap-production.up.railway.app/api/cart")
     setCart(response.data.carts)
   }
 
@@ -14,7 +14,7 @@ export default function Cart() {
   }, [])
 
   const deleteCart = async (itemId) => {
-    await axios.delete(`http://localhost:3001/api/cart/${itemId}`)
+    await axios.delete(`https://styleswap-production.up.railway.app/api/cart/${itemId}`)
     setCart(cart.filter((item) => item._id !== itemId))
   }
 

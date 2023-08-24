@@ -13,18 +13,18 @@ export default function Nav () {
     return(
         <div className='nav-links'>
             <div className='right-title'>
-                   <Link to='/'><img className='logo' src={logo} alt="logo" /></Link>
-                   <Link to='/'><h1 className='nav-title'>StyleSwap</h1></Link>
+                   <Link to='/home'><img className='logo' src={logo} alt="logo" /></Link>
+                   <Link to='/home'><h1 className='nav-title'>StyleSwap</h1></Link>
             </div>
         
             <div className='center-links'>
-                 <Link to='/'><img src={home}/></Link>
+                 <Link to='/home'><img src={home}/></Link>
                  <Link to='/product'><img className='nav-icon marketplace' src={product}/></Link>
             </div>
 
             <div className='left-title'>
                 <Link to='/cart'><img className='nav-icon left cart' src={cart} alt="cart" /></Link>
-                 <Link to='/login'><img className='nav-icon left login' src={userFile} alt="user-icon" /></Link> 
+                 <Link to='/'><img className='nav-icon left login' src={userFile} alt="user-icon" /></Link> 
             </div>
         </div>
     )

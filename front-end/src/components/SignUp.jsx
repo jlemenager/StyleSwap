@@ -3,6 +3,7 @@ import UserContext from '../UserContext'
 import VerticalNav from './VerticalNav'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import upload from '../images/upload.png'
 
 export default function SignUp () {
 
@@ -84,7 +85,7 @@ export default function SignUp () {
                    <div onClick={handleImageClick}
                        className="upload">
 
-                        <img src='./src/images/upload.png'
+                        <img src={upload}
                         style={{ cursor: 'pointer' }} />
                         <input type='file'
                         ref={inputRef}

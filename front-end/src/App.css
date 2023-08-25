@@ -2502,7 +2502,7 @@ body{
 .nav-links-vertical{
   height: 100%;
   background-color: white;
-  width: 30%;
+  max-width: 30rem;
   border-radius: 15px;
   margin-left: 3rem;
   margin-top: 40px;
@@ -2810,7 +2810,7 @@ header{
   border-radius:2.5%;
   height: 100%;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  width: 50%;
+  max-width: 25rem;
   margin-left: 3rem;
   margin-right: 2rem;
   margin-top: 2.6rem;

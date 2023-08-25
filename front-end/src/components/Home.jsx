@@ -175,7 +175,13 @@ export default function Home() {
 
     return (
         <div className='main-page'>
-        <VerticalNav vertUsername={vertUsername} setVertUsername={setVertUsername} vertId={vertId} setVertId={setVertId} userFile={userFile} setUserFile={setUserFile} handleImageUpload={handleImageUpload} />
+            <VerticalNav vertUsername={vertUsername}          setVertUsername={setVertUsername} 
+                        className='vertical-nav-home'
+                        vertId={vertId} 
+                        setVertId={setVertId} 
+                        userFile={userFile} 
+                        setUserFile={setUserFile} 
+                        handleImageUpload={handleImageUpload} />
         <div className='feed'>
             <div className='post-form'>
                <form onSubmit={handleSubmit}>

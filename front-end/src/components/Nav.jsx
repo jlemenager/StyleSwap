@@ -17,7 +17,7 @@ export default function Nav () {
                  <Link to='/'><img src='src/images/home.png'/></Link>
                  <Link to='/product'><img className='nav-icon marketplace' src="src/images/product.png"/></Link>
             </div>
-
+          
             <div className='left-title'>
                 <Link to='/cart'><img className='nav-icon left cart' src="src/images/cartt.png" alt="cart" /></Link>
                  <Link to='/login'><img className='nav-icon left login' src={userFile} alt="user-icon" /></Link> 

@@ -1,11 +1,360 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body{
   background-color: #F5F5F5;
   text-align: center;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
   font-family: 'Courier New', Courier, monospace;
 }
 
+@media screen and (max-width: 480px) {
+  img{
+    width: 100%;
+  }
+  .nav-link-vertical{
+    display: none;
+  }
+
+/* nav section */
+
+  header{
+    background-color: rgb(0, 0, 0);
+    margin: 0;
+    color: rgb(164, 164, 164);
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+
+.right-title{
+  
+  color:black;
+}
+
+.nav-logo-vert{
+  height:2rem;
+  width: 2rem;
+  border-radius:60%;
+}
+
+.nav-icon{
+  width: 1.8rem;
+  height: 1.6rem;
+  border-radius:60%;
+}
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow:0px 2px 8px #f6f6f6;
+  padding: 0.5rem;
+}
+.left-title{
+  display: flex;
+  gap: 1rem;
+}
+.left-title,
+.right-title {
+  display: flex;
+  align-items: center;
+}
+
+.left-title{
+   display: flex;
+
+}
+.center-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo{
+  width: 1.2rem;
+  padding: 0;
+}
+.nav-links h1{
+  font-size: 1rem;
+}
+.nav-links a{
+  color:#2b458f;
+  text-decoration: none;
+}
+
+.searchNStyle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* posting section*/
+
+.post-form{
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding:  1rem;
+  border-radius: 1rem;
+  box-shadow:2px 2px 10px #d9d9d9;
+  width: 100%;
+  height: 100%;
+}
+.post-username-section {
+  position: relative;
+  top: 1rem;
+}
+.post-username-section textarea{
+  border: none;
+  background-color: rgb(238, 238, 238);
+  width: 100%;
+  position: relative;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  height: 100%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  padding-left: 0.7rem;
+  line-height: 1.2rem;
+}
+
+
+.form-bottom-buttons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 15px;
+  gap: 11rem;
+
+}
+.form-bottom-buttons .submit-button-form{
+  background: none;
+  border: #2b458f 2px solid;
+  height: 2rem;
+  border-radius: 0.7rem;
+  color: #1b2d60;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(37, 37, 37, 0.3);
+}
+.formUserIcon{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding-left: 2rem;
+  position: relative;
+  bottom: 1rem;
+}
+.post-user-icon{
+  width: 1.5rem;
+  border-radius: 2rem;
+}
+
+
+/* Posts */
+
+.post{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow:2px 2px 10px #d9d9d9;
+  width:100%;
+  height: 100%;
+  position: relative;
+  padding-top: 2.5rem;
+}
+.post .product-image{
+  height: 15rem;
+  width: 100%;
+  border-radius: 0.8rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.top-post{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 2.5rem;
+}
+.top-post .delete-button{
+  position: relative;
+  top: 1rem;
+}
+
+.post-username-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.descriptionNImage{
+  position: relative;
+  bottom: 1.5rem;
+}
+.postDescription p{
+  width: 100%;
+  padding: 0rem 1rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.post-user-icon{
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-right: 1rem;
+}
+
+.post-username{
+  margin:0;
+}
+
+.post p{
+  margin:20px 0;
+  text-align: left;
+}
+
+
+
+.reaction-bar{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  /* margin-right: 320px; */
+  position: relative;
+  bottom: 1.5rem;
+}
+
+.like-button{
+  display: inline-block;
+  margin-right: 9px;
+  cursor: pointer;
+  color:white;
+  
+}
+
+.likes{
+  margin-right: 1.5rem;
+  font-weight:700;
+  display: inline-block;
+}
+
+.comment-button{
+  display: inline-block;
+  cursor: pointer;
+  width:2rem;
+  /* background-color: black;
+  color:white; */
+}
+
+.write-comment-section{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  bottom: 26px;
+}
+.write-comment-section input{
+  width: 100%;
+  background-color: rgb(239, 239, 239);
+  border: none;
+  height: 35px;
+  border-radius: 10px;
+  padding-left: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.comment-bar{
+  height:30px;
+  margin:20px 0 20px 0;
+  padding: 0;
+  border-radius:3%;
+}
+
+.comment-submit{
+  background: none;
+  border: none;
+}
+
+.comment-list-section{
+  display: none;
+  margin-bottom: 30px;
+  background-color: white;
+  border-radius: 5%;
+  width:85%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.comment-list{
+  width:98%;
+  display:flex;
+  flex-direction: column;
+  height: auto;
+
+}
+
+.comment-with-icon{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:96%;
+  margin:0 0 0 36px;
+}
+
+.comment-list-line{
+  border:1px solid black;
+  border-style: none solid none none;
+  width:6px;
+  height:100%;
+}
+
+.comment{
+  background-color: #F5F5F5;
+  margin: 40px 0 40px 30px;
+  text-align: left;
+  height: 30px;
+  width:90%;
+}
+
+.delete-button{
+  /* position: absolute;
+  top:25px;
+  right:28px; */
+  border: none;
+  background-color: white;
+  color:black;
+  font-size:1.3rem;
+  cursor: pointer;
+  text-align: right;
+  width:95%;
+}
+
+
+
+}
+
+
+@media screen and (min-width: 1024px) {
+  
 
 /* Nav Bar */
 
@@ -411,7 +760,8 @@ header{
   border:2px blur white;
   border-radius:2.5%;
   height:100vh;
-  
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
 }
 .trend-title{
   opacity:0.8;
@@ -902,3 +1252,5 @@ header{
   height: 40px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3)
 }
+}
+

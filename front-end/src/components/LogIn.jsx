@@ -15,7 +15,7 @@ export default function LogIn() {
                      <button className="semail"><Link to='/logoutpage'>Log Out</Link></button>
                    </div>
                  
-             <div className="or">
+             {/* <div className="or">
                 <p>
                   <span></span>
                    or
@@ -25,7 +25,7 @@ export default function LogIn() {
              <div className='loginOthers'>
                 <button className="google"><img src={google}/>Log In with Google</button>
                 <button className="upfb"><img src={facebook}/>Log In with Facebook</button>
-              </div>
+              </div> */}
          </div>
     )
 }

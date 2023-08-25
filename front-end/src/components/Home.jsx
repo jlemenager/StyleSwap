@@ -191,7 +191,7 @@ export default function Home() {
                             <h3 className='post-username form-username'>{vertUsername}</h3>
                          </div>
                          <div>
-                             <img className='post-user-icon' src={userFile} alt="user icon" />
+                             <img className='post-user-icon' src={userFile ? userFile : usericon} alt="user icon" />
                           </div>
                     </div>
                     <div>
@@ -255,7 +255,7 @@ export default function Home() {
                
      <div className='write-comment-section'>
             <div>
-                <img className='nav-icon' src={userFile} alt="user-icon" />
+                <img className='nav-icon' src={userFile ? userFile : usericon} alt="user-icon" />
             </div>
             <div className="write-comment">
                 <input className='comment-bar' onChange={handleCommentChange} placeholder='Write your comment here...'></input>

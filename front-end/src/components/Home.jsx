@@ -3,6 +3,11 @@ import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
 import VerticalNav from './VerticalNav'
 import Footer from "./Footer"
+import usericon from '../images/user-icon.png'
+import upload from '../images/upload.png'
+import heart from '../images/heart.png'
+import comment from '../images/comment.png'
+import commentButton from '../images/commentButton.png'
 // import UploadWidget from "./UploadWidget"
 export default function Home() {
 
@@ -28,7 +33,7 @@ export default function Home() {
         console.log(formState)
         const postNewPost = async() => {
             console.log(formState)
-            const response = await axios.post(`http://localhost:3001/api/post/`, {...formState, profileimage:formState.profileimage, username: formState.username, description:formState.description, image:'http://localhost:3001/images/' + file, likes:0} )
+            const response = await axios.post(`https://styleswap-production.up.railway.app/api/post/`, {...formState, profileimage:formState.profileimage, username: formState.username, description:formState.description, image:'http://localhost:3001/images/' + file, likes:0} )
             //added formState.profileimage
             const newPost = response.data
             console.log(newPost)
@@ -44,7 +49,7 @@ export default function Home() {
     const handleLike = async (postId, idx) => {
         console.log(postId)
             if (clicked===false) {
-                const response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+                const response = await axios.put(`https://styleswap-production.up.railway.app/api/post/${postId}`, {
                     profileimage: posts[posts.length-(idx+1)].profileimage,
                     //added this
                     username: posts[posts.length-(idx+1)].username,
@@ -57,7 +62,7 @@ export default function Home() {
                 console.log(response)
                 setClicked(true)
             } else if (clicked===true){
-                const response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+                const response = await axios.put(`https://styleswap-production.up.railway.app/api/post/${postId}`, {
                     profileimage: posts[posts.length-(idx+1)].profileimage,
                     //added this
                     username: posts[posts.length-(idx+1)].username,
@@ -108,7 +113,7 @@ export default function Home() {
     const createComment = async(postId, idx) => {
         let postComments = posts[posts.length-(idx+1)].comments
         postComments.push(commentState)
-        let response = await axios.put(`http://localhost:3001/api/post/${postId}`, {
+        let response = await axios.put(`https://styleswap-production.up.railway.app/api/post/${postId}`, {
             profileimage: posts[posts.length-(idx+1)].profileimage,
             // added this
             username: posts[posts.length-(idx+1)].username,
@@ -125,7 +130,7 @@ export default function Home() {
 
      const handlePostDelete = async (postId) => {
 
-        const response = await axios.delete(`http://localhost:3001/api/post/${postId}`)
+        const response = await axios.delete(`https://styleswap-production.up.railway.app/api/post/${postId}`)
         setPosts(posts.filter((post) => post._id != postId))
     }
 
@@ -157,7 +162,7 @@ export default function Home() {
         const formData = new FormData()
         formData.append('myFile', files[0])
         console.log(files[0].name)
-        await axios.post('http://localhost:3001/saveImage', formData)
+        await axios.post('https://styleswap-production.up.railway.app/saveImage', formData)
         console.log(formData)
         // fetch('/saveImage', {
         //   method: 'POST',
@@ -192,7 +197,7 @@ export default function Home() {
                             <h3 className='post-username form-username'>{vertUsername}</h3>
                          </div>
                          <div>
-                             <img className='post-user-icon' src={userFile} alt="user icon" />
+                             <img className='post-user-icon' src={userFile ? userFile : usericon} alt="user icon" />
                           </div>
                     </div>
                     <div>
@@ -203,7 +208,7 @@ export default function Home() {
                 <div className='form-bottom-buttons'>
                    <div onClick={handleImageClick}
                        className="upload">
-                        <img src='./src/images/upload.png'
+                        <img src={upload}
                         style={{ cursor: 'pointer' }} />
                         <input type='file' 
                         ref={inputRef}
@@ -243,20 +248,20 @@ export default function Home() {
              <div>
                 <img className='like-button reaction-image' onClick={() => {
                     handleLike(posts[posts.length-(idx+1)]._id, idx)
-                }} src="src/images/heart.png" alt='like'/>
+                }} src={heart} alt='like'/>
               </div>
               <div>
                 <span className='likes'>{ posts[posts.length-(idx+1)].likes }</span>
               </div>
               <div>
                 <img className='comment-button reaction-image' onClick={()=>{
-                    showComments(idx)}} src="src/images/comment.png" alt='comment'/>
+                    showComments(idx)}} src={comment} alt='comment'/>
               </div>
     </div>
                
      <div className='write-comment-section'>
             <div>
-                <img className='nav-icon' src={userFile} alt="user-icon" />
+                <img className='nav-icon' src={userFile ? userFile : usericon} alt="user-icon" />
             </div>
             <div className="write-comment">
                 <input className='comment-bar' onChange={handleCommentChange} placeholder='Write your comment here...'></input>
@@ -265,7 +270,7 @@ export default function Home() {
                 <button className='comment-submit' onClick={()=>{
                     createComment(posts[posts.length-(idx+1)]._id, idx)
                     showCommentsOnSubmit(idx)
-                    }}><img src="src/images/commentButton.png"/></button>
+                    }}><img src={commentButton}/></button>
              </div>
      </div>
      <div className='comment-list-section'>
@@ -273,7 +278,7 @@ export default function Home() {
              <div className='comment-list'>
                     {posts[posts.length-(idx+1)].comments.map((comment,idx)=>(
                         <div key={idx} className='comment-with-icon'>
-                        <img className='nav-icon' src='src/images/user-icon.png' alt="user-icon" />
+                        <img className='nav-icon' src={usericon} alt="user-icon" />
                         <p className='comment'>{comment}</p> 
                        </div>
                     ))}

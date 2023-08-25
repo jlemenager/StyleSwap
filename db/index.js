@@ -1,7 +1,8 @@
+const { DATABASE_URL } = require("../config");
 const mongoose = require('mongoose')
 
 mongoose
-  .connect('mongodb://127.0.0.1:27017/StyleSwapDatabase')
+  .connect(DATABASE_URL)
   .then(() => {
     console.log('Successfully connected to MongoDB.')
   })

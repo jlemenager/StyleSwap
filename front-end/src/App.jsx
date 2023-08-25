@@ -30,7 +30,7 @@ function App() {
   
 
   const getPostsAPI = async() =>{
-    const response = await axios.get('http://localhost:3001/api/post')
+    const response = await axios.get('https://styleswap-production.up.railway.app/api/post')
     setPosts(response.data.posts)
   }
 
@@ -40,7 +40,7 @@ function App() {
 
   useEffect(() => {
     const getProduct = async() => {
-      const response = await axios.get(`http://localhost:3001/api/product`)
+      const response = await axios.get(`https://styleswap-production.up.railway.app/api/product`)
       setProducts(response.data.products)
     }
     getProduct()
@@ -49,14 +49,14 @@ function App() {
   const handleUserImageUpload = async(event) => {
     const files = event.target.files
     console.log(files[0])
-    setUserFile('http://localhost:3001/images/' + files[0].name)
+    setUserFile('https://styleswap-production.up.railway.app/images/' + files[0].name)
     const myImage = files[0]
     const imageType = /image.*/
 
     const formData = new FormData()
     formData.append('myFile', files[0])
     console.log(files[0].name)
-    await axios.post('http://localhost:3001/saveImage', formData)
+    await axios.post('https://styleswap-production.up.railway.app/saveImage', formData)
     console.log(formData)
     // fetch('/saveImage', {
     //   method: 'POST',
@@ -91,10 +91,10 @@ function App() {
        <Nav />
 
        <Routes>
-          <Route path='/' element={<Home />}/>
+          <Route path='/home' element={<Home />}/>
           <Route path='/search' element={<Search/>}/>
           <Route path='/product' element={<Product/>}/>
-          <Route path='/login' element={<LogIn/>}/>
+          <Route path='/' element={<LogIn/>}/>
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/signup' element={<SignUP/>}/>
           <Route path='/loginpage' element={<LogInPage/>}/>

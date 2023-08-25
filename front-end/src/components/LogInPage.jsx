@@ -29,11 +29,11 @@ export default function LoginPage(){
     const { vertUsername,setVertUsername,vertId,setVertId } = useContext(UserContext)
     const handleSubmit = async(event) => {
         event.preventDefault()
-        const response = await axios.get(`http://localhost:3001/api/userinfo`)
+        const response = await axios.get(`https://styleswap-production.up.railway.app/api/userinfo`)
         const checkIfRealAccount = async() => {
             for (let i = 0;i<response.data.users.length;i++){
                 if (userInfo.password == response.data.users[i].password && userInfo.username == response.data.users[i].username){
-                    const putRequest = await axios.put(`http://localhost:3001/api/userinfo/loginpage/${response.data.users[i]._id}`, {...userInfo, isLoggedIn: true})
+                    const putRequest = await axios.put(`https://styleswap-production.up.railway.app/api/userinfo/loginpage/${response.data.users[i]._id}`, {...userInfo, isLoggedIn: true})
                     alert(`Hello ${response.data.users[i].username}, you are logged in!`)
                     setVertUsername(response.data.users[i].username)
                     setVertId(response.data.users[i]._id)

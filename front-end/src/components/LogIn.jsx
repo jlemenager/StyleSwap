@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import google from '../images/google.png'
+import facebook from '../images/fb.png'
 
 export default function LogIn() {
     return(
@@ -13,7 +15,7 @@ export default function LogIn() {
                      <button className="semail"><Link to='/logoutpage'>Log Out</Link></button>
                    </div>
                  
-             <div className="or">
+             {/* <div className="or">
                 <p>
                   <span></span>
                    or
@@ -21,9 +23,9 @@ export default function LogIn() {
                 </p>
              </div>
              <div className='loginOthers'>
-                <button className="google"><img src="src/images/google.png"/>Log In with Google</button>
-                <button className="upfb"><img src="src/images/fb.png"/>Log In with Facebook</button>
-              </div>
+                <button className="google"><img src={google}/>Log In with Google</button>
+                <button className="upfb"><img src={facebook}/>Log In with Facebook</button>
+              </div> */}
          </div>
     )
 }

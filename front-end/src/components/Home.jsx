@@ -41,7 +41,7 @@ export default function Home() {
             setFormState(initialState)
         }
         postNewPost()
-        location.reload()
+        .then(location.reload())
     }
 
     let [clicked, setClicked] = useState(false)
@@ -154,14 +154,14 @@ export default function Home() {
 
     const handleImageUpload = async(event) => {
         const files = event.target.files
-        console.log(files[0])
+        // console.log(files[0])
         setFile(files[0].name)
         const myImage = files[0]
         const imageType = /image.*/
 
         const formData = new FormData()
         formData.append('myFile', files[0])
-        console.log(files[0].name)
+        // console.log(files[0].name)
         await axios.post('https://styleswap-production.up.railway.app/saveImage', formData)
         console.log(formData)
         // fetch('/saveImage', {
@@ -201,7 +201,7 @@ export default function Home() {
                           </div>
                     </div>
                     <div>
-                       <textarea type="text" value={formState.description} onChange={handleChange} id='description' placeholder="What's your style?"/>
+                       <textarea className='textarea-section' type="text" value={formState.description} onChange={handleChange} id='description' placeholder="What's your style?"/>
                     </div>
                 </div>
 
@@ -226,7 +226,7 @@ export default function Home() {
      {posts.map((post, idx) =>(
  <div key={idx} className='post'>
     <div className='top-post'>
-         <div className='post-username-section'>
+         <div className='post-username-section each-post-username-section'>
                <img className='post-user-icon' src={posts[posts.length-(idx+1)].profileimage} alt="user icon" />
                {/* "src/images/user-icon.png" */}
                <h3 className='post-username'>{posts[posts.length-(idx+1)].username}</h3>
